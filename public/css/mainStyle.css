@@ -1,0 +1,31 @@
+/* applies to anything of class "example-class-selector" */
+.example-class-selector {
+	margin-top: 2em;
+}
+
+
+/* applies to any <p> descendants of an element of class "example-class-selector" */
+.example-class-selector p {
+	/* Colors are in hexadecimal: http://www.colorpicker.com/ */	
+	color: #CC00AA;
+}
+
+
+.friend { 
+	width: 300px;
+	color: #C36;
+}
+
+.response {
+	width:400px;
+	height:200px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -150px;
+}
+
+
+h1, h2, h3, h4, h5 {
+	color: #8382BF;
+}
