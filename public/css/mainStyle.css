@@ -11,7 +11,7 @@
 }
 
 body{
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 	height:100%;
 	width:100%;
 }
@@ -39,7 +39,7 @@ body{
 	height:inherit;
 	float:left;
 }
-.task-item .description > div{
+.task-item .description > div{ /*Magic to center the tasks.*/
 	height:50%;
     margin-bottom:-25px;
 }
