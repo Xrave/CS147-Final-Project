@@ -15,12 +15,14 @@
 		<link href="css/mainStyle.css" rel="stylesheet">
     </head>
     <body>
+		<div id="page">
+		<div id="wrapper">
     	<div id="topBar">
-			<p class="header">Tasks</p>
-			<img src="images/AddTask_btn.png" class="rightBtn addBtn" />
+			<div class="header">Tasks</div>
+			<div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div>
     	</div>
 
-    	<div id="content">
+    	<div id="task-content">
     		<div class="task-item">
     			<img src="images/Placeholder_profile_black.png" class="profile-icon-black" />
     			<p>Feed the fucking cat</p>
@@ -34,13 +36,15 @@
     			<p>Clean your dirty ass room</p>
     		</div>
     	</div>
-    	<div id="bottomBar">
+		</div>
+    	<div id="bottomBar"> 
     		<img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" />
     		<img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" />
     		<img id="notIcon" class="nav-icons" src="images/notIcon.png" />
     		<img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" />
+			<span class="stretch"></span>
     	</div>
-		
+		</div>
 		<script src="js/jquery-1.11.0.js"></script>
 		<script src="js/bootstrap.js"></script>	
 		<script src="js/tasks_page.js"></script>
