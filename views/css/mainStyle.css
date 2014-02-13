@@ -29,6 +29,7 @@ body{
 
 .task-item{
 	height:60px;
+	width:100%;
 	position:relative;
 	margin:10px;
 }
@@ -44,7 +45,11 @@ body{
 }
 .task-item .description > div{ /*Magic to center the tasks.*/
 	height:50%;
-    margin-bottom:-25px;
+    margin-bottom:-18px;
+	text-align:left;
+	top:-12px;
+	color:#999;
+	width:100%;
 }
 
 .task-item:after {
@@ -80,6 +85,7 @@ body{
 	background-color:#FaFaFa;
 	top:0;
 	height:60px;
+	position:fixed;
 	padding:4px;
 	padding-top:10px;
 	text-align:center;
@@ -133,8 +139,11 @@ box-shadow:         0px -2px 4px 0px rgba(50, 50, 50, 0.2);
 
 .pts_text{
 	float:right;
-	right:0;
+	margin:inherit;
 	color:#999
+}
+.ptx_text p{
+	font-size:10px;
 }
 
 .friend { 
