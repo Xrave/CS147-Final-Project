@@ -1,16 +1,17 @@
 {
-	"taskArray": [
+	"taskArray":
+	[
 		{
 			"assignedTo": "Sarah",
 			"task_description": "Please feed your pet mice.",
-			"task_reward_text": "+4 pts"
-			"iconURL": "images/Placeholder_profile_black.png"			
+			"task_reward_text": "+4 pts",
+			"iconURL": "images/Placeholder_profile_black.png"		
 		},
 		{
 			"assignedTo": "Ivan",
 			"task_description": "Remind Sarah to feed her pet mice.",
-			"task_reward_text": "+2 pts"
-			"imageURL": "images/Placeholder_profile_black.png"			
-		},
+			"task_reward_text": "+2 pts",
+			"iconURL": "images/Placeholder_profile_black.png"
+		}
 	]
 }
