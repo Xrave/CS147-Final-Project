@@ -14,7 +14,7 @@ var add = require('./routes/addtask');
 var addreward = require('./routes/addreward');
 var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
-var createTask = require('./routes/maketask');
+var createTask = require('./routes/createTask');
 // Example route
 // var user = require('./routes/user');
 
@@ -42,12 +42,12 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', tasks.view);
-app.get('/tasks/add', add.view);
+app.get('/addtask', add.view);
 app.get('/rewards/add', addreward.view);
 app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
-app.get('/maketask', createTask.handle);
+app.post('/maketask', createTask.handle);
 
 // Example route
 // app.get('/users', user.list);
