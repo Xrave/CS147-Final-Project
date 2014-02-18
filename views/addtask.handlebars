@@ -19,37 +19,43 @@
 <div id="page">
 	<div id="wrapper">
 		<div id="topBar">
-			<div class="header">Add Task</div>
+			<div class="header">Add a Task</div>
 			<a href="/tasks/add" >
-			<div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div>
+			<div class="LeftBtn"><img src="../public/images/back_btn.png" class="addBtn" /></div>
 			</a> </div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:center">
-				<div id="controlform1">
-					<form id="projectForm" role="form">
+					
 						<div class="form-group">
-							<label for="project"><h4>Task Title</h4></label>
-							<input type="text" class="form-control" id="newTaskName" placeholder="Make bed">
-							
+						  <h5>Task Title</h5>
+						    <input type="text" class="glyphicon-align-center" id="newTaskName" placeholder="Make bed">
+						
 						</div>
 						<div class="form-group">
-							<label for="width"><h4>Assign To:</h4></label>
-<select class="form-control" id="childName"><option value="Sarah">Sarah</option><option value="Ivan">Ivan</option></select>						</div>
+							<label for="width"><h5>Assign to</h5>
+							<img src="images/Placeholder_profile_black.png" width="60" height="60" /><img src="images/Placeholder_profile_red.png" width="60" height="60"/><img src="images/Placeholder_profile_red.png" width="60" height="60"/>
+							</label>
+					 </div>
 						<div class="form-group">
-							<label for="description"><h4>Reward Points:</h4></label>
-							<input type="text" class="form-control" id="rewardVal" placeholder="2">
+							<label for="description"><h5>Reward</h5>
+							  <input type="text" class="glyphicon-align-center" id="rewardVal" placeholder="2">
+						
 						</div>
-						<button id="submitTaskBtn" type="button" class="btn btn-default">Submit</button>
-					</form>
-				</div>
-			</div>
+                        <div class="form-group">
+                        	<label for="description"><h5>Expires</h5>
+                        	  <input type="text" class="glyphicon-align-center" id="expireDate" placeholder="3/14" />
+                        
+                        </div>
+          
+				      <p>&nbsp;</p>
+				      <button id="submitTaskBtn" type="button" class="btn btn-default">
+                      <img src="../public/images/add_btn.png" /></button>
+					
+			
+		  </div>
 		</div>
 	</div>
 </div>
-<div id="bottomBar"> <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a> <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" /></a> <a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a> <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a> <span class="stretch"></span> </div>
-</div>
-<script src="js/jquery-1.11.0.js"></script> 
-<script src="js/bootstrap.js"></script> 
-<script src="js/add_task_page.js"></script>
+<div id="bottomBar"> <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a> <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" /></a><a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a><span class="stretch"></span> <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a></div>
 </body>
 </html>
