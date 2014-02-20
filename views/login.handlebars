@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Login to Temporary Giraffe</title>
+</head>
+<div id="root" style="width: 400px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
+    embeded area
+</div>
+<script src="https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-2.4.6.min.js"></script>
+<script>
+	
+  var widget = new Auth0Widget({
+        domain:         'contoso.auth0.com',
+        clientID:       '2M7P0OrlDnifR6x8NfkNr3VQsdKsqaMC',
+        callbackURL:    'http://localhost/dummy'
+  });
+  
+
+  widget.signin({ container: 'root', chrome: true });
+</script>
+<body>
+</body>
+</html>
