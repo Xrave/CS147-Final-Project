@@ -8,7 +8,8 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
-
+var passport = require('passport');
+var strategy = require('./setup-passport');
 
 var tasks = require('./routes/tasks');
 var rewards = require('./routes/rewards');
@@ -17,6 +18,7 @@ var addreward = require('./routes/addreward');
 var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
 var createTask = require('./routes/createTask');
+
 // Example route
 // var user = require('./routes/user');
 
@@ -39,9 +41,12 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('Intro HCI secret key'));
 app.use(express.session());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
 
+  
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -50,11 +55,23 @@ if ('development' == app.get('env')) {
 // Add routes here
 app.get('/', tasks.view);
 app.get('/addtask', add.view);
-app.get('/rewards/add', addreward.view);
+app.get('/addreward', addreward.view);
+app.get('/login', function(req, res){
+	res.render('login');
+}
 app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
 app.post('/maketask', createTask.handle);
+app.get('/callback', 
+		passport.authenticate('auth0', { failureRedirect: '/404' }), 
+ 		function(req, res) {
+    		if (!req.user) {
+   				throw new Error('user null');
+   			}
+			res.redirect("/");
+ 		 }
+);
 
 // Example route
 // app.get('/users', user.list);
