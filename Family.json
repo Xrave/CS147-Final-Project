@@ -1,0 +1,28 @@
+[{
+      "controllers":[ 
+      "jack", "julie"    ],
+      "controlees":[ 
+      "xiaonan"    
+      ],
+    "tasks":[{
+      "taskID": "julie-xiaonan-Clean your bed",
+      "assigner": "julie", 
+      "assignee": "xiaonan", 
+      "taskText": "Clean your bed",
+      "taskCompletion": 0,  
+	  "taskReward": 12,
+      "comments":[]
+    }],
+    "rewards":[{
+      "cost": 4,
+      "text": "Chocolate"
+    }, {
+      "cost":12,
+      "text":"Cheesecake"
+    }],
+    "notifications":[{
+      "text": "Xiaonan redeemed Chocolate!",
+      "date": "February 12 2014"
+    }]
+  }
+]
