@@ -1,0 +1,27 @@
+{
+	[
+		{
+			username: 'xiaonan',
+			password: 'xiaonan',
+			firstName: 'Xiaonan',
+			lastName: 'Tong',
+			email: 'xiaonan@stanford.edu',
+			points: 12	
+		},
+		{
+			username: 'julie',
+			password: 'julie',
+			firstName: 'Julie',
+			lastName: 'Nam',
+			email: 'julienam@stanford.edu',
+			points: -1
+		},	{
+			username: 'jack',
+			password: 'jack',
+			firstName: 'Jack',
+			lastName: 'Kim',
+			email: 'jack7kim@stanford.edu',
+			points: -1
+		}
+	]
+}
