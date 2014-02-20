@@ -25,30 +25,17 @@
     	</div>
 
     	<div id="task-content">
+        	{{#each rewards}}
     		<div class="task-item">
     			<span class="image">
-				<img src="images/Placeholder_profile_black.png" class="profile-icon-black" /></span>
+				<img src="images/{{image}}" class="profile-icon-black" /></span>
 				<span class="description"><div></div>
-    			<p>A brand new car</p>
+    			<p>{{reward-description}}</p>
 				</span>
-				<div class="pts_text"><p>5130pt</p></div>
+				<div class="pts_text"><p>{{reward-point}}pt</p></div>
     		</div>
-    		<div class="task-item">
-			    <span class="image">
-    			<img src="images/Placeholder_profile_black.png" class="profile-icon-black" /></span>
-				<span class="description"><div></div>
-    			<p>Disneyland</p>
-				</span>				<div class="pts_text"><p>600pt</p></div>
+            {{/each}}
 
-    		</div>
-    		<div class="task-item">   
-			<span class="image">
-    			<img src="images/Placeholder_profile_red.png" class="profile-icon-red" /></span>
-				<span class="description"><div></div>
-    			<p>Let's use another icon here.</p>
-				</span>				<div class="pts_text"><p>0pt</p></div>
-
-    		</div>
     	</div>
 		</div>
     	<div id="bottomBar"> 
