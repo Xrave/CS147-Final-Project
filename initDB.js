@@ -13,6 +13,9 @@
 
   var mongoose = require('mongoose');
   var models   = require('./models');
+  var projects_json = require('./Person.json');
+  var family = require('./Family.json');
+
 
 // Connect to the Mongo database, whether locally or on Heroku
 // MAKE SURE TO CHANGE THE NAME FROM 'lab7' TO ... IN OTHER PROJECTS
@@ -24,6 +27,7 @@ mongoose.connect(database_uri);
 
 // Do the initialization here
 
+
 // Step 1: load the JSON data
 
 // Step 2: Remove all existing documents
@@ -34,7 +38,6 @@ models.Person
   if(err) console.log(err);
   // loop over the projects, construct and save an object from each one
   // Note that we don't care what order these saves are happening in...
-  var projects_json = require('./Person.json');
 
   var to_save_count = projects_json.length;
   for(var i=0; i<projects_json.length; i++) {
@@ -54,7 +57,6 @@ models.Person
         .exec(function(err){
           if (err) console.log(err);
 
-          var family = require('./Family.json');
 
           var familycount = family.length;
           for(var i=0; i<family.length; i++) {

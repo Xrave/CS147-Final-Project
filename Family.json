@@ -1,35 +1,29 @@
+[
 {
-  [
-    {
-      "controllers":[ //username array
-'jack', 'julie'    ],
-    "controlees":[ //username arraay
-      'xiaonan'    
-    ],
+      "controllers":[ 
+      "jack", "julie"    ],
+      "controlees":[ 
+      "xiaonan"    
+      ],
     "tasks":[{
-      taskID: String, //identifier of format: assigner-assignee-tasktext
-      assigner: 'julie', //username.
-      assignee: 'xiaonan', //username
-      taskText: 'Clean your bed',
-      taskCompletion: 0,  //a percentage or a number between 0 and 100 would do
-      taskReward: 12,
-      comments:[{
-        body: String,
-        name: String,
-        date: Date
-      }]
+      "taskID": "julie-xiaonan-Clean your bed",
+      "assigner": "julie", 
+      "assignee": "xiaonan", 
+      "taskText": "Clean your bed",
+      "taskCompletion": 0,  
+	  "taskReward": 12,
+      "comments":[]
     }],
     "rewards":[{
-      cost: 4,
-      text: 'Chocolate'
+      "cost": 4,
+      "text": "Chocolate"
     }, {
-		cost:12,
-		text:'Cheesecake'
-	}],
+      "cost":12,
+      "text":"Cheesecake"
+    }],
     "notifications":[{
-      text: String,
-      date: Date,
+      "text": "Xiaonan redeemed Chocolate!",
+      "date": "February 12 2014"
     }]
-    }
-  ]
-}
+  }
+]
