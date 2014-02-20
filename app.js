@@ -9,7 +9,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
 var passport = require('passport');
-var strategy = require('./setup-passport');
+var strategy = require('./setup_auth');
 
 var tasks = require('./routes/tasks');
 var rewards = require('./routes/rewards');
@@ -58,7 +58,7 @@ app.get('/addtask', add.view);
 app.get('/addreward', addreward.view);
 app.get('/login', function(req, res){
 	res.render('login');
-}
+});
 app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
@@ -69,10 +69,14 @@ app.get('/callback',
     		if (!req.user) {
    				throw new Error('user null');
    			}
+			console.log(req.user);
 			res.redirect("/");
  		 }
 );
-
+app.get('/logindata', function(req, res){
+	console.log(req.user);
+	res.redirect('/');
+});
 // Example route
 // app.get('/users', user.list);
 
