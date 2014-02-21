@@ -7,11 +7,12 @@ exports.process = function(req, res){
 		throw new Error('user null');
 	}
 	console.log('-------USER REQUEST FROM-------');
-	console.log(req.user);
+	console.log(req);
 	console.log('-------------------------------');
 	
 	if(req.query.state == 'newaccount'){
 	  //create a family for it.
+	  	var userJson = {};
 	  	var json = {
 						"controllers":[ 
 						req.user.displayName],
