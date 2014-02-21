@@ -58,7 +58,9 @@
 			"email": $("#email").val(),
 			"password": $("#password").val()
 		};
-		$.post("/callback", obj);
+		$.post("/callback", obj)
+			.done(function(){alert("submitted!");})
+			.fail(function(){alert("failed!");});
 	});
 
 	</script>
