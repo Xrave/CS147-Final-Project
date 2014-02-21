@@ -31,9 +31,9 @@ exports.process = function(req, res){
 			newFamily.save(function(err, newFamily){
 				console.log(newFamily + " is saved!");
 				res.cookie('family', newFamily._id);
+				res.cookie('user', newUser.email);
 				res.send(200);
 			});
-			res.cookie('user', newUser.email);
 		});
 	}else if(req.query.action == 'signIn'){
 		var userJson = req.body;
@@ -45,12 +45,11 @@ exports.process = function(req, res){
 				models.Family
 				.find({$or: [{controllers:entry[0].email}, {controlees:entry[0].email}] })
 				.exec(function(err, matchedFamilies){
+					console.log("\t"+entry[0].name + " Logged in!");
+					res.cookie('user', entry[0].email);
 					res.cookie('family', matchedFamilies[0]._id);
 					res.send(200);
-
 				});
-				console.log("\t"+entry[0].name + " Logged in!");
-				res.cookie('user', entry[0].email);
 			}else{
 				res.send(500);
 			}
@@ -62,7 +61,7 @@ exports.process = function(req, res){
 			console.log("[ NEW CHILD ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			//res.send(200);
+			res.send(200);
 		});
 
 
@@ -73,35 +72,9 @@ exports.process = function(req, res){
 			console.log("[ NEW PARENT ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			//res.send(200);
+			res.send(200);
 		});
 
 	}
-	
-	
-	
-	if(req.query.state == 'newaccount'){
-	  //create a family for it.
-	  	/*var json = {
-						"controllers":[ 
-						req.user.displayName],
-						"controlees":[   ],
-						"tasks":[],
-						"rewards":[],
-						"notifications":[]		};
-			var newFamily = new models.Family(json);
-			newFamily.save(function(err, newFamily){
-			console.log(newFamily + " is saved!");
-		});*/
-	} 
-	else if (req.query.state == "adding_child")
-	{
-	  	var familyID = req.query.family;
-	  
-	} 
-	else if (req.query.state == "adding_parent")
-	{
-	  	var familyID = req.query.family;
-	  
-	}
+
 }
