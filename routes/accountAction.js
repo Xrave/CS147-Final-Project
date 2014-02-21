@@ -19,8 +19,21 @@ exports.process = function(req, res){
 		var newUser = new models.Person(userJson);
 		newUser.save(function(err, newUser){
 			console.log(newUser + " is saved!");
-			res.cookie('user', newUser.email);
-			res.send(200);
+			console.log("now creating family for new user");
+			var json = {
+						"controllers":[ 
+						newUser.email],
+						"controlees":[   ],
+						"tasks":[],
+						"rewards":[],
+						"notifications":[]		};
+			var newFamily = new models.Family(json);
+			newFamily.save(function(err, newFamily){
+				console.log(newFamily + " is saved!");
+				res.cookie('family', newFamily._id);
+				res.cookie('user', newUser.email);
+				res.send(200);
+			});
 		});
 	}else if(req.query.action == 'signIn'){
 		var userJson = req.body;
@@ -29,9 +42,14 @@ exports.process = function(req, res){
 		.exec(function(err, entry){
 			if(err) console.log(err);
 			if(entry){
-				console.log("\t"+entry[0].name + " Logged in!");
-				res.cookie('user', newUser.email);
-				res.send(200);
+				models.Family
+				.find({$or: [{controllers:entry[0].email}, {controlees:entry[0].email}] })
+				.exec(function(err, matchedFamilies){
+					console.log("\t"+entry[0].name + " Logged in!");
+					res.cookie('user', entry[0].email);
+					res.cookie('family', matchedFamilies[0]._id);
+					res.send(200);
+				});
 			}else{
 				res.send(500);
 			}
@@ -43,7 +61,7 @@ exports.process = function(req, res){
 			console.log("[ NEW CHILD ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			//res.send(200);
+			res.send(200);
 		});
 
 
@@ -54,35 +72,9 @@ exports.process = function(req, res){
 			console.log("[ NEW PARENT ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			//res.send(200);
+			res.send(200);
 		});
 
 	}
-	
-	
-	
-	if(req.query.state == 'newaccount'){
-	  //create a family for it.
-	  	/*var json = {
-						"controllers":[ 
-						req.user.displayName],
-						"controlees":[   ],
-						"tasks":[],
-						"rewards":[],
-						"notifications":[]		};
-			var newFamily = new models.Family(json);
-			newFamily.save(function(err, newFamily){
-			console.log(newFamily + " is saved!");
-		});*/
-	} 
-	else if (req.query.state == "adding_child")
-	{
-	  	var familyID = req.query.family;
-	  
-	} 
-	else if (req.query.state == "adding_parent")
-	{
-	  	var familyID = req.query.family;
-	  
-	}
+
 }

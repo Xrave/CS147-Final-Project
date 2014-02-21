@@ -3,11 +3,9 @@
 var models = require('../models');
 
 exports.view = function(req, res){
-	console.log(req.query.user);
 	if(!req.cookies.user){
 		res.redirect('/login');
 	}
-	console.log(process.env);
 
   models.Family
     .find({"_id": req.cookies.family})
@@ -32,5 +30,4 @@ exports.view = function(req, res){
 		};
 		//search again with the assignee email to find name
 	}
-
 };
