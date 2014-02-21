@@ -1,10 +1,8 @@
 var Mongoose = require('mongoose');
 var PersonSchema = new Mongoose.Schema({
-      'username': String,
+	  'email': String,
       'password': String,
-      'firstName': String,
-      'lastName': String,
-      'email': String,
+      'name': String,
       'points': Number //negative points mean you should load parent interface!
 });
 exports.Person = Mongoose.model('Person', PersonSchema);
