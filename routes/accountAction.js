@@ -35,5 +35,5 @@ exports.process = function(req, res){
 	  	var familyID = req.query.family;
 	  
 	}
-	res.redirect("/");
+	res.send(20);
 }

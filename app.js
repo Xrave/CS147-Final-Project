@@ -8,8 +8,8 @@ var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars')
 var mongoose = require('mongoose');
-var passport = require('passport');
-var strategy = require('./setup_auth');
+//var passport = require('passport');
+//var strategy = require('./setup_auth');
 
 var tasks = require('./routes/tasks');
 var rewards = require('./routes/rewards');
@@ -45,8 +45,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.initialize());
+//app.use(passport.session());
   
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,8 +67,7 @@ app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
 app.post('/maketask', createTask.handle);
-app.get('/callback', 
-		passport.authenticate('auth0', { failureRedirect: '/404' }),
+app.post('/callback', 
 		accountAction.process);
 
 // Example route
