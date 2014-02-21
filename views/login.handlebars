@@ -56,11 +56,21 @@
 		var obj = {
 			"name": $("#name").val(),
 			"email": $("#email").val(),
+			"password": $("#password").val(),
+			"points": -1
+		};
+		$.post("/callback", obj)
+			.done(function(){alert("submitted!");window.location("/settings")})
+			.fail(function(){alert("failed!");});
+	});
+	$('#signInSubmit').click(function(){
+		var obj = {
+			"email": $("#email").val(),
 			"password": $("#password").val()
 		};
 		$.post("/callback", obj)
-			.done(function(){alert("submitted!");})
-			.fail(function(){alert("failed!");});
+			.done(function(){alert("logged in!");})
+			.fail(function(){alert("incorrect credentials!");});
 	});
 
 	</script>
