@@ -54,9 +54,9 @@
 
 	$('#signUpSubmit').click(function(){
 		var obj = {
-			"name": $("#name").val(),
-			"email": $("#email").val(),
-			"password": $("#password").val(),
+			"name": $("#signUpTab #name").val(),
+			"email": $("#signUpTab #email").val(),
+			"password": $("#signUpTab #password").val(),
 			"points": -1
 		};
 		$.post("/callback?action=signUp", obj)
@@ -65,11 +65,11 @@
 	});
 	$('#signInSubmit').click(function(){
 		var obj = {
-			"email": $("#email").val(),
-			"password": $("#password").val()
+			"email": $("#signInTab #email").val(),
+			"password": $("#signInTab #password").val()
 		};
 		$.post("/callback?action=signIn", obj)
-			.done(function(){alert("logged in!");})
+			.done(function(){alert("logged in!");window.location.href="/"})
 			.fail(function(){alert("incorrect credentials!");});
 	});
 

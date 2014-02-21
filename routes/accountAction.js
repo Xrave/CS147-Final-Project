@@ -41,10 +41,15 @@ exports.process = function(req, res){
 		.find(userJson)
 		.exec(function(err, entry){
 			if(err) console.log(err);
-			if(entry){
+			if(typeof entry[0] != "undefined"){
+				
 				models.Family
 				.find({$or: [{controllers:entry[0].email}, {controlees:entry[0].email}] })
 				.exec(function(err, matchedFamilies){
+					if(!matchedFamilies){
+						res.send(500); //fail!
+						return;
+					}
 					console.log("\t"+entry[0].name + " Logged in!");
 					res.cookie('user', entry[0].email);
 					res.cookie('family', matchedFamilies[0]._id);
