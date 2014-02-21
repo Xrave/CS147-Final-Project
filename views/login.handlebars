@@ -1,23 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Login to Temporary Giraffe</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login to Temporary Giraffe</title>
+	<style>
+	body {
+		font-family: sans-serif;
+		text-align: center;
+	}
+	p {
+		display: inline-block;
+		cursor: pointer;
+	}
+	input {
+		font-family: sans-serif;
+		font-size: 20px;
+	}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
 </head>
 <body>
-<div id="root" style="width: 400px; margin: 40px auto; padding: 10px; border-style:none; border-width: 1px;">
-    embeded area
-</div>
-<script src="https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-2.4.6.min.js"></script>
-<script>
-	
-  var widget = new Auth0Widget({
-    domain:         'temporarygiraffe.auth0.com',
-    clientID:       '63YBfa4xHxoUEOA5TBX1Bri2ggwOesYX',
-    callbackURL:    'http://localhost:3000/callback'
-	  });
-  
-  widget.signin({ container: 'root', chrome: true, state:'newaccount' });
-</script>
+	<h1>Temporary Giraffe</h1>
+
+	<p style="font-weight:bold" id="signInBtn">Sign In</p>
+	<p style="margin-left:15px" id="signUpBtn">Sign Up</p><br />
+	<div id="signUpTab" style="display:none">
+		<input type="text" id="name" value="Name" /><br />
+		<input type="text" id="email" value="Email" /><br />
+		<input type="password" id="password" value="Password" /><br />
+		<button id="signUpSubmit">Sign Up</button>
+	</div>
+	<div id="signInTab">
+		<input type="text" id="email" value="Email" /><br />
+		<input type="password" id="password" value="Password" /><br />
+		<button id="signInSubmit">Sign In</button>
+	</div>
+
+
+	<script type="text/javascript">
+
+	$('#signInBtn').click(function(){
+		$("#signUpBtn").css("font-weight", "normal");
+		$("#signInBtn").css("font-weight", "bold");
+		$('#signUpTab').hide();
+		$('#signInTab').show();
+	});
+	$('#signUpBtn').click(function(){
+		$("#signInBtn").css("font-weight", "normal");
+		$("#signUpBtn").css("font-weight", "bold");
+		$('#signInTab').hide();
+		$('#signUpTab').show();
+	});
+
+	$('#signUpSubmit').click(function(){
+		var obj = {
+			"name": $("#name").val(),
+			"email": $("#email").val(),
+			"password": $("#password").val()
+		};
+		$.post("/callback", obj);
+	});
+
+	</script>
 </body>
 </html>
