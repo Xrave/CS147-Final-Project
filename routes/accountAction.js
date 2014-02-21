@@ -19,8 +19,21 @@ exports.process = function(req, res){
 		var newUser = new models.Person(userJson);
 		newUser.save(function(err, newUser){
 			console.log(newUser + " is saved!");
+			console.log("now creating family for new user");
+			var json = {
+						"controllers":[ 
+						newUser.email],
+						"controlees":[   ],
+						"tasks":[],
+						"rewards":[],
+						"notifications":[]		};
+			var newFamily = new models.Family(json);
+			newFamily.save(function(err, newFamily){
+				console.log(newFamily + " is saved!");
+				res.cookie('family', newFamily._id);
+				res.send(200);
+			});
 			res.cookie('user', newUser.email);
-			res.send(200);
 		});
 	}else if(req.query.action == 'signIn'){
 		var userJson = req.body;
@@ -29,9 +42,15 @@ exports.process = function(req, res){
 		.exec(function(err, entry){
 			if(err) console.log(err);
 			if(entry){
+				models.Family
+				.find({$or: [{controllers:entry[0].email}, {controlees:entry[0].email}] })
+				.exec(function(err, matchedFamilies){
+					res.cookie('family', matchedFamilies[0]._id);
+					res.send(200);
+
+				});
 				console.log("\t"+entry[0].name + " Logged in!");
-				res.cookie('user', newUser.email);
-				res.send(200);
+				res.cookie('user', entry[0].email);
 			}else{
 				res.send(500);
 			}
