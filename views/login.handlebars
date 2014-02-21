@@ -12,13 +12,12 @@
 <script>
 	
   var widget = new Auth0Widget({
-        domain:         'temporarygiraffe.auth0.com',
-        clientID:       'Qjs1ZHjWuSOnPaBUUteQC2skr157iTgK',
-        callbackURL:    'http://localhost:PORT/callback'
-  });
+    domain:         'temporarygiraffe.auth0.com',
+    clientID:       '63YBfa4xHxoUEOA5TBX1Bri2ggwOesYX',
+    callbackURL:    'http://localhost:3000/callback'
+	  });
   
-
-  widget.signin({ container: 'root', chrome: true });
+  widget.signin({ container: 'root', chrome: true, state:'newaccount' });
 </script>
 </body>
 </html>

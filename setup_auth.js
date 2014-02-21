@@ -1,16 +1,18 @@
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 
-var strategy = new Auth0Strategy({  
-    domain:       'temporarygiraffe.auth0.com',
-    clientID:     'Qjs1ZHjWuSOnPaBUUteQC2skr157iTgK',
-    clientSecret: 'iCUCFaKON-Mut_Cqzxo80-S5eK8OLIDaDVp-pGjrqbqkR6Ti66eoWkeQyZHieqJ3',
-    callbackURL:  '/callback'
+var strategy = new Auth0Strategy({
+    domain: process.env['AUTH0_DOMAIN'],
+    clientID: process.env['AUTH0_CLIENT_ID'],
+    clientSecret: process.env['AUTH0_CLIENT_SECRET'],
+    callbackURL: process.env['AUTH0_CALLBACK_URL']
   }, function(accessToken, refreshToken, profile, done) {
     //Some tracing info
     console.log('profile is', profile);
+    //save the profile
     return done(null, profile);
   });
+
 
 passport.use(strategy);
 

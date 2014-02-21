@@ -18,6 +18,7 @@ var addreward = require('./routes/addreward');
 var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
 var createTask = require('./routes/createTask');
+var accountAction = require('./routes/accountAction');
 
 // Example route
 // var user = require('./routes/user');
@@ -34,19 +35,22 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
+
+app.use(express.cookieParser());
+app.use(express.session({secret: 'shhhh'}));
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('Intro HCI secret key'));
-app.use(express.session());
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
   
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -65,14 +69,7 @@ app.get('/settings', settings.view);
 app.post('/maketask', createTask.handle);
 app.get('/callback', 
 		passport.authenticate('auth0', { failureRedirect: '/404' }), 
- 		function(req, res) {
-    		if (!req.user) {
-   				throw new Error('user null');
-   			}
-			console.log(req.user);
-			res.redirect("/");
- 		 }
-);
+		accountAction.process);
 app.get('/logindata', function(req, res){
 	console.log(req.user);
 	res.redirect('/');
