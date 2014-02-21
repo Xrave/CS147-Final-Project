@@ -7,8 +7,8 @@ exports.process = function(req, res){
 		throw new Error('user null');
 	}
 	console.log('-------USER REQUEST FROM-------');
-		console.log(req.user);
-
+	console.log(req.user);
+	console.log('-------------------------------');
 	
 	if(req.query.state == 'newaccount'){
 	  //create a family for it.
@@ -22,14 +22,16 @@ exports.process = function(req, res){
 			var newFamily = new models.Family(json);
 			newFamily.save(function(err, newFamily){
 			console.log(newFamily + " is saved!");
-		});		
-	} else if (req.query.state == "adding_child")
+		});
+	} 
+	else if (req.query.state == "adding_child")
 	{
-	  var familyID = req.query.family;
+	  	var familyID = req.query.family;
 	  
-	} else if (req.query.state == "adding_parent")
+	} 
+	else if (req.query.state == "adding_parent")
 	{
-	  var familyID = req.query.family;
+	  	var familyID = req.query.family;
 	  
 	}
 	res.redirect("/");

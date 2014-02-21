@@ -68,12 +68,9 @@ app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
 app.post('/maketask', createTask.handle);
 app.get('/callback', 
-		passport.authenticate('auth0', { failureRedirect: '/404' }), 
+		passport.authenticate('auth0', { failureRedirect: '/404' }),
 		accountAction.process);
-app.get('/logindata', function(req, res){
-	console.log(req.user);
-	res.redirect('/');
-});
+
 // Example route
 // app.get('/users', user.list);
 
