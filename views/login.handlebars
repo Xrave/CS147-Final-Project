@@ -60,7 +60,7 @@
 			"points": -1
 		};
 		$.post("/callback", obj)
-			.done(function(){alert("submitted!");window.location("/settings")})
+			.done(function(){alert("submitted!");window.location.href="/settings"})
 			.fail(function(){alert("failed!");});
 	});
 	$('#signInSubmit').click(function(){
