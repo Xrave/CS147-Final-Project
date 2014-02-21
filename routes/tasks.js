@@ -16,12 +16,16 @@ exports.view = function(req, res){
 		var tasks = families[0].tasks;
 		var index;
 		var callbacksfinished = 0;
-		for(index = 0; index<tasks.length; a++){
+		console.log(tasks.length)
+		for(index = 0; index<tasks.length; index++){
 			var email = tasks[index].assignee;
+			console.log(email)
+			var i = index;
 			models.Person.find({"email": email}).exec(function(err, people){
-				tasks[index]['assignedTo'] = people[0].name;
-				tasks[index]['task-description'] = tasks[index].taskText;
-				tasks[index]['reward-point'] = tasks[index].taskReward + "pts";
+				console.log(people);
+				tasks[i]['assignedTo'] = people[0].name;
+				tasks[i]['task_description'] = tasks[i].taskText;
+				tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
 				callbacksfinished ++;
 				if(callbacksfinished == tasks.length){
 					res.render('tasks', {"taskArray": tasks});
