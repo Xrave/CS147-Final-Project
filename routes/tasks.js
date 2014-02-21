@@ -1,7 +1,7 @@
 // Get all of our friend data
 exports.view = function(req, res){
-	console.log(req.user);
-	if(!req.user){
+	console.log(req.query.user);
+	if(!req.cookies.user){
 		res.redirect('/login');
 	}
 	console.log(process.env);
