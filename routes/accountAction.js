@@ -14,13 +14,52 @@ exports.process = function(req, res){
 
 	//TODO: check if account exists already. meh.
 	
-	var userJson = req.body;
-	var newUser = new models.Person(userJson);
+	if(req.query.action == 'signUp'){
+		var userJson = req.body;
+		var newUser = new models.Person(userJson);
+		newUser.save(function(err, newUser){
+			console.log(newUser + " is saved!");
+			res.cookie('user', newUser.email);
+			res.send(200);
+		});
+	}else if(req.query.action == 'signIn'){
+		var userJson = req.body;
+		models.Person
+		.find(userJson)
+		.exec(function(err, entry){
+			if(err) console.log(err);
+			if(entry){
+				console.log("\t"+entry[0].name + " Logged in!");
+				res.cookie('user', newUser.email);
+				res.send(200);
+			}else{
+				res.send(500);
+			}
+		});
+	}else if(req.query.action == 'addNewChild'){
+		var userJson = req.body;
+		var newUser = new models.Person(userJson);
+		newUser.save(function(err, newUser){
+			console.log("[ NEW CHILD ADDED ]");
+			console.log(newUser + " is saved!");
+			//res.cookie('user', newUser.email);
+			//res.send(200);
+		});
+
+
+	}else if(req.query.action == 'addNewParent'){
+		var userJson = req.body;
+		var newUser = new models.Person(userJson);
+		newUser.save(function(err, newUser){
+			console.log("[ NEW PARENT ADDED ]");
+			console.log(newUser + " is saved!");
+			//res.cookie('user', newUser.email);
+			//res.send(200);
+		});
+
+	}
 	
-	newUser.save(function(err, newUser){
-		console.log(newUser + " is saved!");
-		res.send(200);
-	});
+	
 	
 	if(req.query.state == 'newaccount'){
 	  //create a family for it.
