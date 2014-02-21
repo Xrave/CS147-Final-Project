@@ -35,14 +35,12 @@
 							<label for="width"><h4>For:
 						</h4>
 						<p>
+							{{#each child}}
 							<label>
 								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0" />
-								Sarah</label>
+								{{name}}</label>
 							<br />
-							<label>
-								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1" />
-								Ivan</label>
-							<br />
+							{{/each}}
 						</p>
 						<div class="form-group">
 							<label for="description">
