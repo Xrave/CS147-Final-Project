@@ -59,8 +59,8 @@
 			"password": $("#password").val(),
 			"points": -1
 		};
-		$.post("/callback", obj)
-			.done(function(){alert("submitted!");window.location.href="/settings"})
+		$.post("/callback?action=signUp", obj)
+			.done(function(){alert("submitted!");window.location.href="/settings?user=" + $("#email").val()})
 			.fail(function(){alert("failed!");});
 	});
 	$('#signInSubmit').click(function(){
@@ -68,7 +68,7 @@
 			"email": $("#email").val(),
 			"password": $("#password").val()
 		};
-		$.post("/callback", obj)
+		$.post("/callback?action=signIn", obj)
 			.done(function(){alert("logged in!");})
 			.fail(function(){alert("incorrect credentials!");});
 	});
