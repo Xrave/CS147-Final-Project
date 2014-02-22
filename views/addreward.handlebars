@@ -35,6 +35,7 @@
 							<label for="width"><h4>For:
 						</h4>
 						<p>
+							<!--LETS FIX THIS ASAP-->
 							{{#each child}}
 							<label>
 								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0" />
@@ -59,5 +60,17 @@
 <script src="js/jquery-1.11.0.js"></script> 
 <script src="js/bootstrap.js"></script> 
 <script src="js/add_task_page.js"></script>
+<script type="text/javascript">
+$('#submitRewardBtn').click(function(){
+		var obj = {
+			"text": $("#newTaskName").val(),
+			"cost": $("#rewardVal").val()
+			//NEED TO PUT VARIABLE FOR ASSIGNEE
+		};
+		$.post("/callback?action=addReward", obj)
+			.done(function(){alert("task added!");})
+			.fail(function(){alert("task not added!");});
+	});
+</script>
 </body>
 </html>

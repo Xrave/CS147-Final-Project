@@ -25,14 +25,14 @@
 	<p style="font-weight:bold" id="signInBtn">Sign In</p>
 	<p style="margin-left:15px" id="signUpBtn">Sign Up</p><br />
 	<div id="signUpTab" style="display:none">
-		<input type="text" id="name" value="Name" /><br />
-		<input type="text" id="email" value="Email" /><br />
-		<input type="password" id="password" value="Password" /><br />
+		<input type="text" id="name1" value="Name" /><br />
+		<input type="text" id="email1" value="Email" /><br />
+		<input type="password" id="password1" value="Password" /><br />
 		<button id="signUpSubmit">Sign Up</button>
 	</div>
 	<div id="signInTab">
-		<input type="text" id="email" value="Email" /><br />
-		<input type="password" id="password" value="Password" /><br />
+		<input type="text" id="email2" value="Email" /><br />
+		<input type="password" id="password2" value="Password" /><br />
 		<button id="signInSubmit">Sign In</button>
 	</div>
 
@@ -54,9 +54,9 @@
 
 	$('#signUpSubmit').click(function(){
 		var obj = {
-			"name": $("#name").val(),
-			"email": $("#email").val(),
-			"password": $("#password").val(),
+			"name": $("#name1").val(),
+			"email": $("#email1").val(),
+			"password": $("#password1").val(),
 			"points": -1
 		};
 		$.post("/callback?action=signUp", obj)
@@ -65,8 +65,8 @@
 	});
 	$('#signInSubmit').click(function(){
 		var obj = {
-			"email": $("#email").val(),
-			"password": $("#password").val()
+			"email": $("#email2").val(),
+			"password": $("#password2").val()
 		};
 		$.post("/callback?action=signIn", obj)
 			.done(function(){alert("logged in!");})
