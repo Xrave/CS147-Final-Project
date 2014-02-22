@@ -56,8 +56,8 @@ $('#submitRewardBtn').click(function(){
 			"cost": $("#rewardVal").val()
 		};
 		$.post("/callback?action=addReward", obj)
-			.done(function(){alert("task added!");window.location.href="/rewards"})
-			.fail(function(){alert("task not added!");});
+			.done(function(){alert("Reward added!");window.location.href="/rewards"})
+			.fail(function(){alert("Reward not added!");});
 	});
 </script>
 </body>

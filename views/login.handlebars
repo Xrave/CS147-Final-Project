@@ -60,8 +60,8 @@
 			"points": -1
 		};
 		$.post("/callback?action=signUp", obj)
-			.done(function(){alert("submitted!");window.location.href="/settings"})
-			.fail(function(){alert("failed!");});
+			.done(function(){alert("Sign Up Successful! Redirecting you to Settings to set up your family!");window.location.href="/settings"})
+			.fail(function(){alert("Sign up failed!");});
 	});
 	$('#signInSubmit').click(function(){
 		var obj = {
