@@ -3,8 +3,10 @@
 var models = require('../models');
 
 exports.view = function(req, res){
+	console.log(req.cookies);	
 	if(!req.cookies.user || !req.cookies.family){
 		res.redirect('/login');
+		return;
 	}
 
   models.Family
@@ -13,6 +15,10 @@ exports.view = function(req, res){
 
 	function afterQuery(err, families) {
 		if(err) console.log(err);
+		if(!families[0]){
+			res.redirect('/login');
+			return;
+		}
 		var tasks = families[0].tasks;
 		var index;
 		var callbacksfinished = 0;

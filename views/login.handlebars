@@ -60,7 +60,7 @@
 			"points": -1
 		};
 		$.post("/callback?action=signUp", obj)
-			.done(function(){alert("submitted!");window.location.href="/settings?user=" + $("#email").val()})
+			.done(function(){alert("submitted!");window.location.href="/settings"})
 			.fail(function(){alert("failed!");});
 	});
 	$('#signInSubmit').click(function(){

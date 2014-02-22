@@ -21,8 +21,7 @@ exports.process = function(req, res){
 			console.log(newUser + " is saved!");
 			console.log("now creating family for new user");
 			var json = {
-						"controllers":[ 
-						newUser.email],
+						"controllers":[ newUser.email],
 						"controlees":[   ],
 						"tasks":[],
 						"rewards":[],
@@ -32,7 +31,7 @@ exports.process = function(req, res){
 				console.log(newFamily + " is saved!");
 				res.cookie('family', newFamily._id);
 				res.cookie('user', newUser.email);
-				res.send(200);
+				res.send(200); return;
 			});
 		});
 	}else if(req.query.action == 'signIn'){
@@ -54,9 +53,10 @@ exports.process = function(req, res){
 					res.cookie('user', entry[0].email);
 					res.cookie('family', matchedFamilies[0]._id);
 					res.send(200);
+					return;
 				});
 			}else{
-				res.send(500);
+				res.send(500); return;
 			}
 		});
 	}else if(req.query.action == 'addNewChild'){
@@ -66,7 +66,7 @@ exports.process = function(req, res){
 			console.log("[ NEW CHILD ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			res.send(200);
+			res.send(200); return;
 		});
 
 
@@ -77,7 +77,7 @@ exports.process = function(req, res){
 			console.log("[ NEW PARENT ADDED ]");
 			console.log(newUser + " is saved!");
 			//res.cookie('user', newUser.email);
-			res.send(200);
+			res.send(200); return;
 		});
 
 	}

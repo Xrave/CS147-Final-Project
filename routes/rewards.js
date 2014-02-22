@@ -5,6 +5,7 @@ var models = require('../models');
 exports.view = function(req, res){
 	if(!req.cookies.user || !req.cookies.family){
 		res.redirect('/login');
+		return;
 	}
 
 	models.Family
