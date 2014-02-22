@@ -54,22 +54,22 @@
 
 	$('#signUpSubmit').click(function(){
 		var obj = {
-			"name": $("#name1").val(),
-			"email": $("#email1").val(),
-			"password": $("#password1").val(),
+			"name": $("#signUpTab #name").val(),
+			"email": $("#signUpTab #email").val(),
+			"password": $("#signUpTab #password").val(),
 			"points": -1
 		};
 		$.post("/callback?action=signUp", obj)
-			.done(function(){alert("submitted!");window.location.href="/settings?user=" + $("#email").val()})
+			.done(function(){alert("submitted!");window.location.href="/settings"})
 			.fail(function(){alert("failed!");});
 	});
 	$('#signInSubmit').click(function(){
 		var obj = {
-			"email": $("#email2").val(),
-			"password": $("#password2").val()
+			"email": $("#signInTab #email").val(),
+			"password": $("#signInTab #password").val()
 		};
 		$.post("/callback?action=signIn", obj)
-			.done(function(){alert("logged in!");})
+			.done(function(){alert("logged in!");window.location.href="/"})
 			.fail(function(){alert("incorrect credentials!");});
 	});
 

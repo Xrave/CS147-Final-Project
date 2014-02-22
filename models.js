@@ -19,7 +19,7 @@ var FamilySchema = new Mongoose.Schema({
     "tasks":[{
       'taskID': String, //identifier of format: assigner-assignee-tasktext
       'assigner': String, //email.
-      'assignee': String, //email
+      'assignee': String, //email.
       'taskText': String,
       'taskCompletion': Number,  //a percentage or a number between 0 and 100 would do
       'taskReward': Number,
