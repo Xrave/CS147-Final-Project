@@ -65,10 +65,17 @@ exports.process = function(req, res){
 		newUser.save(function(err, newUser){
 			console.log("[ NEW CHILD ADDED ]");
 			console.log(newUser + " is saved!");
+			models.Family
+			.update({"_id":req.cookies.family},
+			{
+				$push: { "controlees": newUser.email }
+			})
+			.exec(function(err, useless){
+				res.send(200);
+			});
 			//res.cookie('user', newUser.email);
-			res.send(200); return;
+			return;
 		});
-
 
 	}else if(req.query.action == 'addNewParent'){
 		var userJson = req.body;
@@ -76,10 +83,48 @@ exports.process = function(req, res){
 		newUser.save(function(err, newUser){
 			console.log("[ NEW PARENT ADDED ]");
 			console.log(newUser + " is saved!");
-			//res.cookie('user', newUser.email);
-			res.send(200); return;
+			models.Family
+			.update({"_id":req.cookies.family},
+			{
+				$push: { "controllers": newUser.email }
+			})
+			.exec(function(err, useless){
+				res.send(200);
+			});
+			return;
 		});
 
+	}else if(req.query.action == 'addReward'){
+		var rwd = req.body;
+		var familyID = req.cookies.family;
+		/*db.bios.update(
+   { _id: 1 },
+   {
+     $push: { awards: { award: "IBM Fellow", year: 1963, by: "IBM" } }
+   }
+)*/
+		models.Family
+		.update({"_id":familyID},
+		{$push: { "rewards" :  rwd  }
+		})
+		.exec(function(err, useless){
+			res.send(200);
+			return;
+		});
+		
+	}else if(req.query.action == 'addTask'){
+		var task = req.body;
+		task['assigner'] = req.cookies.user;
+		task['taskID'] = task.assigner + "-"+task.assignee+"-"+task.taskText;
+		task['comments'] = [];
+		models.Family
+		.update({"_id":req.cookies.family},
+			{$push: { "tasks" :  task  }
+		})
+		.exec(function(err, useless){
+			res.send(200);
+			return;
+		});
+		
 	}
-
 }

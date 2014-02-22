@@ -31,18 +31,7 @@
 								<input type="text" class="form-control" id="newTaskName" placeholder="Make bed">
 						</h4>
 						</div>
-						<div class="form-group">
-							<label for="width"><h4>For:
-						</h4>
-						<p>
-							<!--LETS FIX THIS ASAP-->
-							{{#each child}}
-							<label>
-								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0" />
-								{{name}}</label>
-							<br />
-							{{/each}}
-						</p>
+	
 						<div class="form-group">
 							<label for="description">
 							<h4>Reward Points needed:							</h4>
@@ -65,10 +54,9 @@ $('#submitRewardBtn').click(function(){
 		var obj = {
 			"text": $("#newTaskName").val(),
 			"cost": $("#rewardVal").val()
-			//NEED TO PUT VARIABLE FOR ASSIGNEE
 		};
 		$.post("/callback?action=addReward", obj)
-			.done(function(){alert("task added!");})
+			.done(function(){alert("task added!");window.location.href="/rewards"})
 			.fail(function(){alert("task not added!");});
 	});
 </script>

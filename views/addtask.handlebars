@@ -20,8 +20,8 @@
 	<div id="wrapper">
 		<div id="topBar">
 			<div class="header">Add a Task</div>
-			<a href="/tasks/add" >
-			<div class="LeftBtn"><img src="../public/images/back_btn.png" class="addBtn" /></div>
+			<a href="/" >
+			<div class="LeftBtn"><img src="/images/back_btn.png" class="addBtn" /></div>
 			</a> </div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:center">
@@ -31,10 +31,21 @@
 						    <input type="text" class="glyphicon-align-center" id="newTaskName" placeholder="Make bed" size="60">
 						
 						</div>
-						<div class="form-group">
-							<label for="width"><h5>Assign to</h5>
-							<img src="images/Placeholder_profile_black.png" width="60" height="60" /><img src="images/Placeholder_profile_red.png" width="60" height="60"/><img src="images/Placeholder_profile_red.png" width="60" height="60"/>
-							</label>
+							<div class="form-group">
+							<label for="width">
+							<h5>Assign To:
+					</h5>
+						<form id="form1" name="form1" method="post" action="">
+
+						<p>
+							{{#each child}}
+							<label>
+								<input type="radio" name="childGroup" value="{{email}}" id="CheckboxGroup1_0" />
+								{{name}}</label>
+							<br />
+							{{/each}}
+						</p>
+						</form>
 					 </div>
 						<div class="form-group">
 							<label for="description"><h5>Reward</h5>
@@ -56,5 +67,9 @@
 		</div>
 	</div>
 </div>
+		<script src="js/jquery-1.11.0.js"></script>
+		<script src="js/bootstrap.js"></script>	
+		<script src="js/add_task_page.js"></script>
+
 </body>
 </html>
