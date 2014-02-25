@@ -54,6 +54,11 @@ body{
 
 .task-item .description #color {
 	color: #D55;
+	font-weight: bold;
+}
+
+.task-item #task-desc {
+	margin-top: 3px;
 }
 
 .task-item:after {
@@ -62,7 +67,7 @@ body{
 	width: 70%;
 	left: 15%;
 	bottom: 8px;
-	border-bottom: 2px groove #CDCDCD;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 
