@@ -1,10 +1,11 @@
-var data = require("../data.json");
 
 exports.handle = function(req, res) { 
-
-	var dataInput = req.body;
+	if(!req.cookies.user || !req.cookies.family){
+		res.redirect('/login');
+		return;
+	}
+	//var dataInput = req.body;
 	
-	data["taskArray"].push(dataInput);
-   	res.render('tasks',data);
+   	res.render('tasks');
 	// Your code goes here
  }

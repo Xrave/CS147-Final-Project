@@ -22,28 +22,16 @@
     	</div>
 
     	<div id="task-content">
-    		<div class="task-item">
+        	{{#each task-items}}
+    		<div class="task-item" id= "{{id}}">
     			<span class="image">
-				<img src="images/Placeholder_profile_black.png" class="profile-icon-black" /></span>
+				<img src="images/{{image}}" class="profile-icon-black" /></span>
 				<span class="description"><div></div>
-    			<p>Eric completed task: "Feed the chickens!"</p>
-				</span><div class="pts_text"><p>12 pts awarded</p></div>
+    			<p> {{description}} </p>
+				</span><div class="pts_text"><p> {{points}} pts awarded</p></div>
     		</div>
-    		<div class="task-item">
-			    <span class="image">
-    			<img src="images/Placeholder_profile_black.png" class="profile-icon-black" /></span>
-				<span class="description"><div></div>
-    			<p>Eric completed the task: "Do the laundry"!</p>
-				</span><div class="pts_text"><p>5 pts awarded</p></div>
-    		</div>
-    		<div class="task-item">   
-			<span class="image">
-    			<img src="images/Placeholder_profile_red.png" class="profile-icon-red" /></span>
-				<span class="description"><div></div>
-    			<p>Sarah finished "clean your house"!</p>
-				</span>				<div class="pts_text"><p>20 pts awarded</p></div>
-
-    		</div>
+            {{/each}}
+    
     	</div>
 		</div>
     	<div id="bottomBar"> 
