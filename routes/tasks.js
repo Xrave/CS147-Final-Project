@@ -27,16 +27,23 @@ exports.view = function(req, res){
 			var email = tasks[index].assignee;
 			console.log(email)
 			var i = index;
-			models.Person.find({"email": email}).exec(function(err, people){
-				console.log(people);
-				tasks[i]['assignedTo'] = people[0].name;
-				tasks[i]['task_description'] = tasks[i].taskText;
-				tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
-				callbacksfinished ++;
-				if(callbacksfinished == tasks.length){
-					res.render('tasks', {"taskArray": tasks});
-				}
-			});
+			
+			(function (i){
+				console.log(email);
+				models.Person.find({"email": email}).exec(
+					function(err, people){
+						console.log(i);
+						tasks[i]['task_description'] = tasks[i].taskText;
+						tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
+						tasks[i].assignedTo = people[0].name;
+						callbacksfinished ++;
+						if(callbacksfinished == tasks.length){
+							res.render('tasks', {"taskArray": tasks});
+							console.log(tasks);
+						}
+					}
+				);
+			}(i));
 		};
 		if(tasks.length == 0){
 			res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
