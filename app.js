@@ -67,8 +67,8 @@ app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
 
-app.get('/childList', listing.getChildList);
-app.get('/parentList', listing.getParentList);
+app.get('/childList', listing.getChildrenList);
+app.get('/parentList', listing.getParentsList);
 
 app.post('/maketask', createTask.handle);
 app.post('/callback', 
