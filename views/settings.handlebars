@@ -14,34 +14,136 @@
 <link href="css/bootstrap-theme.css" rel="stylesheet">
 <link href="css/mainStyle.css" rel="stylesheet">
 <link href="css/task_detail_Style.css" rel="stylesheet">
+<style type="text/css">
+#addNewChildPopup, #addNewParentPopup {
+	width: 300px;
+	height: 360px;
+	background-color: #EBEBEB;
+	box-shadow: 0px 0px 5px #888888;
+	position: absolute;
+	top: 50%; left: 50%;
+	margin-top: -180px;
+	margin-left: -150px;
+	text-align: center;
+	font-size: 17px;
+	display: none;
+}
+</style>
 </head>
 <body>
 <div id="page">
 	<div id="wrapper">
 		<div id="topBar">
 			<div class="header">Settings</div>
-			<a href="/tasks/add" >
-			<div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div>
-			</a> </div>
+		</div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:left; padding:30px">
 				<div id="controlform1">
 					<form id="projectForm" role="form">
+                    	<div class="form-group">
+                        <label for="project"><h4> List of Children </h4></label>
+ 
+ {{#each child}}
+ <div class = "project">
+ <a href="project" class="thumbnail">
+ <p>{{name>}} </p>
+ </a>
+ </div>
+ {{/each}}
+ </div>
+ 
+ <div class ="form-group">
+ <label for="project"><h4> List of Parents </h4></label>
+ {{#each parent}}
+ <div class = "project">
+ <a href="project" class="thumbnail">
+ <p>{{name>}} </p>
+ </a>
+ </div>
+ {{/each}}
+ </div>
+                    
+                        
 						<div class="form-group">
-							<label for="project"><h4>General Settings</h4></label>
-							<input name="hello" type="checkbox" value="hello" />Email Me upon task completion
+							<label for="project"><h4>Administrative Settings</h4></label>
+							<br />
+							<button id="addNewChild" type="button" class="btn btn-default">Add New Child</button>
+							<button id="addNewParent" type="button" class="btn btn-default">Add New Parent</button>
 						</div>
-						<button id="submitSettingsBtn" type="button" class="btn btn-default">Save</button>
+						<br /><br />
+                        <button id="submitSettingsBtn" type="button" class="btn btn-default">Logout</button>
 					</form>
 				</div>
 			</div>
 		</div>
+
+		<div id="addNewChildPopup">
+			<br />
+			<span style="font-weight:bold">Add a Child</span>
+			<br /><br />
+			<input type="text" id="nameField" value="Name" /><br /><br />
+			<input type="text" id="emailField" value="Email" /><br /><br />
+			<input type="text" id="passwordField" value="Temp. Password" /><br /><br />
+			<button id="addChildSubmit">Add</button>
+			<button id="addChildCancel">Cancel</button>
+		</div>
+		<div id="addNewParentPopup">
+			<br />
+			<span style="font-weight:bold">Add a Parent</span>
+			<br /><br />
+			<input type="text" id="nameField" value="Name" /><br /><br />
+			<input type="text" id="emailField" value="Email" /><br /><br />
+			<input type="text" id="passwordField" value="Temp. Password" /><br /><br />
+			<button id="addParentSubmit">Add</button>
+			<button id="addParentCancel">Cancel</button>
+		</div>
+        <div id="logoutPopup">
+            <span style="font-weight:bold">You are logged out.</span>
+        </div>
 	</div>
 </div>
-<div id="bottomBar"> <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a> <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" /></a> <a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a> <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a> <span class="stretch"></span> </div>
+<div id="bottomBar"> <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a> <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" /></a> <a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a> <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a> <span class="stretch"></span><div id="active-highlight" style="left: 249px;"></div> </div>
 </div>
 <script src="js/jquery-1.11.0.js"></script> 
 <script src="js/bootstrap.js"></script> 
 <script src="js/add_task_page.js"></script>
+<script type="text/javascript">
+
+	$("#addNewChild").click(function(){
+		$("#addNewChildPopup").show();
+	});
+		$("#addChildCancel").click(function(){$(this).parent().hide();});
+		$("#addChildSubmit").click(function(){
+			var obj = {
+			"name": $("#nameField").val(),
+			"email": $("#emailField").val(),
+			"password": $("#passwordField").val(),
+			"points": 0
+			};
+			$.post("/callback?action=addNewChild", obj)
+				.done(function(){alert("child added!");})
+				.fail(function(){alert("child not added!");});
+		});
+	$("#addNewParent").click(function(){
+		$("#addNewParentPopup").show();
+	});
+		$("#addParentCancel").click(function(){$(this).parent().hide();});
+		$("#addParentSubmit").click(function(){
+			var obj = {
+			"name": $("#nameField").val(),
+			"email": $("#emailField").val(),
+			"password": $("#passwordField").val(),
+			"points": -1
+			};
+			$.post("/callback?action=addNewParent", obj)
+				.done(function(){alert("parent added!");})
+				.fail(function(){alert("parent not added!");});
+		});
+
+	$("#logout").click(function(){
+		$("#logoutPopup").show();
+	});
+
+</script>
 </body>
 </html>
