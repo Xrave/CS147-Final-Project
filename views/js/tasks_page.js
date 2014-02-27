@@ -10,12 +10,10 @@ $(document).ready(function() {
  */
 function initializePage() {
 	console.log("Javascript connected!");
-	$('.nameobj').click(function(e) {
+	$('.task-item').click(function(e) {
 		e.preventDefault();
-		var namestr = $(this).text();
-		var nameAnaStr = anagrammedName(namestr);
-		console.log(nameAnaStr);
-		$(this).text(nameAnaStr);
+		var taskID = $(this).attr('id');
+		window.location="/task?id="+taskID;
 	});
 }
 

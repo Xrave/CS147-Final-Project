@@ -208,41 +208,6 @@ h1, h2, h3, h4, h5 {
 	margin-top: 10px;
 }
 
-#left-det {
-	position: absolute;
-	float: left;
-	padding-left: 15px;
-	top: 142px;
-	width: 194px;
-	height: 156px;
-}
-
-#right-det {
-	position: absolute;
-	float: right;
-	padding-right: 15px;
-	width: 194px;
-	left: 213px;
-	top: 142px;
-	height: 156px;
-}
-
-#comments {
-	position: absolute;
-	top: 320px;
-	height: 150px;
-	width: 100%;
-	text-align: center;
-	color: #F00;
-	font-size: 17px;
-}
-
-#reply_btn {;
-	position: absolute;
-	top: 480px;
-	left: 40%;
-	height: 31px;
-}
 
 span.tempBtn {
 	font-size: 13px;

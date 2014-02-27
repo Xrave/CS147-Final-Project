@@ -25,27 +25,29 @@
 	</div>
     
   <div id="taskTitle">
-    <p> Clean dishes by 7</p>
+    <p>{{task_description}}</p>
     <img src="../public/images/line.png" width="250"/>
   </div>
     
   <div id ="left-det" class="details">
     <p>Assigned to</p>
-    <img src="images/Placeholder_profile_red.png" width="90" height="90" />
-  </div>
+	<h3>{{name}}</h3>
+	  </div>
     
   <div id="right-det" class="details">
     <p>Reward</p>
-    <img src="../public/images/point.png" width="90" height "90"/></div>
+    <!-- I can't work with this: <img src="../public/images/point.png" width="90" height "90"/> --->
+	<div id="rewardbox"><h3>40</h3><p>pts</p></div>
+	</div>
   
   <div id="comments">
   <img src="../public/images/line.png" width="250"/>
   <p>COMMENTS  </p>
-  <textarea cols="70" rows="5" class="glyphicon-align-center">i.e. make sure to remove stains!</textarea>
-  </div>
-  
-  <div id= "reply_btn">
-  <p><img src= ../public/images/reply_btn.png/></p>
+  <div id="commentbox"><textarea rows="2" class=v"glyphicon-align-center" id="commentarea">Leave a comment if you want to clarify something.</textarea><p><div id= "reply_btn">
+  <img src= ../public/images/reply_btn.png/>
+  </div></p></div>
+    
+
   </div>
 </div>
 </body>

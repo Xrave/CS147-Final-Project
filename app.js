@@ -58,7 +58,9 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', tasks.view);
+
 app.get('/addtask', add.view);
+app.get('/task', tasks.renderDetails);
 app.get('/addreward', addreward.view);
 app.get('/login', function(req, res){
 	res.render('login');

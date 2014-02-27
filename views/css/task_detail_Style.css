@@ -11,3 +11,63 @@
 }
 
 
+#rewardbox{
+	width:90px;
+	height:90px;
+	background:#CCC;
+	border-radius:6px;
+	padding:1px;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#rewardbox h3{
+}
+
+#commentbox{
+	width:inherit;
+	border:thin;
+	border-color:#999;
+	border-style:dashed;
+}
+#commentarea{
+	width:inherit;
+	
+}
+
+#comments {
+	position: absolute;
+	top: 320px;
+	height: 150px;
+	width: 100%;
+	text-align: center;
+	color: #F00;
+	font-size: 17px;
+}
+
+#reply_btn {;
+	position: relative;
+	top: 4px;
+	height: 31px;
+}
+
+
+#left-det {
+	position: absolute;
+	float: left;
+	padding-left: 15px;
+	top: 142px;
+	width: 194px;
+	height: 156px;
+}
+
+#right-det {
+	position: absolute;
+	float: right;
+	padding-right: 15px;
+	width: 194px;
+	left: 213px;
+	top: 142px;
+	height: 156px;
+}
