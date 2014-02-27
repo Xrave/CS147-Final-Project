@@ -125,6 +125,8 @@ exports.process = function(req, res){
 			res.send(200);
 			return;
 		});
+	}else if(req.query.action == 'editTask'){
+	}else if(req.query.action == 'editRewards'){
 		
 	}
 }

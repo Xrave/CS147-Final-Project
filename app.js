@@ -19,7 +19,7 @@ var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
 var createTask = require('./routes/createTask');
 var accountAction = require('./routes/accountAction');
-
+var listing = require('./routes/getPeopleLists');
 // Example route
 // var user = require('./routes/user');
 
@@ -66,9 +66,14 @@ app.get('/login', function(req, res){
 app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);
+
+app.get('/childList', listing.getChildList);
+app.get('/parentList', listing.getParentList);
+
 app.post('/maketask', createTask.handle);
 app.post('/callback', 
 		accountAction.process);
+
 
 // Example route
 // app.get('/users', user.list);
