@@ -76,11 +76,21 @@ body{
 	font-size:19px;
 	display:block;
 }
+
+.space-control-useless { /*USED TO PREVENT ITEMS FROM BEING PUT OFF*/
+	width: 100%;
+	height: 62px;
+	margin: 0px;
+}
+
 #topBar .rightBtn{
 	position:absolute;
 	top:16px;
 	right:16px;
 }
+	#topBar .rightBtn .addBtn {
+		zoom: 0.9;
+	}
 
 .LeftBtn{
 	position: absolute;
