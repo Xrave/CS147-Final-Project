@@ -19,35 +19,22 @@
 <div id="page">
 	<div id="wrapper">
 		<div id="topBar">
-			<div class="header">Add Reward</div>
-			<a href="/tasks/add" >
-			<div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div>
-			</a> </div>
+			<div class="header">Add Reward		</div>
+		</div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:center">
 				<div id="controlform1">
 					<form id="projectForm" role="form">
 						<div class="form-group">
 							<label for="project">
-							<h4>Whacha getting?</h4>
-							</label>
-							<input type="text" class="form-control" id="newTaskName" placeholder="Make bed">
-							
+							<h4>Reward name:
+								<input type="text" class="form-control" id="newTaskName" placeholder="Make bed">
+						</h4>
 						</div>
+	
 						<div class="form-group">
-							<label for="width"><h4>For:</h4></label>
-						<p>
-							<label>
-								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0" />
-								Sarah</label>
-							<br />
-							<label>
-								<input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1" />
-								Ivan</label>
-							<br />
-						</p>
-						<div class="form-group">
-							<label for="description"><h4>How much is it:</h4></label>
+							<label for="description">
+							<h4>Reward Points needed:							</h4>
 							<p><input type="text" class="form-control" id="rewardVal" placeholder="2">pts</p>
 						</div>
 						<button id="submitRewardBtn" type="button" class="btn btn-default">Submit</button>
@@ -62,5 +49,16 @@
 <script src="js/jquery-1.11.0.js"></script> 
 <script src="js/bootstrap.js"></script> 
 <script src="js/add_task_page.js"></script>
+<script type="text/javascript">
+$('#submitRewardBtn').click(function(){
+		var obj = {
+			"text": $("#newTaskName").val(),
+			"cost": $("#rewardVal").val()
+		};
+		$.post("/callback?action=addReward", obj)
+			.done(function(){alert("Reward added!");window.location.href="/rewards"})
+			.fail(function(){alert("Reward not added!");});
+	});
+</script>
 </body>
 </html>

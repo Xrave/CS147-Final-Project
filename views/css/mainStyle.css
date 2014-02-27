@@ -28,10 +28,11 @@ body{
 }
 
 .task-item{
-	height:60px;
+	/*min-height:60px;*/
 	width:100%;
 	position:relative;
-	margin:10px;
+	margin:5px;
+	overflow: hidden;
 }
 
 .task-item .image{
@@ -39,7 +40,7 @@ body{
 	width:auto;
 }
 .task-item .description{
-	padding-left:20px;
+	padding-left:10px;
 	height:inherit;
 	float:left;
 }
@@ -52,13 +53,22 @@ body{
 	width:100%;
 }
 
+.task-item .description #color {
+	color: #D55;
+	font-weight: bold;
+}
+
+.task-item #task-desc {
+	margin-top: 14px;
+}
+
 .task-item:after {
 	content: '';
 	position: absolute;
 	width: 70%;
 	left: 15%;
 	bottom: 8px;
-	border-bottom: 2px groove #CDCDCD;
+	border-bottom: 1px solid #e0e0e0;
 }
 
 
@@ -66,11 +76,21 @@ body{
 	font-size:19px;
 	display:block;
 }
+
+.space-control-useless { /*USED TO PREVENT ITEMS FROM BEING PUT OFF*/
+	width: 100%;
+	height: 62px;
+	margin: 0px;
+}
+
 #topBar .rightBtn{
 	position:absolute;
 	top:16px;
 	right:16px;
 }
+	#topBar .rightBtn .addBtn {
+		zoom: 0.9;
+	}
 
 .LeftBtn{
 	position: absolute;
@@ -80,7 +100,7 @@ body{
 
 .header{
 	color:#D55;
-	font-size:30px;
+	font-size:27px;
 }
 
 #wrapper { /* ignore wrapper , just to make sure the div containing the middle part don't go into the bottom.*/
@@ -90,7 +110,7 @@ body{
 #topBar {
 	background-color:#FaFaFa;
 	top:0;
-	height:60px;
+	height:55px;
 	position:fixed;
 	padding:4px;
 	padding-top:10px;
@@ -108,14 +128,14 @@ body{
 	background-color:#FaFaFa;
 	fposition:absolute;
 	position: fixed;
-	height:67px;
+	height:60px;
 	bottom:0px;
 	width:100%;
 	margin-left:auto;
 	margin-right:auto;
 	padding-left:16px;
 	padding-right:16px;
-	padding-top:3px;
+	padding-top:0px;
 	text-align:justify;
 	-ms-text-justify:distribute-all-lines;
 	text-justify:distribute-all-lines;
@@ -133,7 +153,7 @@ box-shadow:         0px -2px 4px 0px rgba(50, 50, 50, 0.2);
 	vertical-align:top;
 	display:inline-block;
 	*display: inline;
-	zoom:1;
+	zoom:0.9;
 }
 
 .stretch {
@@ -141,6 +161,15 @@ box-shadow:         0px -2px 4px 0px rgba(50, 50, 50, 0.2);
     display: inline-block;
     font-size: 0;
     line-height: 0
+}
+
+#active-highlight {
+	width: 50px;
+	height: 4px;
+	background-color: #D55;
+	z-index: 999;
+	position: absolute;
+	bottom: 0px;
 }
 
 .pts_text{
@@ -166,6 +195,10 @@ h1, h2, h3, h4, h5 {
 	font-size: 20px;
 	padding-top: 15px;
 	padding-bottom: 3px;
+}
+
+#task-content {
+	overflow-y: auto;
 }
 
 .details {

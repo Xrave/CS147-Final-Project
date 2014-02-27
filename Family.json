@@ -1,13 +1,13 @@
 [{
       "controllers":[ 
-      "jack", "julie"    ],
+      "jack7kim@stanford.edu", "julienam@stanford.edu"    ],
       "controlees":[ 
       "xiaonan"    
       ],
     "tasks":[{
       "taskID": "julie-xiaonan-Clean your bed",
-      "assigner": "julie", 
-      "assignee": "xiaonan", 
+      "assigner": "jack7kim@stanford.edu", 
+      "assignee": "xiaonan@stanford.edu", 
       "taskText": "Clean your bed",
       "taskCompletion": 0,  
 	  "taskReward": 12,
