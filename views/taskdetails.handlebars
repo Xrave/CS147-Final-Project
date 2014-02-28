@@ -21,18 +21,35 @@
 
 	<div id="topBar">
     <div class="header">Task</div>
-	<a href="#Edit the tasks" ><div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div></a>
+	<div class="rightBtn"><img src="images/editTask_btn.png" id="editBtn"/></div>
 
-	<div class="LeftBtn"><img src="../public/images/back_btn.png" class="addBtn" /></div>
-	</div>
+	<a href="/tasks"><div class="leftBtn"><img src="../public/images/back_btn.png" class="backBtn" /></div>
+	</div></a>
     
   <div id="taskTitle">
     <p>{{task_description}}</p>
 	<p><input name="NewTaskValue" type="text" value="{{task_description}}" id="newTaskname" hidden style="text-align:center"/></p>
-    <img src="../public/images/line.png" width="250"/>
   </div>
+
+  <div class="horizDivider"></div>
+
+  <div id="detailsBlock">
+  	<p id="blockName">Julie</p>
+  	<p id="blockNumber">50</p>
+
+  	<!--HIDDEN EDIT ELEMENTS-->
+  	<select name="NewChildSelector" id="childSelector" class="boob">
+		{{#each children}}
+			<option value="{{email}}">{{name}}</option>
+		{{/each}}
+  	</select>
+  	<input name="NewRewardValue" id="newRewardValue" class="boob" value="00" /> <!--The value presented should be the same as the original (before editing)-->
+  	<!--END HIDDEN EDIT ELEMENTS-->
+  </div>
+
+  <div class="horizDivider"></div>
     
-  <div id ="left-det" class="details">
+  <!--<div id ="left-det" class="details">
     <p>Assigned to</p>
 	<h3>{{assignedTo}}</h3>
 	<select hidden name="NewChildSelector" id="childSelector">
@@ -40,21 +57,20 @@
 		<option value="{{email}}">{{name}}</option>
 	{{/each}}
 	</select>
-	  </div>
+  </div>
     
   <div id="right-det" class="details">
     <p>Reward</p>
-    <!-- I can't work with this: <img src="../public/images/point.png" width="90" height "90"/> --->
+	<img src="../public/images/point.png" width="90" height "90"/>
 	<div id="rewardbox">
 	<h3>{{taskReward}}</h3>
 	<input hidden name="NewRewardValue" id="newRewardValue" value="{{taskReward}}" />
 	<p>pts</p>
 	</div>
-	</div>
+	</div>-->
   
   <div id="comments">
-  <img src="../public/images/line.png" width="250"/>
-  <p>COMMENTS</p>
+  <p style="color:#D55">COMMENTS</p>
   <div id="commentbox"><textarea rows="2" class=v"glyphicon-align-center" id="commentarea">Leave a comment if you want to clarify something.</textarea><p><div id= "reply_btn">
   <img src= ../public/images/reply_btn.png/>
   </div></p></div>
