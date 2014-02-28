@@ -43,6 +43,7 @@ body{
 	padding-left:10px;
 	height:inherit;
 	float:left;
+	margin-bottom: 7px;
 }
 .task-item .description > div{ /*Magic to center the tasks.*/
 	height:50%;
@@ -92,10 +93,10 @@ body{
 		zoom: 0.9;
 	}
 
-.LeftBtn{
+#topBar .leftBtn{
 	position: absolute;
-	top: 18px;
-	left: 18px;
+	top: 13px;
+	left: 11px;
 }
 
 .header{
@@ -197,9 +198,53 @@ h1, h2, h3, h4, h5 {
 	padding-bottom: 3px;
 }
 
-#task-content {
-	overflow-y: auto;
+.horizDivider {
+	width: 220px; height: 1px;
+	border-bottom: 1px solid #c5c5c5;
+	margin: 0px auto;
 }
+
+#detailsBlock {
+	width: 250px; height: 148px;
+	background-image: url('../images/detailsBlock.png');
+	margin: 20px auto;
+	position: relative;
+}
+	#detailsBlock p {
+		color: #555555;
+		position: absolute;
+		text-align: center;
+		padding: 0px;
+	}
+	#detailsBlock #blockName {
+		font-size: 25px;
+		width: 84px;
+		left: 12px; top: 61px;
+	}
+	#detailsBlock #blockNumber {
+		font-size: 45px;
+		width: 84px;
+		right: 18px; top: 40px;
+	}
+	#detailsBlock #childSelector {
+		position: absolute;
+		left: 17px; top: 65px;
+		color: red;
+		font-size: 14px;
+	}
+	#detailsBlock #newRewardValue {
+		position: absolute;
+		right: 25px; top: 40px;
+		border: 1px red solid;
+		font-size: 40px;
+		width: 70px;
+		text-align: center;
+		color: red;
+		padding: 3px auto;
+	}
+	.boob {
+		display: none;
+	}
 
 .details {
 	font-size: 15px;	
