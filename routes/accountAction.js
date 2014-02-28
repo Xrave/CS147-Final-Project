@@ -129,6 +129,26 @@ exports.process = function(req, res){
 		req.session.destroy();
 		return;
 	}else if(req.query.action == 'editTask'){
+		console.log(req.body);
+		//req.body is {oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
+		models.Family
+		.update(
+		{
+			'_id':req.cookies.family,
+			'tasks':{'._id':req.body.older_id}
+		}
+		,
+		{
+       		$set: {
+				"tasks.0.assignee": req.body.newAssignee, 				"tasks.0.taskText": req.body.newTaskName,
+				"tasks.0.taskReward":req.body.newPtValue
+				}
+		})
+		.exec(function(err, useless){
+			console.log(useless);
+			res.send(200);
+			return;
+		});
 	}else if(req.query.action == 'editRewards'){
 		
 	}

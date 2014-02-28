@@ -37,6 +37,7 @@ $(document).ready(function() {
 			 newAssignee: $('#childSelector').val(), 
 			 newPtValue: $('#newRewardValue').val(),
 			};
+		console.log(newData);
 		$.post('/callback?action=editTask', newData, function(result){
 			window.location.reload(true); 
 		});
