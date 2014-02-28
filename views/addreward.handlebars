@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Tasks</title>
+<title>Add Reward</title>
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,7 +19,10 @@
 <div id="page" class="container">
 	<div id="wrapper">
 		<div id="topBar">
-			<div class="header">Add Reward		</div>
+			<div class="header">Add Reward</div>
+			<a href="/">
+			<div class="leftBtn"><img src="images/back_btn.png" class="addBtn" /></div>
+			</a>
 		</div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:center">
@@ -27,16 +30,16 @@
 					<form id="projectForm" role="form">
 						<div class="form-group">
 							<label for="project">
-							<h4>Reward name:
-								<input type="text" class="form-control" id="newTaskName" placeholder="Make bed">
-						</h4>
+							<h4>Reward name:</h4>
+								<input type="text" class="form-control" id="newRewardName" placeholder="i.e. Disneyland!">
 						</div>
 	
 						<div class="form-group">
 							<label for="description">
 							<h4>Reward Points needed:							</h4>
-							<p><input type="text" class="form-control" id="rewardVal" placeholder="2">pts</p>
+							<p><input type="text" class="form-control" id="rewardVal" placeholder="i.e. 1000">pts</p>
 						</div>
+						<a href="/rewards"><button type="button" class="btn btn-default">Cancel</button></a>
 						<button id="submitRewardBtn" type="button" class="btn btn-default">Submit</button>
 					</form>
 				</div>
@@ -44,7 +47,6 @@
 		</div>
 	</div>
 </div>
-<div id="bottomBar"> <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a> <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" /></a> <a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a> <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a> <span class="stretch"></span> </div>
 </div>
 <script src="js/jquery-1.11.0.js"></script> 
 <script src="js/bootstrap.js"></script> 
@@ -52,7 +54,7 @@
 <script type="text/javascript">
 $('#submitRewardBtn').click(function(){
 		var obj = {
-			"text": $("#newTaskName").val(),
+			"text": $("#newRewardName").val(),
 			"cost": $("#rewardVal").val()
 		};
 		$.post("/callback?action=addReward", obj)

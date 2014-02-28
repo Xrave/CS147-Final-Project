@@ -21,35 +21,34 @@
 		<div id="topBar">
 			<div class="header">Add a Task</div>
 			<a href="/" >
-			<div class="LeftBtn"><img src="/images/back_btn.png" class="addBtn" /></div>
+			<div class="leftBtn"><img src="images/back_btn.png" class="addBtn" /></div>
 			</a> </div>
 		<div id="task-content">
 			<div id="add-task" style="text-align:center">
 					
 						<div class="form-group">
-						  <h5>Task Title</h5>
-						    <input type="text" class="glyphicon-align-center" id="newTaskName" placeholder="Make bed" size="60">
-						
+						  <h4>Task Title:</h4>
+						    <input type="text" class="form-control" id="newTaskName" placeholder="i.e. Make bed">
 						</div>
 							<div class="form-group">
 							<label for="width">
-							<h5>Assign To:
-					</h5>
+							<h4>Assign To:</h4>
 						<form id="form1" name="form1" method="post" action="">
 
 						<p>
 							{{#each child}}
 							<label>
 								<input type="radio" name="childGroup" value="{{email}}" id="CheckboxGroup1_0" />
-								{{name}}</label>
+								{{name}}
+							</label>
 							<br />
 							{{/each}}
 						</p>
 						</form>
 					 </div>
 						<div class="form-group">
-							<label for="description"><h5>Reward</h5>
-							  <input type="text" class="glyphicon-align-center" id="rewardVal" placeholder="2">
+							<label for="description"><h4>Reward:</h4>
+							  <input type="text" class="form-control" id="rewardVal" placeholder="i.e. 10">
 						
 						</div>
           
