@@ -33,6 +33,6 @@ function initializePage() {
 }
 function handleNewTaskCreation(result){
 	//res.render(result)
-	alert("Task Created!");
+	$.notify("Task Created!", "success");
 	window.location.href = '/';
 }

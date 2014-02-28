@@ -20,7 +20,7 @@
 	<div id="wrapper">
 		<div id="topBar">
 			<div class="header">Add Reward</div>
-			<a href="/">
+			<a href="/rewards">
 			<div class="leftBtn"><img src="images/back_btn.png" class="addBtn" /></div>
 			</a>
 		</div>
@@ -49,7 +49,9 @@
 </div>
 </div>
 <script src="js/jquery-1.11.0.js"></script> 
-<script src="js/bootstrap.js"></script> 
+<script src="js/bootstrap.js"></script>
+<script src="js/notify.min.js"></script>
+ 
 <script src="js/add_task_page.js"></script>
 <script type="text/javascript">
 $('#submitRewardBtn').click(function(){
@@ -58,8 +60,8 @@ $('#submitRewardBtn').click(function(){
 			"cost": $("#rewardVal").val()
 		};
 		$.post("/callback?action=addReward", obj)
-			.done(function(){alert("Reward added!");window.location.href="/rewards"})
-			.fail(function(){alert("Reward not added!");});
+			.done(function(){$.notify("Reward added!","success");window.location.href="/rewards"})
+			.fail(function(){$.notify("Reward not added!", "error");});
 	});
 </script>
 </body>

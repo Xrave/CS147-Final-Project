@@ -23,8 +23,23 @@ $(document).ready(function() {
 	});
 
 	$(document).on("click", "#doneBtn", function(){
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
+		var newData = 
+			{oldTaskID: getParameterByName("id"),
+			 newTaskName: $('#newTaskname').val(),  
+			 newAssignee: $('#childSelector').val(), 
+			 newPtValue: $('#newRewardValue').val(),
+			};
+		$.post('/callback?action=editTask', newData, function(result){
+			window.location.reload(true); 
+		});
 		//send all the information.
-		window.location.reload(true); 	
 	});
 })
