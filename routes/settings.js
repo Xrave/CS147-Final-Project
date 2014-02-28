@@ -5,5 +5,6 @@ exports.view = function(req, res){
 		res.redirect('/login');
 		return;
 	}
+	
 	res.render('settings');
 };
