@@ -24,7 +24,7 @@ body{
 #task-content{
 	padding:13px;
 	height:100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .task-item{
@@ -97,6 +97,7 @@ body{
 	position: absolute;
 	top: 13px;
 	left: 11px;
+	z-index:3;
 }
 
 .header{

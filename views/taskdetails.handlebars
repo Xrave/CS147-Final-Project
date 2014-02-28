@@ -23,7 +23,7 @@
     <div class="header">Task</div>
 	<div class="rightBtn"><img src="images/editTask_btn.png" id="editBtn"/></div>
 
-	<a href="/tasks"><div class="leftBtn"><img src="../public/images/back_btn.png" class="backBtn" /></div>
+	<a href="/"><div class="leftBtn"><img src="images/back_btn.png" class="backBtn" /></div>
 	</div></a>
     
   <div id="taskTitle">
@@ -34,16 +34,13 @@
   <div class="horizDivider"></div>
 
   <div id="detailsBlock">
-  	<p id="blockName">Julie</p>
-  	<p id="blockNumber">50</p>
+  	<p id="blockName">{{assignedTo}}</p>
+  	<p id="blockNumber">{{taskReward}}</p>
 
   	<!--HIDDEN EDIT ELEMENTS-->
   	<select name="NewChildSelector" id="childSelector" class="boob">
-		{{#each children}}
-			<option value="{{email}}">{{name}}</option>
-		{{/each}}
   	</select>
-  	<input name="NewRewardValue" id="newRewardValue" class="boob" value="00" /> <!--The value presented should be the same as the original (before editing)-->
+  	<input name="NewRewardValue" id="newRewardValue" class="boob" value="{{taskReward}}" /> <!--The value presented should be the same as the original (before editing)-->
   	<!--END HIDDEN EDIT ELEMENTS-->
   </div>
 
@@ -72,7 +69,7 @@
   <div id="comments">
   <p style="color:#D55">COMMENTS</p>
   <div id="commentbox"><textarea rows="2" class=v"glyphicon-align-center" id="commentarea">Leave a comment if you want to clarify something.</textarea><p><div id= "reply_btn">
-  <img src= ../public/images/reply_btn.png/>
+  <img src= "images/reply_btn.png">
   </div></p></div>
     
 
