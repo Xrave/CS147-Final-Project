@@ -25,7 +25,7 @@ function initializePage() {
 	
 	$.get("/childList", function(res){
 		console.log(res);
-		for( i in res){
+		for(var i in res){
 			console.log(i);
 			$("#childList").append("<p>"+res[i].name+"</p>");
 		}
@@ -33,7 +33,7 @@ function initializePage() {
 	
 	$.get("/parentList", function(res){
 		console.log(res);
-		for( i in res){
+		for(var i in res){
 			console.log(i);
 			$("#parentList").append("<p>"+res[i].name+"</p>");
 		}

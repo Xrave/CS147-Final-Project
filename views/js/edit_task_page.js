@@ -6,12 +6,14 @@
 $(document).ready(function() {
 	$('.rightBtn').click(function(){
 		//replace to edit page
-		$("#blockName, #blockNumber").hide();
+		$("#blockName").hide();
+		$('#blockNumber').hide();
+		$('#blockText').hide();
 		//push some stuff onto the dropdown:
 		$.get("/childList", function(res){
 			console.log(res);
-			for( i in res){
-				$("#childSelector").append("<option value='"+res[i].email"'>"+res[i].name+"</option>");
+			for(var i in res){
+				$("#childSelector").append("<option value='"+res[i].email+"'>"+res[i].name+"</option>");
 			}
 		});
 		$(".boob").show();
