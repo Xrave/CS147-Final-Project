@@ -52,7 +52,8 @@ exports.view = function(req, res){
 };
 
 exports.renderDetails = function(req, res){
-	if(!task.query.id){ view(req, res); }
+	if(!req.query.id){ res.redirect('/'); return; }
+	
 	var taskID = req.query.id;
 	
 	if(!req.cookies.user || !req.cookies.family){
@@ -61,7 +62,7 @@ exports.renderDetails = function(req, res){
 	}
 
   	models.Family
-    .find({"_id": taskID})
+    .find({"_id": req.cookies.family})
     .exec(afterQuery);
 
 	function afterQuery(err, families) {
@@ -75,31 +76,27 @@ exports.renderDetails = function(req, res){
 		var index;
 		var callbacksfinished = 0;
 		console.log(tasks.length)
-		for(index = 0; index<tasks.length; index++){
+		for(index = 0; index<tasks.length && !found; index++){
 			if(tasks[index]["_id"]!=taskID){
 				continue;
 			}//else:
 			found = true;
+			console.log("Found the Task!");
 			var foundTask = tasks[index];
-			var email = tasks[index].assignee;
-			var i = index;
+			var email = foundTask.assignee;
 			console.log(email);
 				models.Person.find({"email": email}).exec(
 					function(err, people){
-						console.log(i);
-						tasks[i]['task_description'] = tasks[i].taskText;
-						tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
-						tasks[i].assignedTo = people[0].name;
-						callbacksfinished ++;
-						if(callbacksfinished == tasks.length){
-							res.render('tasks', {"taskArray": tasks});
-							console.log(tasks);
-						}
+						console.log(people);
+						foundTask['task_description'] = foundTask.taskText;
+						foundTask.assignedTo = people[0].name;
+						res.render('taskdetails', foundTask);
+						return;
+						console.log(foundTask);
 					}
 				);
 		};
-		
-		if(tasks.length == 0){
+		if(!found){
 			res.redirect('/');
 		}
 	}
