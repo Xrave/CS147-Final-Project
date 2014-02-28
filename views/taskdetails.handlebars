@@ -34,16 +34,13 @@
   <div class="horizDivider"></div>
 
   <div id="detailsBlock">
-  	<p id="blockName">Julie</p>
-  	<p id="blockNumber">50</p>
+  	<p id="blockName">{{assignedTo}}</p>
+  	<p id="blockNumber">{{taskReward}}</p>
 
   	<!--HIDDEN EDIT ELEMENTS-->
   	<select name="NewChildSelector" id="childSelector" class="boob">
-		{{#each children}}
-			<option value="{{email}}">{{name}}</option>
-		{{/each}}
   	</select>
-  	<input name="NewRewardValue" id="newRewardValue" class="boob" value="00" /> <!--The value presented should be the same as the original (before editing)-->
+  	<input name="NewRewardValue" id="newRewardValue" class="boob" value="{{taskReward}}" /> <!--The value presented should be the same as the original (before editing)-->
   	<!--END HIDDEN EDIT ELEMENTS-->
   </div>
 

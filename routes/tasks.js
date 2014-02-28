@@ -100,7 +100,7 @@ exports.renderDetails = function(req, res){
 		};
 		
 		if(tasks.length == 0){
-			res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
+			res.redirect('/');
 		}
 	}
 }

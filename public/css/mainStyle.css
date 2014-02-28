@@ -97,6 +97,7 @@ body{
 	position: absolute;
 	top: 13px;
 	left: 11px;
+	z-index:3;
 }
 
 .header{

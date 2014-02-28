@@ -26,14 +26,16 @@ function initializePage() {
 	$.get("/childList", function(res){
 		console.log(res);
 		for( i in res){
-			$("#childList").add("<p>"+i.name+"</p>");
+			console.log(i);
+			$("#childList").append("<p>"+res[i].name+"</p>");
 		}
 	});
 	
 	$.get("/parentList", function(res){
 		console.log(res);
 		for( i in res){
-			$("#parentList").add("<p>"+i.name+"</p>");
+			console.log(i);
+			$("#parentList").append("<p>"+res[i].name+"</p>");
 		}
 	});
 	
