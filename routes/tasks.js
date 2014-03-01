@@ -51,7 +51,7 @@ exports.view = function(req, res){
 	}
 };
 
-exports.viewAlternate = function(req, res){
+exports.viewAlt = function(req, res){
 	console.log(req.cookies);	
 	if(!req.cookies.user || !req.cookies.family){
 		res.redirect('/login');
