@@ -58,6 +58,7 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', tasks.view);
+app.get('/alternate', tasks.viewAlt);
 
 app.get('/addtask', add.view);
 app.get('/task', tasks.renderDetails);

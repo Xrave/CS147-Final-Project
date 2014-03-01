@@ -78,6 +78,17 @@ body{
 	display:block;
 }
 
+/*Used for A/B testing*/
+#newAddTaskBtn {
+	background-color: #D55;
+	width: 150px;
+	color: white;
+	margin: auto;
+}
+	#newAddTaskBtn:hover {
+		background-color: #c44b4b;
+	}
+
 .space-control-useless { /*USED TO PREVENT ITEMS FROM BEING PUT OFF*/
 	width: 100%;
 	height: 62px;
