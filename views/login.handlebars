@@ -1,167 +1,165 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Login to Temporary Giraffe</title>
-	    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Login to Temporary Giraffe</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/mainStyle.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/mainStyle.css" rel="stylesheet">
 
-</head>
-<body >
-<!--div class="container">
-	<h2>Temporary Giraffe</h2>
+    </head>
+    <body >
+        <!--div class="container">
+<h2>Temporary Giraffe</h2>
 
-	<p style="font-weight:bold" id="signInBtn">Sign In</p>
-	<p style="margin-left:15px" id="signUpBtn">Sign Up</p><br />
-	<div id="signUpTab" style="display:none">
-		<input type="text" id="name1" value="Name" /><br />
-		<input type="text" id="email1" value="Email" /><br />
-		<input type="password" id="password1" value="Password" /><br />
-		<button id="signUpSubmit">Sign Up</button>
-	</div>
-	<div id="signInTab">
-		<input type="text" id="email2" value="Email" /><br />
-		<input type="password" id="password2" value="Password" /><br />
-		<button id="signInSubmit">Sign In</button>
-	</div>
+<p style="font-weight:bold" id="signInBtn">Sign In</p>
+<p style="margin-left:15px" id="signUpBtn">Sign Up</p><br />
+<div id="signUpTab" style="display:none">
+<input type="text" id="name1" value="Name" /><br />
+<input type="text" id="email1" value="Email" /><br />
+<input type="password" id="password1" value="Password" /><br />
+<button id="signUpSubmit">Sign Up</button>
+</div>
+<div id="signInTab">
+<input type="text" id="email2" value="Email" /><br />
+<input type="password" id="password2" value="Password" /><br />
+<button id="signInSubmit">Sign In</button>
+</div>
 </div-->
-<div class="container">
-	<div class="">
-        <div class="span12">
-    		<div class="" id="loginModal" style="width:90%; margin:auto;">
-              <div class="modal-header">
-                <h2>Temporary Giraffe</h2>
-				<h5>A stress-free chore/task organizer for your whole family!</h5>
-              </div>
-              <div class="" style="width:100%">
-                <div class="well">
-                  <ul class="nav nav-tabs">
-                    <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-                    <li><a href="#create" data-toggle="tab" onclick="$('html, body').animate({scrollTop:$(document).height()}, 'slow');">Create Account</a></li>
-                  </ul>
-                  <div id="myTabContent" class="tab-content">
-				  
-                    <div class="tab-pane active in" id="login">
-                        <fieldset>
-                          <div id="legend">
-                            <legend class="">Login</legend>
-                          </div>    
-                          <div class="control-group">
-                            <!-- Username -->
-                            <label class="control-label" for="email2">Email</label>
-                            <div class="controls">
-                              <input type="text" id="email2" name="username" placeholder="" class="input-xlarge">
-                            </div>
-                          </div>
-     
-                          <div class="control-group">
-                            <!-- Password-->
-                            <label class="control-label" for="password2">Password</label>
-                            <div class="controls">
-                              <input type="password" id="password2" name="password" placeholder="" class="input-xlarge">
-                            </div>
-                          </div>
-     
-     
-                          <div class="control-group">
-                            <!-- Button -->
-                            <div class="controls">
-                              <button id="signInSubmit" class="btn btn-success">Login</button>
-                            </div>
-                          </div>
-                        </fieldset>
+        <div class="container">
+            <div class="">
+                <div class="" id="loginModal" style="width:90%; margin:auto;">
+                    <div class="modal-header">
+                        <h2>Temporary Giraffe</h2>
+                        <h5>A stress-free chore/task organizer for your whole family!</h5>
                     </div>
-					
-                    <div class="tab-pane fade" id="create">
-					       
-					  <div id="legend">
-                            <legend class="">Creating an Account</legend>
-                          </div>   
-						  	<p>Only create an account if you wish to make a <b>new</b> family tree. To join an existing family tree, please contact an administrator on that family to create an account for you.</p>
-<p>Upon clicking <b>Create Account</b>, you'll be redirected to set up your new family tree.</p>
-                      <form id="tab">
-		
-                       <p> <label>Email</label>
-                        <input type="text" value="" id="email1" class="input-group" ></p>
-                       <p> <label>Preferred Name</label>
-                        <input type="text" value="" id="name1" class="input-group"></p>
-                       <p> <label>Password</label>
-                        <input type="password" value="" id="password1" class="input-group"></p>
-                        <div>
-                          <button id="signUpSubmit" class="btn btn-primary">Create Account</button>
+                    <div class="" style="width:100%">
+                        <div class="well">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
+                                <li><a href="#create" data-toggle="tab" onclick="$('html, body').animate({scrollTop:$(document).height()}, 'slow');">Create Account</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+
+                                <div class="tab-pane active in" id="login">
+                                    <fieldset>
+                                        <div id="legend">
+                                            <legend class="">Login</legend>
+                                        </div>    
+                                        <div class="control-group">
+                                            <!-- Username -->
+                                            <label class="control-label" for="email2">Email</label>
+                                            <div class="controls">
+                                                <input type="text" id="email2" name="username" placeholder="" class="input-xlarge">
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <!-- Password-->
+                                            <label class="control-label" for="password2">Password</label>
+                                            <div class="controls">
+                                                <input type="password" id="password2" name="password" placeholder="" class="input-xlarge">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                            <!-- Button -->
+                                            <div class="controls">
+                                                <button id="signInSubmit" class="btn btn-success">Login</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="tab-pane fade" id="create">
+
+                                    <div id="legend">
+                                        <legend class="">Creating an Account</legend>
+                                    </div>   
+                                    <p>Only create an account if you wish to make a <b>new</b> family tree. To join an existing family tree, please contact an administrator on that family to create an account for you.</p>
+                                    <p>Upon clicking <b>Create Account</b>, you'll be redirected to set up your new family tree.</p>
+                                    <form id="tab">
+
+                                        <p> <label>Email</label>
+                                            <input type="text" value="" id="email1" class="input-group" ></p>
+                                        <p> <label>Preferred Name</label>
+                                            <input type="text" value="" id="name1" class="input-group"></p>
+                                        <p> <label>Password</label>
+                                            <input type="password" value="" id="password1" class="input-group"></p>
+                                        <div>
+                                            <button id="signUpSubmit" class="btn btn-primary">Create Account</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                      </form>
                     </div>
                 </div>
-              </div>
             </div>
-        </div>
-	</div>
-</div>
 
-		<script src="js/jquery-1.11.0.js"></script>
-		<script src="js/bootstrap.js"></script>	
-	<script src="js/notify.min.js"></script>
-	<script type="text/javascript">
+            <script src="js/jquery-1.11.0.js"></script>
+            <script src="js/bootstrap.js"></script>	
+            <script src="js/notify.min.js"></script>
+            <script type="text/javascript">
 
-$(document).ready(function() {
-	function isValidEmail(email) {
-    // the regex works in IE but should be a string (see nnnnn's answer) 
-    // var em= new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
-    var em=/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i; // simpler
-    return em.test(email);
-}
+                $(document).ready(function() {
+                    function isValidEmail(email) {
+                        // the regex works in IE but should be a string (see nnnnn's answer) 
+                        // var em= new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+                        var em=/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i; // simpler
+                        return em.test(email);
+                    }
 
-function checkEmail(email){
-	if(isValidEmail(email)){
-		return true;
-	}else{
-		$(this).notify("The email not valid!", "error");
-		return false;
-	}
-}
+                    function checkEmail(email){
+                        if(isValidEmail(email)){
+                            return true;
+                        }else{
+                            $(this).notify("The email not valid!", "error");
+                            return false;
+                        }
+                    }
 
-	$('#signInBtn').click(function(){
-		$("#signUpBtn").css("font-weight", "normal");
-		$("#signInBtn").css("font-weight", "bold");
-		$('#signUpTab').hide();
-		$('#signInTab').show();
-	});
-	$('#signUpBtn').click(function(){
-		$("#signInBtn").css("font-weight", "normal");
-		$("#signUpBtn").css("font-weight", "bold");
-		$('#signInTab').hide();
-		$('#signUpTab').show();
-	});
+                    $('#signInBtn').click(function(){
+                        $("#signUpBtn").css("font-weight", "normal");
+                        $("#signInBtn").css("font-weight", "bold");
+                        $('#signUpTab').hide();
+                        $('#signInTab').show();
+                    });
+                    $('#signUpBtn').click(function(){
+                        $("#signInBtn").css("font-weight", "normal");
+                        $("#signUpBtn").css("font-weight", "bold");
+                        $('#signInTab').hide();
+                        $('#signUpTab').show();
+                    });
 
-	$('#signUpSubmit').click(function(e){
-		e.preventDefault();
-		var obj = {
-			"name": $("#name1").val(),
-			"email": $("#email1").val(),
-			"password": $("#password1").val(),
-			"points": -1
-		};
-		if(!checkEmail(obj['email'])) return;
-		$.post("/callback?action=signUp", obj)
-			.done(function(){$('#signUpSubmit').notify("Sign Up Successful! Redirecting you to Settings to set up your family!","success"); window.location.href="/settings"})
-			.fail(function(){$('#signUpSubmit').notify("Sign up failed!","error");});
-	});
-	$('#signInSubmit').click(function(e){
-		e.preventDefault();
-		var obj = {
-			"email": $("#email2").val(),
-			"password": $("#password2").val()
-		};
-		if(!checkEmail(obj['email'])) return;
-		$.post("/callback?action=signIn", obj)
-			.done(function(){$('#signInSubmit').notify("logged in!","success");window.location.href="/"})
-			.fail(function(){$('#signInSubmit').notify("incorrect credentials!", "error");});
-	});
-});
-	</script>
-</body>
-</html>
+                    $('#signUpSubmit').click(function(e){
+                        e.preventDefault();
+                        var obj = {
+                            "name": $("#name1").val(),
+                            "email": $("#email1").val(),
+                            "password": $("#password1").val(),
+                            "points": -1
+                        };
+                        if(!checkEmail(obj['email'])) return;
+                        $.post("/callback?action=signUp", obj)
+                        .done(function(){$('#signUpSubmit').notify("Sign Up Successful! Redirecting you to Settings to set up your family!","success"); window.location.href="/settings"})
+                        .fail(function(){$('#signUpSubmit').notify("Sign up failed!","error");});
+                    });
+                    $('#signInSubmit').click(function(e){
+                        e.preventDefault();
+                        var obj = {
+                            "email": $("#email2").val(),
+                            "password": $("#password2").val()
+                        };
+                        if(!checkEmail(obj['email'])) return;
+                        $.post("/callback?action=signIn", obj)
+                        .done(function(){$('#signInSubmit').notify("logged in!","success");window.location.href="/"})
+                        .fail(function(){$('#signInSubmit').notify("incorrect credentials!", "error");});
+                    });
+                });
+            </script>
+        </body>
+    </html>
