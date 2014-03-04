@@ -1,169 +1,169 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>
-      Tasks
-    </title>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <head>
+        <title>
+            Tasks
+        </title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
-    
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/mainStyle.css" rel="stylesheet">
-    <link href="css/task_detail_Style.css" rel="stylesheet">
-    <style type="text/css">
-      #addNewChildPopup, #addNewParentPopup {
-        width: 300px;
-        height: 360px;
-        background-color: #EBEBEB;
-        box-shadow: 0px 0px 5px #888888;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-		border-radius:10px;
-        margin-top: -180px;
-        margin-left: -150px;
-        text-align: center;
-        font-size: 17px;
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="page" class="container">
-      <div id="wrapper">
-		<div id="topBar">
-          <div class="header">
-            Settings
-          </div>
-        </div>
-        <div id="task-content">
-          <div id="add-task" style="text-align:left; padding:30px">
-            <div id="controlform1">
-              <form id="projectForm" role="form">
-                <div class="form-group">
-                  <h4>
-                    Children registered to your account:
-                </h4>
-                <div class = "project thumbnail">
-				  <span id="childList">
-                  	
-				</span>
-                    <button id="addNewChild" type="button" class="btn btn-default btn-group-justified">
-                      Add New Child
-                    </button>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/mainStyle.css" rel="stylesheet">
+        <link href="css/task_detail_Style.css" rel="stylesheet">
+        <style type="text/css">
+            #addNewChildPopup, #addNewParentPopup {
+                width: 300px;
+                height: 360px;
+                background-color: #EBEBEB;
+                box-shadow: 0px 0px 5px #888888;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius:10px;
+                margin-top: -180px;
+                margin-left: -150px;
+                text-align: center;
+                font-size: 17px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page" class="container">
+            <div id="wrapper">
+                <div id="topBar">
+                    <div class="header">
+                        Settings
+                    </div>
                 </div>
-                
-                
-              </div>
-              
-              <div class ="form-group">
-                <h4>
-                  Administrators/Parents of your group: 
-                </h4>
-                <div class = "project thumbnail">
-                  <span id="parentList">
-                  </span>
-                  <button id="addNewParent" type="button" class="btn btn-default btn-group-justified">
-                    Add New Parent/Administrator
-                  </button>
+                <div id="task-content">
+                    <div id="add-task" style="text-align:left; padding:30px">
+                        <div id="controlform1">
+                            <form id="projectForm" role="form">
+                                <div class="form-group">
+                                    <h4>
+                                        Children registered to your account:
+                                    </h4>
+                                    <div class = "project thumbnail">
+                                        <span id="childList">
+
+                                        </span>
+                                        <button id="addNewChild" type="button" class="btn btn-default btn-group-justified">
+                                            Add New Child
+                                        </button>
+                                    </div>
+
+
+                                </div>
+
+                                <div class ="form-group">
+                                    <h4>
+                                        Administrators/Parents of your group: 
+                                    </h4>
+                                    <div class = "project thumbnail">
+                                        <span id="parentList">
+                                        </span>
+                                        <button id="addNewParent" type="button" class="btn btn-default btn-group-justified">
+                                            Add New Parent/Administrator
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                </label>
+                            </div>
+                            <button id="logoutBtn" type="button" class="btn btn-default btn-group-justified btn-primary">
+                                Logout
+                            </button>
+                            <br />
+                            <br />
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group">
-              </label>
             </div>
-            <button id="submitSettingsBtn" type="button" class="btn btn-default btn-group-justified btn-primary">
-              Logout
-            </button>
-			<br />
-			<br />
-          </form>
+
+            <div id="addNewChildPopup">
+                <br />
+                <span style="font-weight:bold">
+                    Add a Child
+                </span>
+                <br />
+                <br />
+                <input type="text" id="nameField" value="Name" />
+                <br />
+                <br />
+                <input type="text" id="emailField" value="Email" />
+                <br />
+                <br />
+                <input type="text" id="passwordField" value="Temp. Password" />
+                <br />
+                <br />
+                <button id="addChildSubmit">
+                    Add
+                </button>
+                <button id="addChildCancel">
+                    Cancel
+                </button>
+            </div>
+            <div id="addNewParentPopup">
+                <br />
+                <span style="font-weight:bold">
+                    Add a Parent
+                </span>
+                <br />
+                <br />
+                <input type="text" id="nameField" value="Name" />
+                <br />
+                <br />
+                <input type="text" id="emailField" value="Email" />
+                <br />
+                <br />
+                <input type="text" id="passwordField" value="Temp. Password" />
+                <br />
+                <br />
+                <button id="addParentSubmit">
+                    Add
+                </button>
+                <button id="addParentCancel">
+                    Cancel
+                </button>
+            </div>
+            <div id="logoutPopup">
+                <span style="font-weight:bold">
+                    You are logged out.
+                </span>
+            </div>
         </div>
+    </div>
+    <div id="bottomBar">
+
+        <a href="/">
+            <img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" />
+        </a>
+
+        <a href="/rewards" >
+            <img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" />
+        </a>
+
+        <a href="/notifications">
+            <img id="notIcon" class="nav-icons" src="images/notIcon.png" />
+        </a>
+
+        <a href="/settings">
+            <img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" />
+        </a>
+
+        <span class="stretch">
+        </span>
+        <div id="active-highlight" style="left: 249px;">
         </div>
-      </div>
-      
-      <div id="addNewChildPopup">
-        <br />
-        <span style="font-weight:bold">
-          Add a Child
-        </span>
-        <br />
-        <br />
-        <input type="text" id="nameField" value="Name" />
-        <br />
-        <br />
-        <input type="text" id="emailField" value="Email" />
-        <br />
-        <br />
-        <input type="text" id="passwordField" value="Temp. Password" />
-        <br />
-        <br />
-        <button id="addChildSubmit">
-          Add
-        </button>
-        <button id="addChildCancel">
-          Cancel
-        </button>
-      </div>
-      <div id="addNewParentPopup">
-        <br />
-        <span style="font-weight:bold">
-          Add a Parent
-        </span>
-        <br />
-        <br />
-        <input type="text" id="nameField" value="Name" />
-        <br />
-        <br />
-        <input type="text" id="emailField" value="Email" />
-        <br />
-        <br />
-        <input type="text" id="passwordField" value="Temp. Password" />
-        <br />
-        <br />
-        <button id="addParentSubmit">
-          Add
-        </button>
-        <button id="addParentCancel">
-          Cancel
-        </button>
-      </div>
-      <div hidden id="logoutPopup">
-        <span style="font-weight:bold">
-          You are logged out.
-        </span>
-      </div>
+
     </div>
-  </div>
-  <div id="bottomBar">
-    
-    <a href="/">
-      <img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" />
-    </a>
-    
-    <a href="/rewards" >
-      <img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon.png" />
-    </a>
-    
-    <a href="/notifications">
-      <img id="notIcon" class="nav-icons" src="images/notIcon.png" />
-    </a>
-    
-    <a href="/settings">
-      <img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" />
-    </a>
-    
-    <span class="stretch">
-    </span>
-    <div id="active-highlight" style="left: 249px;">
-    </div>
-    
-  </div>
 </div>
 <script src="js/jquery-1.11.0.js">
 </script>

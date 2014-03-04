@@ -3,14 +3,14 @@
 var models = require('../models');
 
 exports.view = function(req, res){
-	console.log(req.cookies);	
-	if(!req.cookies.user || !req.cookies.family){
+	console.log(req.session);	
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 
   models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(afterQuery);
 
 	function afterQuery(err, families) {
@@ -52,14 +52,14 @@ exports.view = function(req, res){
 };
 
 exports.viewAlt = function(req, res){
-	console.log(req.cookies);	
-	if(!req.cookies.user || !req.cookies.family){
+	console.log(req.session);	
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 
   models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(afterQuery);
 
 	function afterQuery(err, families) {
@@ -106,13 +106,13 @@ exports.renderDetails = function(req, res){
 	
 	var taskID = req.query.id;
 	
-	if(!req.cookies.user || !req.cookies.family){
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 
   	models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(afterQuery);
 
 	function afterQuery(err, families) {

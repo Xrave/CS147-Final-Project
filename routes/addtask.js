@@ -2,13 +2,13 @@ var models = require('../models')
 
 exports.view = function(req, res) { 
 
-	if(!req.cookies.user || !req.cookies.family){
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 	
 	models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(afterQueryAddTask);
 	function afterQueryAddTask(err, families) {
 		if(err) console.log(err);

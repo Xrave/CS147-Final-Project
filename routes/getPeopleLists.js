@@ -3,14 +3,14 @@
 var models = require("../models");
 
 exports.getChildrenList = function(req, res){
-	console.log(req.cookies);
-	if(!req.cookies.user || !req.cookies.family){
+	console.log(req.session);
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 
  	models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(function(err, families){
 		if(err) {console.log(err); res.json([]); return; }
 		if(!families[0]){
@@ -47,14 +47,14 @@ exports.getChildrenList = function(req, res){
 
 
 exports.getParentsList = function(req, res){
-	console.log(req.cookies);
-	if(!req.cookies.user || !req.cookies.family){
+	console.log(req.session);
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}
 
  	models.Family
-    .find({"_id": req.cookies.family})
+    .find({"_id": req.session.family})
     .exec(function(err, families){
 		if(err) {console.log(err); res.json([]); return; }
 		if(!families[0]){

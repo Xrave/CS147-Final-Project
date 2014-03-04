@@ -1,6 +1,6 @@
 
 exports.handle = function(req, res) { 
-	if(!req.cookies.user || !req.cookies.family){
+	if(!req.session.user || !req.session.family){
 		res.redirect('/login');
 		return;
 	}

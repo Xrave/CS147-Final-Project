@@ -17,6 +17,7 @@ exports.process = function(req, res){
     if(req.query.action == 'signUp'){ //SUPER INTENDENT SIGN UP.
         var userJson = req.body;
         var newUser = new models.Person(userJson);
+        newUser.points = -1;
         newUser.save(function(err, newUser){
             console.log(newUser + " is saved!");
             console.log("now creating family for new user");
@@ -29,8 +30,9 @@ exports.process = function(req, res){
             var newFamily = new models.Family(json);
             newFamily.save(function(err, newFamily){
                 console.log(newFamily + " is saved!");
-                res.cookie('family', newFamily._id);
-                res.cookie('user', newUser.email);
+                req.session.isParent = true; //0 for parent;
+                req.session.family= newFamily._id;
+                req.session.user= newUser.email;
                 res.send(200); return;
             });
         });
@@ -50,8 +52,9 @@ exports.process = function(req, res){
                         return;
                     }
                     console.log("\t"+entry[0].name + " Logged in!");
-                    res.cookie('user', entry[0].email);
-                    res.cookie('family', matchedFamilies[0]._id);
+                    req.session.isParent = (entry[0].points < 0);
+                    req.session.user = entry[0].email;
+                    req.session.family= matchedFamilies[0]._id;
                     res.send(200);
                     return;
                 });
@@ -66,14 +69,13 @@ exports.process = function(req, res){
             console.log("[ NEW CHILD ADDED ]");
             console.log(newUser + " is saved!");
             models.Family
-            .update({"_id":req.cookies.family},
+            .update({"_id":req.session.family},
                     {
                         $push: { "controlees": newUser.email }
                     })
             .exec(function(err, useless){
                 res.send(200);
             });
-            //res.cookie('user', newUser.email);
             return;
         });
 
@@ -84,7 +86,7 @@ exports.process = function(req, res){
             console.log("[ NEW PARENT ADDED ]");
             console.log(newUser + " is saved!");
             models.Family
-            .update({"_id":req.cookies.family},
+            .update({"_id":req.session.family},
                     {
                         $push: { "controllers": newUser.email }
                     })
@@ -96,7 +98,7 @@ exports.process = function(req, res){
 
     }else if(req.query.action == 'addReward'){
         var rwd = req.body;
-        var familyID = req.cookies.family;
+        var familyID = req.session.family;
         /*db.bios.update(
    { _id: 1 },
    {
@@ -114,11 +116,11 @@ exports.process = function(req, res){
 
     }else if(req.query.action == 'addTask'){
         var task = req.body;
-        task['assigner'] = req.cookies.user;
+        task['assigner'] = req.session.user;
         task['taskID'] = task.assigner + "-"+task.assignee+"-"+task.taskText;
         task['comments'] = [];
         models.Family
-        .update({"_id":req.cookies.family},
+        .update({"_id":req.session.family},
                 {$push: { "tasks" :  task  }
                 })
         .exec(function(err, useless){
@@ -126,8 +128,11 @@ exports.process = function(req, res){
             return;
         });
     }else if(req.query.action == 'logout'){
-        req.session.destroy();
-        req.cookie
+        req.session.destroy(function(){
+            //delete req.session.user;
+            //delete req.session.family;
+        });
+        res.send(200);
         return;
     }else if(req.query.action == 'editTask'){
         console.log(req.body);
@@ -135,14 +140,15 @@ exports.process = function(req, res){
         models.Family
         .update(
             {
-                '_id':req.cookies.family,
+                '_id':req.session.family,
                 'tasks':{'._id':req.body.older_id}
             }
             ,
             {
                 $set: {
-                    "tasks.0.assignee": req.body.newAssignee, 				"tasks.0.taskText": req.body.newTaskName,
-                    "tasks.0.taskReward":req.body.newPtValue
+                    "tasks.$.assignee": req.body.newAssignee, 				
+                    "tasks.$.taskText": req.body.newTaskName,
+                    "tasks.$.taskReward":req.body.newPtValue
                 }
             })
         .exec(function(err, useless){
