@@ -140,20 +140,23 @@ exports.process = function(req, res){
         models.Family
         .update(
             {
-                '_id':req.session.family,
-                'tasks':{'._id':req.body.older_id}
+                'tasks._id':req.body.oldTaskID
             }
             ,
             {
-                $set: {
+                $set:{
                     "tasks.$.assignee": req.body.newAssignee, 				
                     "tasks.$.taskText": req.body.newTaskName,
                     "tasks.$.taskReward":req.body.newPtValue
                 }
-            })
-        .exec(function(err, useless){
-            console.log(useless);
-            res.send(200);
+            }
+            ,
+            {multi:false}
+            ,
+            function(err, doc){
+                console.log("Actually:")
+                console.log(doc); //? LOL
+                res.send(200);
             return;
         });
     }else if(req.query.action == 'editRewards'){
