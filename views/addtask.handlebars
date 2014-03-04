@@ -1,69 +1,105 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<title>Add Task</title>
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
+    <head>
+        <title>Add Task</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="css/bootstrap-theme.css" rel="stylesheet">
-<link href="css/mainStyle.css" rel="stylesheet">
-<link href="css/task_detail_Style.css" rel="stylesheet">
-</head>
-<body style="height:100%">
-<div id="page" class="container">
-	<div id="wrapper">
-		<div id="topBar">			
-		<a href="/" >
-			<div class="leftBtn"><img src="/images/back_btn.png" class="addBtn" /></div></a> 
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/mainStyle.css" rel="stylesheet">
+        <link href="css/task_detail_Style.css" rel="stylesheet">
+    </head>
+    <body style="height:100%">
+        <div id="page" class="container">
+            <div id="wrapper">
+                <div id="topBar">			
+                    <a href="/" >
+                        <div class="leftBtn"><img src="/images/back_btn.png" class="addBtn" /></div></a> 
 
-			<div class="header">Add a Task</div>
-	</div>
-		<div id="task-content">
-			<div id="add-task" style="text-align:center">
-					
-						<div class="form-group">
-						  <h4>Task Title:</h4>
-						    <input type="text" class="form-control" id="newTaskName" placeholder="i.e. Make bed">
-						</div>
-							<div class="form-group">
-							<label for="width">
-							<h4>Assign To:</h4>
-						<form id="form1" name="form1" method="post" action="">
+                    <div class="header">Add a Task</div>
+                </div>
+                <div id="task-content">
+                    <div id="add-task" style="text-align:center">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label"><h4>Task Title:</h4></label>
+                                <div class="controls">
+                                    <input class="form-control"
+                                           type="text" 
+                                           maxlength="22" 
+                                           class="form-control" 
+                                           required 
+                                           id="newTaskName" 
+                                           placeholder="i.e. Make bed" 
+                                           data-validation-required-message="Please enter a task. i.e., Wash the dishes." 
+                                           data-validation-maxlength-message='Limited to 22 characters. You can always elaborate more in comments after task creation!' />
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"><h4>Assign To:</h4></label>
+                                <div class="controls">                                    
+                                    {{#each child}}
+                                    <label>
+                                        <input type="radio" 
+                                               data-validation-maxchecked-maxchecked='1' 
+                                               data-validation-maxchecked-message="You should choose someone to assign the task to."
 
-						<p>
-							{{#each child}}
-							<label>
-								<input type="radio" name="childGroup" value="{{email}}" id="CheckboxGroup1_0" />
-								{{name}}
-							</label>
-							<br />
-							{{/each}}
-						</p>
-						</form>
-					 </div>
-						<div class="form-group">
-							<label for="description"><h4>Reward:</h4>
-							  <input type="text" class="form-control" id="rewardVal" placeholder="i.e. 10">
-						
-						</div>
-          
-				      <p>&nbsp;</p>
-				      <button id="submitTaskBtn" type="button" class="btn btn-default">
-                      Add Task</button>
-
-		  </div>
-		</div>
-	</div>
-</div>
-		<script src="js/jquery-1.11.0.js"></script>
-		<script src="js/bootstrap.js"></script>	
-		<script src="js/add_task_page.js"></script>
-
+                                               name="childGroup" 
+                                               value="{{email}}" 
+                                               id="CheckboxGroup1_0" >
+                                        {{name}}</input>
+                                </label>
+                                {{/each}}
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><h4>Reward:</h4></label>
+                            <div class="controls">
+                                <input type="number" class="form-control" id="rewardVal" placeholder="10" required />
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <button id="submitTaskBtn" type="submit" class="btn btn-default btn-primary">
+                            Add Task
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.mobile-1.4.2.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script>
+        $(function() {
+            $(".form-horizontal").find("input,textarea,select").jqBootstrapValidation(
+                {
+                    preventSubmit: true,
+                    submitError: function($form, event, errors) {
+                        // Here I do nothing, but you could do something like display 
+                        // the error messages to the user, log, etc.
+                    },
+                    submitSuccess: function($form, event) {
+                        alert("OK");
+                        //event.preventDefault();
+                    },
+                    filter: function() {
+                        return $(this).is(":visible");
+                    }
+                }
+            );
+        });
+    </script>
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/bootstrap.js"></script>	
+    <script src="js/notify.min.js"></script>
+    <script src="js/add_task_page.js"></script>
 </body>
 </html>

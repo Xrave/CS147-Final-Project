@@ -157,8 +157,8 @@ exports.process = function(req, res){
                 console.log("Actually:")
                 console.log(doc); //? LOL
                 res.send(200);
-            return;
-        });
+                return;
+            });
     }else if(req.query.action == 'editRewards'){
 
     }

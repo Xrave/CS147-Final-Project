@@ -17,7 +17,6 @@ var add = require('./routes/addtask');
 var addreward = require('./routes/addreward');
 var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
-var createTask = require('./routes/createTask');
 var accountAction = require('./routes/accountAction');
 var listing = require('./routes/getPeopleLists');
 // Example route
@@ -73,7 +72,6 @@ app.get('/settings', settings.view);
 app.get('/childList', listing.getChildrenList);
 app.get('/parentList', listing.getParentsList);
 
-app.post('/maketask', createTask.handle);
 app.post('/callback', 
 		accountAction.process);
 
