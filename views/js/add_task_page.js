@@ -32,7 +32,7 @@ function initializePage() {
             $('#rewardVal').notify("Can't assign a negative reward", "warning");
             return;
         }
-        if( rewardPtNum==NaN | rewardPtNum == undefined){
+        if( isNaN(rewardPtNum) | rewardPtNum == undefined){
             $('#rewardVal').notify("Please enter a numerical reward value.", "warning");
             return;
         }
@@ -46,7 +46,9 @@ function initializePage() {
         //make it into a JSON object. push it to data by calling a routes, then allow the default action to go through.
         $.post('/callback?action=addTask', newdata, function(e){
             $.notify("Task Created!", "success");
-            window.location = '/';
+            setTimeout(function(){
+                window.location = '/';
+            },1000);
 
         });
     });

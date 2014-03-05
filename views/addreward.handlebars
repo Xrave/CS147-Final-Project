@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>Add Reward</title>
-        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -57,16 +58,21 @@
                 if(n_name == undefined || n_name.length==0 ){
                     $("#newRewardName").notify("Please enter a reward.", "warning"); return;
                 }
-                if(n_cost == undefined || n_cost == NaN){
+                
+                console.log(n_cost);
+                if( isNaN(n_cost) || n_cost == null || n_cost){
+                    console.log("Huh")
                     $("#rewardVal").notify("Please enter the reward cost.", "warning"); return;
                 }
+                
                 if(n_cost <0){
                     $("#rewardVal").notify("The cost should be positive.", "warning"); return;
                 }
-                    var obj = {
-                        "text": $("#newRewardName").val(),
-                        "cost": $("#rewardVal").val()
-                    };
+                
+                var obj = {
+                    "text": n_name,
+                    "cost": n_cost
+                };
                 $.post("/callback?action=addReward", obj)
                 .done(function(){$.notify("Reward added!","success");window.location.href="/rewards"})
                 .fail(function(){$.notify("Reward not added!", "error");});

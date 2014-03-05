@@ -31,11 +31,37 @@ $(document).ready(function() {
 		}
 		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
+        var oldID = getParameterByName("id");
+        if(isNullOrUndefined(oldID) || oldID.length == 0){
+            window.location = "/"; //weird things have happened. let's abort.
+            return;
+        }
+        var n_name = $('#newTaskname').val();
+        var n_assignee = $('#childSelector').val();
+        var n_pts = parseInt($('#newRewardValue').val());
+        
+        if(n_name.length == 0){
+            $('#newTaskName').notify("Please enter a task", "warning");
+            return;
+        }
+        if (n_assignee == undefined){
+            $('#childSelector').notify("Please select a child to assign the task to!", "warning");
+            return;
+        }
+        if( n_pts<0){
+            $('#newRewardValue').notify("Can't assign a negative reward", "warning");
+            return;
+        }
+        if( isNaN(n_pts) | n_pts == undefined){
+            $('#newRewardValue').notify("Please enter a numerical reward value.", "warning");
+            return;
+        }
+        
 		var newData = 
-			{oldTaskID: getParameterByName("id"),
-			 newTaskName: $('#newTaskname').val(),  
-			 newAssignee: $('#childSelector').val(), 
-			 newPtValue: $('#newRewardValue').val(),
+			{oldTaskID: oldID,
+			 newTaskName: n_name,  
+			 newAssignee: n_assignee, 
+			 newPtValue: n_pts,
 			};
 		console.log(newData);
 		$.post('/callback?action=editTask', newData, function(result){

@@ -46,9 +46,9 @@ function initializePage() {
     $("#addChildCancel").click(function(){$(this).parent().hide();});
     $("#addChildSubmit").click(function(){
         var obj = {
-            "name": $("#nameField").val(),
-            "email": $("#emailField").val(),
-            "password": $("#passwordField").val(),
+            "name": $("#addNewChildPopup #nameField").val(),
+            "email": $("#addNewChildPopup #emailField").val(),
+            "password": $("#addNewChildPopup #passwordField").val(),
             "points": 0
         };
         if(!checkEmail(obj["email"])) return;
@@ -58,7 +58,7 @@ function initializePage() {
             $.notify("Child added!", "success");            
             setTimeout(function(){
                 location.reload(true);
-            },2000);
+            },1000);
         })
         .fail(function(){$.notify("Child not added! Email already exists", "error");});
     });
@@ -69,15 +69,20 @@ function initializePage() {
     $("#addParentCancel").click(function(){$(this).parent().hide();});
     $("#addParentSubmit").click(function(){
         var obj = {
-            "name": $("#nameField").val(),
-            "email": $("#emailField").val(),
-            "password": $("#passwordField").val(),
+            "name": $("#addNewParentPopup #nameField").val(),
+            "email": $("#addNewParentPopup #emailField").val(),
+            "password": $("#addNewParentPopup #passwordField").val(),
             "points": -1
         };
         if(!checkEmail(obj["email"])) return;
         //else if valid:
         $.post("/callback?action=addNewParent", obj)
-        .done(function(){$.notify("Parent added!", "success");})
+        .done(function(){
+            $.notify("Parent added!", "success");            
+            setTimeout(function(){
+                location.reload(true);
+            },1000);
+        })
         .fail(function(){$.notify("Parent not added! Email already exists", "error");});
     });
 
@@ -87,7 +92,7 @@ function initializePage() {
             $.notify("You've been logged out! Redirecting...", "success");
             setTimeout(function(){
                 location.reload(true);
-            },2000);
+            },1000);
         });
     });
 }
