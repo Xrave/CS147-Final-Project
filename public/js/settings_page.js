@@ -58,7 +58,7 @@ function initializePage() {
             $.notify("Child added!", "success");            
             setTimeout(function(){
                 location.reload(true);
-            },2000);
+            },1000);
         })
         .fail(function(){$.notify("Child not added! Email already exists", "error");});
     });
@@ -77,7 +77,12 @@ function initializePage() {
         if(!checkEmail(obj["email"])) return;
         //else if valid:
         $.post("/callback?action=addNewParent", obj)
-        .done(function(){$.notify("Parent added!", "success");})
+        .done(function(){
+            $.notify("Parent added!", "success");            
+            setTimeout(function(){
+                location.reload(true);
+            },1000);
+        })
         .fail(function(){$.notify("Parent not added! Email already exists", "error");});
     });
 
@@ -87,7 +92,7 @@ function initializePage() {
             $.notify("You've been logged out! Redirecting...", "success");
             setTimeout(function(){
                 location.reload(true);
-            },2000);
+            },1000);
         });
     });
 }

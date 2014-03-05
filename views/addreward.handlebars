@@ -58,16 +58,21 @@
                 if(n_name == undefined || n_name.length==0 ){
                     $("#newRewardName").notify("Please enter a reward.", "warning"); return;
                 }
-                if(n_cost == undefined || n_cost == NaN){
+                
+                console.log(n_cost);
+                if( isNaN(n_cost) || n_cost == null || n_cost){
+                    console.log("Huh")
                     $("#rewardVal").notify("Please enter the reward cost.", "warning"); return;
                 }
+                
                 if(n_cost <0){
                     $("#rewardVal").notify("The cost should be positive.", "warning"); return;
                 }
-                    var obj = {
-                        "text": $("#newRewardName").val(),
-                        "cost": $("#rewardVal").val()
-                    };
+                
+                var obj = {
+                    "text": n_name,
+                    "cost": n_cost
+                };
                 $.post("/callback?action=addReward", obj)
                 .done(function(){$.notify("Reward added!","success");window.location.href="/rewards"})
                 .fail(function(){$.notify("Reward not added!", "error");});
