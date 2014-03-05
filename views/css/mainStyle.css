@@ -72,6 +72,12 @@ label.error {
     margin-top: 14px;
 }
 
+.task-item .claimBtn {
+	float: right;
+	margin-top: 10px;
+	margin-right: 3px;
+}
+
 .task-item:after {
     content: '';
     position: absolute;
@@ -111,6 +117,12 @@ label.error {
 }
 #topBar .rightBtn .addBtn {
     zoom: 0.9;
+}
+
+#topBar .completedRightBtn {
+	position:absolute;
+    top:16px;
+	right: 10px;
 }
 
 #topBar .leftBtn{
@@ -265,6 +277,7 @@ h1, h2, h3, h4, h5 {
 }
 .boob {
     display: none;
+    color: red;
 }
 
 .details {
