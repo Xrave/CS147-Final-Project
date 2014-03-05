@@ -46,9 +46,9 @@ function initializePage() {
     $("#addChildCancel").click(function(){$(this).parent().hide();});
     $("#addChildSubmit").click(function(){
         var obj = {
-            "name": $("#nameField").val(),
-            "email": $("#emailField").val(),
-            "password": $("#passwordField").val(),
+            "name": $("#addNewChildPopup #nameField").val(),
+            "email": $("#addNewChildPopup #emailField").val(),
+            "password": $("#addNewChildPopup #passwordField").val(),
             "points": 0
         };
         if(!checkEmail(obj["email"])) return;
@@ -69,9 +69,9 @@ function initializePage() {
     $("#addParentCancel").click(function(){$(this).parent().hide();});
     $("#addParentSubmit").click(function(){
         var obj = {
-            "name": $("#nameField").val(),
-            "email": $("#emailField").val(),
-            "password": $("#passwordField").val(),
+            "name": $("#addNewParentPopup #nameField").val(),
+            "email": $("#addNewParentPopup #emailField").val(),
+            "password": $("#addNewParentPopup #passwordField").val(),
             "points": -1
         };
         if(!checkEmail(obj["email"])) return;
