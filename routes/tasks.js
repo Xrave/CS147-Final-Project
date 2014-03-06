@@ -50,7 +50,7 @@ exports.view = function(req, res){
                             if(req.session.isParent){
                                 res.render('tasks', {"taskArray": tasks});
                             }else{
-                                res.render('tasks-kids', {"taskArray": tasks});
+                                res.render('tasks', {"taskArray": tasks});
                             }                            
                             console.log(tasks);
                         }
@@ -62,7 +62,7 @@ exports.view = function(req, res){
             if(req.query.isParent){
                 res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
-                res.render('tasks-kids', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
+                res.render('tasks', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
         }
         //search again with the assignee email to find name
@@ -115,7 +115,7 @@ exports.viewAlt = function(req, res){
                             if(req.session.isParent){
                                 res.render('tasksAlternate', {"taskArray": tasks});
                             }else{
-                                res.render('tasks-kids', {"taskArray": tasks});
+                                res.render('tasksAlternate', {"taskArray": tasks});
                             }
                             console.log(tasks);
                         }
@@ -127,7 +127,7 @@ exports.viewAlt = function(req, res){
             if(req.query.isParent){
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
-                res.render('tasks-kids', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
+                res.render('tasksAlternate', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
         }
         //search again with the assignee email to find name
