@@ -17,14 +17,12 @@ function initializePage() {
 	});
     
     $("#addTaskBtn").click(function(e){
-        e.preventDefault();
         ga('send', 'event', 'add task', 'click');
         window.location="/addtask";
 
     });
     
     $("#newAddTaskBtn").click(function(e){
-        e.preventDefault();
         ga('send', 'event', 'add task', 'click');
         ga('send', 'event', 'add task center', 'click');
         window.location="/addtask";
