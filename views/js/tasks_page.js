@@ -15,5 +15,16 @@ function initializePage() {
 		var taskID = $(this).attr('id');
 		window.location="/task?id="+taskID;
 	});
+    
+    $("#addTaskBtn").click(function(e){
+        ga('send', 'event', 'add task', 'click');
+    });
+    $("#newAddTaskBtn").click(function(e){
+        ga('send', 'event', 'add task', 'click');
+        ga('send', 'event', 'add task center', 'click');
+        window.location="/addtask";
+
+    });
+
 }
 
