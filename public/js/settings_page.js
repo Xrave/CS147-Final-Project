@@ -27,7 +27,7 @@ function initializePage() {
         console.log(res);
         for(var i in res){
             console.log(i);
-            $("#childList").append("<p>"+res[i].name+"</p>");
+            $("#childList").append("<p id="+res[i].email+">"+res[i].name+"<img id='removeChild' src='images/remove.png' style='float:right'></p>");
         }
     });
 
@@ -35,7 +35,7 @@ function initializePage() {
         console.log(res);
         for(var i in res){
             console.log(i);
-            $("#parentList").append("<p>"+res[i].name+"</p>");
+            $("#parentList").append("<p id="+res[i].email+">"+res[i].name+"<img id='removeParent' src='images/remove.png' style='float:right'></p>");
         }
     });
 

@@ -33,6 +33,7 @@
 				<span class="description"><div id="magicalDivDontDelete"><span id="color">{{cost}}pts</span></div>
     			<p id="task-desc">{{text}}</p>
 				</span>
+                {{#if isParent}}{{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
     		</div>
             {{/each}}
 
@@ -50,6 +51,23 @@
 		<script src="js/jquery-1.11.0.js"></script>
 		<script src="js/bootstrap.js"></script>	
 		<script src="js/notify.min.js"></script>
-
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    $(".claimBtn").click(function(e){
+			    	var r = confirm("Are you sure you want to claim this reward?");
+				      if (r == true) {
+				        var claimedReward = {"id":$(this).parent().attr("id")};
+			     		//send ID of this specific reward to server
+			     		$.post('/callback?action=redeemReward', claimedReward, function(result){
+                            if(result.success){
+							     window.location.reload(true); 
+                            }
+						});
+				      } else {
+				        //do nothing, and kill the confirm box
+				      }
+			    });
+			  })
+		</script>
     </body>
 </html>
