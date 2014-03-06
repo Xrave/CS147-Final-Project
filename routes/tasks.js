@@ -23,14 +23,17 @@ exports.view = function(req, res){
         var index;
         var callbacksfinished = 0;
         console.log(tasks.length)
-        if(!req.query.isParent){
+        if(!req.session.isParent){
             for(index = tasks.length-1; index >= 0; index --){
                 if(tasks[index].assignee != req.session.user){
-                    delete tasks[index];
+                    tasks.splice(index,1);
+                    console.log("Filter is working.");
                 }
             }
         }
+        console.log(tasks);
         for(index = 0; index<tasks.length; index++){
+            console.log(index);
             var email = tasks[index].assignee;
             var i = index;
 
@@ -83,14 +86,15 @@ exports.viewAlt = function(req, res){
         var index;
         var callbacksfinished = 0;
         console.log(tasks.length)
-        if(!req.query.isParent){
+        if(!req.session.isParent){
             for(index = tasks.length-1; index >= 0; index --){
                 if(tasks[index].assignee != req.session.user){
-                    delete tasks[index];
+                    tasks.splice(index,1);
                 }
             }
         }
         for(index = 0; index<tasks.length; index++){
+            console.log(tasks.length);
             var email = tasks[index].assignee;
             var i = index;
 
