@@ -47,7 +47,11 @@ exports.view = function(req, res){
                         tasks[i].assignedTo = people[0].name;
                         callbacksfinished ++;
                         if(callbacksfinished == tasks.length){
-                            res.render('tasks', {"taskArray": tasks});
+                            if(req.session.isParent){
+                                res.render('tasks', {"taskArray": tasks});
+                            }else{
+                                res.render('tasks-kids', {"taskArray": tasks});
+                            }                            
                             console.log(tasks);
                         }
                     }
@@ -108,7 +112,11 @@ exports.viewAlt = function(req, res){
                         tasks[i].assignedTo = people[0].name;
                         callbacksfinished ++;
                         if(callbacksfinished == tasks.length){
-                            res.render('tasks', {"taskArray": tasks});
+                            if(req.session.isParent){
+                                res.render('tasksAlternate', {"taskArray": tasks});
+                            }else{
+                                res.render('tasks-kids', {"taskArray": tasks});
+                            }
                             console.log(tasks);
                         }
                     }
@@ -117,7 +125,7 @@ exports.viewAlt = function(req, res){
         };
         if(tasks.length == 0){
             if(req.query.isParent){
-                res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
+                res.render('tasksAlternate', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
                 res.render('tasks-kids', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
