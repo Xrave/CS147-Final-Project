@@ -23,16 +23,34 @@
     	</div>
 
     	<div id="task-content">
-        	{{#each task-items}}
-    		<div class="task-item" id= "{{id}}">
-    			<span class="image">
-				<img src="images/{{image}}" class="profile-icon-black" /></span>
-				<span class="description"><div></div>
-    			<p> {{description}} </p>
-				</span><div class="pts_text"><p> {{points}} pts awarded</p></div>
-    		</div>
-            {{/each}}
-    
+            <div id="snapshotContainer">
+                <img src="images/snapshotDivider.png" style="margin-bottom: 15px" />
+                <table class="tabler"> 
+                    <tr>
+                        <td class="U1">Julie</td>
+                        <td class="U2"><span class="UColor">50</span> Total Points<br /><span class="UColor">10</span> Tasks Completed<br /><span class="UColor">3</span> Rewards Claimed</td>
+                    </tr>
+                </table>
+                <table class="tabler"> 
+                    <tr>
+                        <td class="U1">Xiaonan</td>
+                        <td class="U2"><span class="UColor">100</span> Total Points<br /><span class="UColor">17</span> Tasks Completed<br /><span class="UColor">5</span> Rewards Claimed</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="notificationsContainer">
+                <img src="images/notificationsDivider.png" style="margin-bottom: 15px" /><br />
+                {{#each task-items}}
+                <div class="task-item" id= "{{id}}">
+                    <span class="image">
+                    <img src="images/{{image}}" class="profile-icon-black" /></span>
+                    <span class="description"><div></div>
+                    <p> {{description}} </p>
+                    </span><div class="pts_text"><p> {{points}} pts awarded</p></div>
+                </div>
+                {{/each}}
+            </div>
+
     	</div>
 		</div>
     	<div id="bottomBar"> 
