@@ -32,7 +32,7 @@ $(document).ready(function() {
 		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
         var oldID = getParameterByName("id");
-        if(isNullOrUndefined(oldID) || oldID.length == 0){
+        if(oldID.length == 0){
             window.location = "/"; //weird things have happened. let's abort.
             return;
         }
