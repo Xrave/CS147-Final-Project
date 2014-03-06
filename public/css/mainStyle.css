@@ -303,3 +303,83 @@ h1.title {
     text-align: center;
     font-size: 30px;
 }
+
+#snapshotContainer {
+	text-align: center;
+}
+
+.tabler {
+	border-collapse: collapse;
+	margin: 0px auto 20px auto;
+	position: relative;
+}
+
+.U1 {
+	padding-right: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	width: 90px;
+}
+.U2 {
+	text-align: left;
+	padding-left: 10px;
+	border-left: 1px solid black;
+	font-size: 15px;
+}
+.UColor {
+	color: red;
+	font-weight: bold;
+}
+
+table:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#notificationsContainer {
+	text-align: center;
+	margin-top: 30px;
+	font-size: 15px;
+}
+
+.boldName {
+	font-weight: bold;
+}
+.pointsAdded {
+	color: orange;
+	font-weight: bold;
+}
+.task-item2 {
+    /*min-height:60px;*/
+    width: 290px;
+    height: 60px;
+    position:relative;
+    margin: 0px auto 10px auto;
+    overflow: hidden;
+}
+.task-item2 .image {
+	float: left;
+}
+.task-item2 .description{
+    padding-left:10px;
+    height:60px;
+    width: 245px;
+    float:left;
+    margin-bottom: 7px;
+    display: inline-block;
+    position: absolute;
+    left: 50px; top: 4px;
+    text-align: left;
+}
+.task-item2:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 1px;
+    border-bottom: 1px solid #e0e0e0;
+}
