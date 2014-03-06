@@ -41,12 +41,31 @@
             <div id="notificationsContainer">
                 <img src="images/notificationsDivider.png" style="margin-bottom: 15px" /><br />
                 {{#each task-items}}
-                <div class="task-item" id= "{{id}}">
-                    <span class="image">
+                <div class="task-item2" id= "{{id}}">
+                    <!--<span class="image">
                     <img src="images/{{image}}" class="profile-icon-black" /></span>
                     <span class="description"><div></div>
                     <p> {{description}} </p>
-                    </span><div class="pts_text"><p> {{points}} pts awarded</p></div>
+                    </span><div class="pts_text"><p> {{points}} pts awarded</p></div>-->
+
+                    <span class="image">
+                    <img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
+                    <span class="description">
+                        <span class="boldName">Julie</span> completed the task "Clean the dishes by 7". <span class="pointsAdded">+20pts</span>
+                    </span>
+                </div>
+                <div class="task-item2" id= "{{id}}">
+                    <!--<span class="image">
+                    <img src="images/{{image}}" class="profile-icon-black" /></span>
+                    <span class="description"><div></div>
+                    <p> {{description}} </p>
+                    </span><div class="pts_text"><p> {{points}} pts awarded</p></div>-->
+
+                    <span class="image">
+                    <img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
+                    <span class="description">
+                        <span class="boldName">Julie</span> completed the task "Clean the dishes by 7". <span class="pointsAdded">+20pts</span>
+                    </span>
                 </div>
                 {{/each}}
             </div>
