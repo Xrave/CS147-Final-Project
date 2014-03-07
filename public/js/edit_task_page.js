@@ -1,6 +1,11 @@
 'use strict';
 
-
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
@@ -21,14 +26,32 @@ $(document).ready(function() {
 		//replace edit button with done button
 		$("#editBtn").replaceWith("<img src='images/doneTask_btn.png' id='doneBtn' />");
 	});
-
+    
+    $('#reply_btn').click(function(){
+        var comment = $('#commentarea').val();
+        console.log(comment);
+        if(comment.length<1){
+            $('#commentarea').notify("Comment can't be empty.", {className: 'warn', elementPosition: "top center"});
+            return;
+        }
+        var oldID = getParameterByName("id");
+        if(oldID.length == 0){
+            window.location = "/"; //weird things have happened. let's abort.
+            return;
+        }
+        //proceed...
+        $.post('/callback?action=comment', {"comment":comment, "taskID":oldID})
+        .done(function(){
+            $("#commentsSection").append("<p class='post'>"+comment+"</p>");
+        })
+        .fail(function(){
+            $("#commentarea").notify("Adding comment failed.", {className: 'error', elementPosition: "top center"});
+            return;
+        });
+        
+    })
+    $("#commentsSection").animate({scrollTop:$("#commentsSection")[0].scrollHeight}, 3000, 'swing');
 	$(document).on("click", "#doneBtn", function(){
-		function getParameterByName(name) {
-			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			results = regex.exec(location.search);
-			return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		}
 		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
         var oldID = getParameterByName("id");

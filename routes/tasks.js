@@ -47,10 +47,11 @@ exports.view = function(req, res){
                         tasks[i].assignedTo = people[0].name;
                         callbacksfinished ++;
                         if(callbacksfinished == tasks.length){
+                            console.log("Person logging in is of parent status: "+req.session.isParent);
                             if(req.session.isParent){
                                 res.render('tasks', {"taskArray": tasks});
                             }else{
-                                res.render('tasks', {"taskArray": tasks});
+                                res.render('tasks_kid', {"taskArray": tasks});
                             }                            
                             console.log(tasks);
                         }
@@ -62,7 +63,7 @@ exports.view = function(req, res){
             if(req.query.isParent){
                 res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
-                res.render('tasks', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
+                res.render('tasks_kid', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
         }
         //search again with the assignee email to find name
@@ -175,8 +176,8 @@ exports.renderDetails = function(req, res){
                     foundTask['task_description'] = foundTask.taskText;
                     foundTask.assignedTo = people[0].name;
                     res.render('taskdetails', foundTask);
-                    return;
                     console.log(foundTask);
+                    return;
                 }
             );
         };

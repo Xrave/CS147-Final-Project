@@ -53,6 +53,7 @@ exports.process = function(req, res){
                     }
                     console.log("\t"+entry[0].name + " Logged in!");
                     req.session.isParent = (entry[0].points < 0);
+                    console.log("User is:"+req.session.isParent);
                     req.session.user = entry[0].email;
                     req.session.family= matchedFamilies[0]._id;
                     res.send(200);
@@ -161,5 +162,27 @@ exports.process = function(req, res){
             });
     }else if(req.query.action == 'editRewards'){
 
-    }
+    }else if(req.query.action == 'comment'){
+        models.Family.update(
+            {
+                'tasks._id':req.body.taskID
+            }
+            ,
+            {
+                $push:{
+                    "tasks.$.comments":{
+                        text:req.body.comment,
+                        $position:0
+                    }
+                }
+            }
+            ,
+            {multi:false}
+            ,
+            function(err, doc){
+                console.log(doc);
+                res.send(200);
+            }
+        );
+	}
 }

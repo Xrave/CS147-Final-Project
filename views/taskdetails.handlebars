@@ -46,34 +46,16 @@
             </div>
 
             <div class="horizDivider"></div>
-
-            <!--<div id ="left-det" class="details">
-<p>Assigned to</p>
-<h3>{{assignedTo}}</h3>
-<select hidden name="NewChildSelector" id="childSelector">
-{{#each children}}
-<option value="{{email}}">{{name}}</option>
-{{/each}}
-</select>
-</div>
-
-<div id="right-det" class="details">
-<p>Reward</p>
-<img src="../public/images/point.png" width="90" height "90"/>
-<div id="rewardbox">
-<h3>{{taskReward}}</h3>
-<input hidden name="NewRewardValue" id="newRewardValue" value="{{taskReward}}" />
-<p>pts</p>
-</div>
-</div>-->
-
+            
             <div id="comments">
-                <p style="color:#D55">COMMENTS</p>
+                <p style="color:#D55; margin:0px">COMMENTS</p>
                 <div id='commentsSection'>
-                    <p class="post">Feel free to type a comment!.</p>
+					{{#each comments}}
+					<p class='post'>{{text}}</p>
+					{{/each}}
                 </div>
                 <div id="commentbox">
-                    <textarea rows="2" class=v"glyphicon-align-center" id="commentarea">Leave a comment if you want to clarify something.</textarea>
+                    <textarea rows="2" class=v"glyphicon-align-center" id="commentarea" placeholder="Leave a comment if you want to clarify something."></textarea>
                     <p>
                         <div id= "reply_btn">
                             <img src= "images/reply_btn.png" />

@@ -206,6 +206,14 @@ label.error {
     bottom: 0px;
 }
 
+#active-highlight2 {
+    width: 50px;
+    height: 4px;
+    background-color: #D55;
+    z-index: 999;
+    display: inline-block;
+}
+
 .pts_text{
     float:right;
     margin:inherit;
@@ -240,7 +248,7 @@ h1, h2, h3, h4, h5 {
 #detailsBlock {
     width: 250px; height: 148px;
     background-image: url('/images/detailsBlock.png');
-    margin: 20px auto;
+    margin: 13px auto;
     position: relative;
 }
 #detailsBlock p {

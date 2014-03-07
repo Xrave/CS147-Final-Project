@@ -24,8 +24,7 @@ var FamilySchema = new Mongoose.Schema({
       'taskCompletion': Number,  //a percentage or a number between 0 and 100 would do
       'taskReward': Number,
       'comments':[{
-        'body': String,
-        'name': String,
+        'text': String,
         'date': Date
       }]
     }],

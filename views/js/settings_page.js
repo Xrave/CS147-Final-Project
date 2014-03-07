@@ -87,19 +87,19 @@ function initializePage() {
     });
 
     $("#removeChild").click(function)(){
-        var r = confirm("Are you sure you want to claim this reward?");
+        var r = confirm("Are you sure you want to remove this child?");
             if (r == true) {
                 var person = {"email":$(this).attr("email"), "isParent":false};
                 $.post("/callback?action=removePerson", person).done(function(e){
                 $(this).parent().remove();
                 });   
             }  else {
-                        //do nothing, and kill the confirm box
+                //do nothing, and kill the confirm box
             }
     });
 
     $("#removeParent").click(function)(){
-         var r = confirm("Are you sure you want to claim this reward?");
+         var r = confirm("Are you sure you want to remove this parent?");
             if (r == true) {
                 var person = {"email":$(this).attr("email"), "isParent":true};
                 $.post("/callback?action=removePerson", person).done(function(e){
