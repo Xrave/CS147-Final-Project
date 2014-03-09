@@ -66,10 +66,7 @@ function initializePage() {
     $("#addNewParent").click(function(){
         $("#addNewParentPopup").show();
     });
-    $("#addParentCancel").click(function(){
-        $(this).parent().hide();
-    });
-
+    $("#addParentCancel").click(function(){$(this).parent().hide();});
     $("#addParentSubmit").click(function(){
         var obj = {
             "name": $("#addNewParentPopup #nameField").val(),
@@ -88,29 +85,27 @@ function initializePage() {
         })
         .fail(function(){$.notify("Parent not added! Email already exists", "error");});
     });
-
-    $("#removeChild").click(function(){
+	$(document).on("click", "#removeChild", function(){
         var r = confirm("Are you sure you want to remove this child?");
-        if (r == true) {
-            var person = {"email":$(this).attr("email"), "isParent":false};
-            $.post("/callback?action=removePerson", person).done(function(e){
+            if (r == true) {
+                var person = {"email":$(this).parent().attr("id"), "isParent":false};
+                $.post("/callback?action=removePerson", person).done(function(e){
                 $(this).parent().remove();
-            });   
-        }  else {
-            //do nothing, and kill the confirm box
-        }
+                });   
+            }  else {
+                //do nothing, and kill the confirm box
+            }
     });
-
-    $("#removeParent").click(function(){
-        var r = confirm("Are you sure you want to remove this parent?");
-        if (r == true) {
-            var person = {"email":$(this).attr("email"), "isParent":true};
-            $.post("/callback?action=removePerson", person).done(function(e){
+	$(document).on("click", "#removeParent", function(){
+         var r = confirm("Are you sure you want to remove this parent?");
+            if (r == true) {
+                var person = {"email":$(this).parent().attr("id"), "isParent":true};
+                $.post("/callback?action=removePerson", person).done(function(e){
                 $(this).parent().remove();
-            });
-        } else {
-            //do nothing, and kill the confirm box
-        }
+                });
+            } else {
+                //do nothing, and kill the confirm box
+            }
     });
 
 

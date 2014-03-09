@@ -25,14 +25,14 @@
 
     	<div id="task-content">
         	{{#each rewards}}
-    		<div class="task-item">
+    		<div class="task-item" id={{_id}} cost={{cost}}>
     			<span class="image">
 				<img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
-				<span class="description"><div id="magicalDivDontDelete"><span id="color">{{cost}}pts</span></div>
+				<span class="description"><div id="magicalDivDontDelete"><span id="color">{{cost}} pts</span></div>
     			<p id="task-desc">{{text}}</p>
 				</span>
-                {{#if isParent}}{{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
-                <img id='removeImg' src='images/remove.png' style='float:right' />
+                {{#if isParent}}<img id='removeImg' src='images/remove.png' style='float:right' />
+{{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
     		</div>
             {{/each}}
 
@@ -54,7 +54,7 @@
 			    $(".claimBtn").click(function(e){
 			    	var r = confirm("Are you sure you want to claim this reward?");
 				      if (r == true) {
-				        var claimedReward = {"id":$(this).parent().attr("id")};
+				        var claimedReward = {"id":$(this).parent().attr("id"), "cost":$(this).parent().attr("cost")};
 			     		//send ID of this specific reward to server
 			     		$.post('/callback?action=redeemReward', claimedReward, function(result){
                             if(result.success){

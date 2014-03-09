@@ -161,7 +161,9 @@ exports.process = function(req, res){
                 return;
             });
     }else if(req.query.action == 'editRewards'){
-
+		
+    }else if(req.query.action == 'redeemReward'){
+		
     }else if(req.query.action == 'comment'){
         models.Family.update(
             {
