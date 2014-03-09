@@ -9,7 +9,7 @@ function getParameterByName(name) {
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
-	$('.rightBtn').click(function(){
+	$('#editBtn').click(function(){
 		//replace to edit page
 		$("#blockName").hide();
 		$('#blockNumber').hide();
@@ -43,6 +43,7 @@ $(document).ready(function() {
         $.post('/callback?action=comment', {"comment":comment, "taskID":oldID})
         .done(function(){
             $("#commentsSection").append("<p class='post'>"+comment+"</p>");
+			$("#commentsSection").animate({scrollTop:$("#commentsSection")[0].scrollHeight}, 3000, 'swing');
         })
         .fail(function(){
             $("#commentarea").notify("Adding comment failed.", {className: 'error', elementPosition: "top center"});
@@ -51,6 +52,7 @@ $(document).ready(function() {
         
     })
     $("#commentsSection").animate({scrollTop:$("#commentsSection")[0].scrollHeight}, 3000, 'swing');
+	
 	$(document).on("click", "#doneBtn", function(){
 		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
@@ -64,15 +66,15 @@ $(document).ready(function() {
         var n_pts = parseInt($('#newRewardValue').val());
         
         if(n_name.length == 0){
-            $('#newTaskName').notify("Please enter a task", "warning");
+            $('#newTaskname').notify("Please enter a task", {className: 'warn', elementPosition: "bottom center"});
             return;
         }
         if (n_assignee == undefined){
-            $('#childSelector').notify("Please select a child to assign the task to!", "warning");
+            $('#childSelector').notify("Please select a child to assign the task to!", {className: 'warn', elementPosition: "bottom right"});
             return;
         }
         if( n_pts<0){
-            $('#newRewardValue').notify("Can't assign a negative reward", "warning");
+            $('#newRewardValue').notify("Can't assign a negative reward", {className: 'warn', elementPosition: "bottom right"});
             return;
         }
         if( isNaN(n_pts) | n_pts == undefined){

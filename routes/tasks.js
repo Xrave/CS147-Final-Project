@@ -175,7 +175,7 @@ exports.renderDetails = function(req, res){
                     console.log(people);
                     foundTask['task_description'] = foundTask.taskText;
                     foundTask.assignedTo = people[0].name;
-                    res.render('taskdetails', foundTask);
+                    res.render('taskdetails_kid', foundTask);
                     console.log(foundTask);
                     return;
                 }

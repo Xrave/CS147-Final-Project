@@ -32,7 +32,7 @@
     			<p id="task-desc">{{text}}</p>
 				</span>
                 {{#if isParent}}{{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
-                <img id='removeChild' src='images/remove.png' style='float:right' />
+                <img id='removeImg' src='images/remove.png' style='float:right' />
     		</div>
             {{/each}}
 
@@ -59,7 +59,8 @@
 			     		$.post('/callback?action=redeemReward', claimedReward, function(result){
                             if(result.success){
 							     window.location.reload(true); 
-                            }
+                            }else{
+							}
 						});
 				      } else {
 				        //do nothing, and kill the confirm box

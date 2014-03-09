@@ -3,7 +3,10 @@ var PersonSchema = new Mongoose.Schema({
 	  'email': String,
       'password': String,
       'name': String,
-      'points': Number //negative points mean you should load parent interface!
+      'points': Number, //negative points mean you should load parent interface!
+	  'totalPoints': Number,
+	  'numRewardsClaimed': Number,
+	  'tasksCompleted': Number
 });
 exports.Person = Mongoose.model('Person', PersonSchema);
 

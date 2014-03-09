@@ -29,7 +29,7 @@
 
             <div id="taskTitle">
                 <p id='blockText'>{{task_description}}</p>
-                <p><input name="NewTaskValue" type="text" value="{{task_description}}" id="newTaskname" class="boob" style="text-align:center"/></p>
+                <p><input name="NewTaskValue" type="text" value="{{task_description}}" id="newTaskname" class="boob form-control" style="text-align:center"/></p>
             </div>
 
             <div class="horizDivider"></div>
@@ -39,7 +39,7 @@
                 <p id="blockNumber">{{taskReward}}</p>
 
                 <!--HIDDEN EDIT ELEMENTS-->
-                <select name="NewChildSelector" id="childSelector" class="boob">
+                <select name="NewChildSelector" id="childSelector" class="boob ">
                 </select>
                 <input name="NewRewardValue" id="newRewardValue" class="boob" value="{{taskReward}}" /> <!--The value presented should be the same as the original (before editing)-->
                 <!--END HIDDEN EDIT ELEMENTS-->
