@@ -20,9 +20,9 @@
         <style type="text/css">
             #addNewChildPopup, #addNewParentPopup {
                 width: 300px;
-                height: 360px;
+                height: 320px;
                 background-color: #EBEBEB;
-                box-shadow: 0px 0px 5px #888888;
+                box-shadow: 0px 0px 15px #D55;
                 position: absolute;
                 top: 50%;
                 left: 50%;
@@ -32,6 +32,10 @@
                 text-align: center;
                 font-size: 17px;
                 display: none;
+            }
+            #addNewChildPopup input, #addNewParentPopup input {
+                width: 200px;
+                margin: 0px auto;
             }
         </style>
     </head>
@@ -93,19 +97,16 @@
                 </span>
                 <br />
                 <br />
-                <input type="text" id="nameField" value="Name" />
+                <input class="form-control" type="text" required id="nameField" placeholder="Name"  />
                 <br />
+                <input class="form-control" type="text" required id="emailField" placeholder="Email"  />
                 <br />
-                <input type="text" id="emailField" value="Email" />
+                <input class="form-control" type="text" required id="passwordField" placeholder="Temp. Password"  />
                 <br />
-                <br />
-                <input type="text" id="passwordField" value="Temp. Password" />
-                <br />
-                <br />
-                <button id="addChildSubmit">
+                <button id="addChildSubmit" class="btn btn-default">
                     Add
                 </button>
-                <button id="addChildCancel">
+                <button id="addChildCancel" class="btn btn-default">
                     Cancel
                 </button>
             </div>
