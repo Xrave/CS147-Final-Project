@@ -166,9 +166,7 @@ exports.process = function(req, res){
 		
     }else if(req.query.action == 'comment'){
         models.Family.update(
-            {
-                'tasks._id':req.body.taskID
-            }
+            {'tasks._id':req.body.taskID}
             ,
             {
                 $push:{
@@ -186,5 +184,19 @@ exports.process = function(req, res){
                 res.send(200);
             }
         );
+	}else if(req.query.action == 'removePerson'){
+		var source; //place i'm pulling from
+		if(req.body.isParent){
+			source = 'controllers';
+		}else{
+			source = 'controlees';
+		}
+		models.Family.update(
+		{'_id': req.session.family},
+		{$pull: {source: req.body.email}});
+		models.Person.remove(
+		{'email': req.body.email});
+		
+		res.send(200);
 	}
 }

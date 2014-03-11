@@ -125,7 +125,41 @@ exports.getConfirmRequests = function(req,res){
 		var confirmations = families[0].confirmations;
 		var index;
 		for(index = 0; index<confirmations.length; index++){
-			console.log(getObjects(tasks, "_id",confirmations[index]));
+			var out = getObjects(tasks,"_id",confirmations[index]);
+			if(out.length == 1){
+				dataOut.push(out[0]);
+			}else{
+				models.Family.update(
+				{"_id": req.session.family},
+				{$pull:{"confirmations":confirmations[index]}});
+			}
 		}
+		console.log("Requests being fulfilled:" + dataOut);
+		var callbacksfinished = 0;
+
+		for(index = 0; index<dataOut.length; index++){
+            console.log(index);
+            var email = dataOut[index].assignee;
+            var i = index;
+
+            (function (i){
+                console.log(email);
+                models.Person.find({"email": email}).exec(
+                    function(err, people){
+                        console.log(i);
+                        dataOut[i]['task_description'] = tasks[i].taskText;
+                        dataOut[i]['reward-point'] = tasks[i].taskReward + "pts";
+                        dataOut[i].assignedTo = people[0].name;
+                        callbacksfinished ++;
+                        if(callbacksfinished == dataOut.length){
+							//res stuff here.
+							res.json(dataOut);
+                            console.log(dataOut);
+                        }
+                    }
+                );
+            }(i));
+        };
+		res.json([{'state':'done'}])
 	});
 }
