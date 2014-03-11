@@ -67,6 +67,17 @@
 				      }
 			    });
 			  })
+
+			$(document).on("click", "#removeReward", function(){
+        	var r = confirm("Are you sure you want to remove this reward?");
+            if (r == true) {
+                var reward = {"id":$(this).parent().attr("id")};
+                $.post("/callback?action=removeReward", reward).done(function(e){
+                $(this).parent().remove();
+                });   
+            }  else {
+                //do nothing, and kill the confirm box
+            }
 		</script>
 
 		<!-- Google Analytics -->
