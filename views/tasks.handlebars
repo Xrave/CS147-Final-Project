@@ -60,10 +60,11 @@
 		</div>
 
 		<div class="popup">
-			Jack reported that he has completed the task <span style="font-weight:bold">"Clean Dishes by 7"</span>. Please confirm or reject this report!<br />
+
+			<span class="popupText">Jack reported that he has completed the task <span style="font-weight:bold">"Clean Dishes by 7"</span>. Please confirm or reject this report!</span><br />
 			<div>
-				<button type="button" class="btn">Confirm</button>
-				<button type="button" class="btn">Reject</button>
+				<button type="button" class="btn popupConfirm" onclick="closePopup()">Confirm</button>
+				<button type="button" class="btn popupReject">Reject</button>
 			</div>
 		</div>
 		<script src="js/jquery-1.11.0.js"></script>
@@ -82,6 +83,7 @@
   ga('send', 'pageview');
 
     //ga('send', 'event', 'back button', 'click');
+}
 </script>
 <!-- End Google Analytics -->
 
