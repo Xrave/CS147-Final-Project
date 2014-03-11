@@ -403,7 +403,7 @@ div.popup {
     margin: -73px 0px 0px -123px;
     padding: 15px;
     font-size: 15px;
-    fdisplay: none;
+    display: none;
 }
     div.popup div {
         text-align: center;
