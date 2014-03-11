@@ -1,9 +1,9 @@
 [{
       "controllers":[ 
-      "jack7kim@stanford.edu", "julienam@stanford.edu"    ],
-      "controlees":[ 
-      "xiaonan@stanford.edu"    
-      ],
+      "jack7kim@stanford.edu",
+	  "julienam@stanford.edu"
+	  ],
+      "controlees":[ "xiaonan@stanford.edu"   	],
     "tasks":[{
       "taskID": "julie-xiaonan-Clean your bed",
       "assigner": "jack7kim@stanford.edu", 
@@ -23,6 +23,8 @@
     "notifications":[{
       "text": "Xiaonan redeemed Chocolate!",
       "date": "February 12 2014"
-    }]
+    }],
+	"confirmations":[
+	]
   }
 ]
