@@ -23,7 +23,9 @@ function initializePage() {
             return;
         }
         var taskAssignedTo = $('input[type=radio]:checked').val()
+		
 		console.log(taskAssignedTo);
+		
         if (taskAssignedTo == undefined ){
             $('#radiobuttons').notify("Please select a child to assign the task to!", "warning");
             return;

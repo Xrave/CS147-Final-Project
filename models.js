@@ -4,7 +4,6 @@ var PersonSchema = new Mongoose.Schema({
       'password': String,
       'name': String,
       'points': Number, //negative points mean you should load parent interface!
-	  'totalPoints': Number,
 	  'numRewardsClaimed': Number,
 	  'tasksCompleted': Number
 });

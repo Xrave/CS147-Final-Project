@@ -47,7 +47,7 @@ function initializePage() {
     $("#addChildSubmit").click(function(){
         var obj = {
             "name": $("#addNewChildPopup #nameField").val(),
-            "email": $("#addNewChildPopup #emailField").val(),
+            "email": $("#addNewChildPopup #emailField").val().toLowerCase(),
             "password": $("#addNewChildPopup #passwordField").val(),
             "points": 0
         };
@@ -70,7 +70,7 @@ function initializePage() {
     $("#addParentSubmit").click(function(){
         var obj = {
             "name": $("#addNewParentPopup #nameField").val(),
-            "email": $("#addNewParentPopup #emailField").val(),
+            "email": $("#addNewParentPopup #emailField").val().toLowerCase(),
             "password": $("#addNewParentPopup #passwordField").val(),
             "points": -1
         };

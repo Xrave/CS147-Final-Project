@@ -134,7 +134,7 @@
                         e.preventDefault();
                         var obj = {
                             "name": $("#name1").val(),
-                            "email": $("#email1").val(),
+                            "email": $("#email1").val().toLowerCase(),
                             "password": $("#password1").val(),
                             "points": -1
                         };
@@ -146,7 +146,7 @@
                     $('#signInSubmit').click(function(e){
                         e.preventDefault();
                         var obj = {
-                            "email": $("#email2").val(),
+                            "email": $("#email2").val().toLowerCase(),
                             "password": $("#password2").val()
                         };
                         if(!checkEmail(obj['email'])) return;

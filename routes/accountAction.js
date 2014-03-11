@@ -16,6 +16,10 @@ exports.process = function(req, res){
 
     if(req.query.action == 'signUp'){ //SUPER INTENDENT SIGN UP.
         var userJson = req.body;
+		userJson.email = userJson.email.toLowerCase();
+		console.log(models.Person.find({'email':email}).limit(1).size());
+		
+		
         var newUser = new models.Person(userJson);
         newUser.points = -1;
         newUser.save(function(err, newUser){
@@ -38,6 +42,8 @@ exports.process = function(req, res){
         });
     }else if(req.query.action == 'signIn'){
         var userJson = req.body;
+		userJson.email = userJson.email.toLowerCase();
+
         models.Person
         .find(userJson)
         .exec(function(err, entry){
@@ -65,37 +71,53 @@ exports.process = function(req, res){
         });
     }else if(req.query.action == 'addNewChild'){
         var userJson = req.body;
-        var newUser = new models.Person(userJson);
-        newUser.save(function(err, newUser){
-            console.log("[ NEW CHILD ADDED ]");
-            console.log(newUser + " is saved!");
-            models.Family
-            .update({"_id":req.session.family},
+		var email = userJson.email;
+		models.Person.find({'email':email}).limit(1).exec(function(e, matched){
+			if(matched.length > 0){
+				res.send(500); //no good.
+			}else{
+				var newUser = new models.Person(userJson);
+        		newUser.save(function(err, newUser){
+           	 	console.log("[ NEW CHILD ADDED ]");
+            	console.log(newUser + " is saved!");
+            	models.Family
+            	.update({"_id":req.session.family},
                     {
                         $push: { "controlees": newUser.email }
                     })
-            .exec(function(err, useless){
-                res.send(200);
-            });
-            return;
-        });
-
+            		.exec(function(err, useless){
+                		res.send(200);
+            		});
+            		return;
+        		});
+			}
+			return;
+		});
+		
     }else if(req.query.action == 'addNewParent'){
         var userJson = req.body;
-        var newUser = new models.Person(userJson);
-        newUser.save(function(err, newUser){
-            console.log("[ NEW PARENT ADDED ]");
-            console.log(newUser + " is saved!");
-            models.Family
-            .update({"_id":req.session.family},
-                    {
-                        $push: { "controllers": newUser.email }
-                    })
-            .exec(function(err, useless){
-                res.send(200);
-            });
-            return;
-        });
+		var email = userJson.email;
+		models.Person.find({'email':email}).limit(1).exec(function(e, matched){
+			if(matched.length > 0){
+				res.send(500); //no good.
+			}else{
+				var newUser = new models.Person(userJson);
+				newUser.save(function(err, newUser){
+					console.log("[ NEW PARENT ADDED ]");
+					console.log(newUser + " is saved!");
+					models.Family
+					.update({"_id":req.session.family},
+							{
+								$push: { "controllers": newUser.email }
+							})
+					.exec(function(err, useless){
+						res.send(200);
+					});
+					return;
+				});
+			}
+			return;
+		});
 
     }else if(req.query.action == 'addReward'){
         var rwd = req.body;
@@ -196,7 +218,8 @@ exports.process = function(req, res){
 		{$pull: {source: req.body.email}});
 		models.Person.remove(
 		{'email': req.body.email});
-		
-		res.send(200);
+		setTimeout(function(){
+                res.send(200)
+		},60);
 	}
 }
