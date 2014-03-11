@@ -175,7 +175,11 @@ exports.renderDetails = function(req, res){
                     console.log(people);
                     foundTask['task_description'] = foundTask.taskText;
                     foundTask.assignedTo = people[0].name;
-                    res.render('taskdetails_kid', foundTask);
+					if(req.session.isParent){
+						res.render('taskdetails', foundTask);
+					}else{
+						res.render('taskdetails_kid', foundTask);
+					}
                     console.log(foundTask);
                     return;
                 }
