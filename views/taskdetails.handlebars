@@ -22,7 +22,7 @@
 
             <div id="topBar">
                 <div class="header">Task</div>
-                <div class="rightBtn"><img src="images/editTask_btn.png" id="editBtn"/></div>
+                <div class="completedRightBtn"><!--img src="images/editTask_btn.png" id="editBtn"/--><button id="editBtn" class="btn btn-primary">&#9998;Edit</button></div>
 
                 <a href="/"><div class="leftBtn"><img src="images/back_btn.png" class="backBtn" /></div></a>
             </div>
@@ -47,12 +47,12 @@
 
             <div class="horizDivider"></div>
             
-            <div id="comments">
+              <div id="comments">
                 <p style="color:#D55; margin:0px">COMMENTS</p>
                 <div id='commentsSection'>
-					{{#each comments}}
-					<p class='post'>{{text}}</p>
-					{{/each}}
+{{#each comments}}
+<p class='post'>{{text}}</p>
+{{/each}}
                 </div>
                 <div id="commentbox">
                     <textarea rows="2" class=v"glyphicon-align-center" id="commentarea" placeholder="Leave a comment if you want to clarify something."></textarea>

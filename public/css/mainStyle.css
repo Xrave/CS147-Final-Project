@@ -119,11 +119,6 @@ label.error {
     zoom: 0.9;
 }
 
-#topBar .completedRightBtn {
-	position:absolute;
-    top:16px;
-	right: 10px;
-}
 
 #topBar .leftBtn{
     position: absolute;

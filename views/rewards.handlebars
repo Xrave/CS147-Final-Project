@@ -73,7 +73,7 @@
             if (r == true) {
                 var reward = {"id":$(this).parent().attr("id")};
                 $.post("/callback?action=removeReward", reward).done(function(e){
-                $(this).parent().remove();
+                	$(this).parent().remove();
                 });   
             }  else {
                 //do nothing, and kill the confirm box

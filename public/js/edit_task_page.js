@@ -22,9 +22,8 @@ $(document).ready(function() {
 			}
 		});
 		$(".boob").show();
-		
 		//replace edit button with done button
-		$("#editBtn").replaceWith("<img src='images/doneTask_btn.png' id='doneBtn' />");
+		$(".completedRightBtn").html("<!--img src='images/doneTask_btn.png' id='doneBtn' /--><button id='doneBtn' class='btn btn-success'>&#9998;Done</button>");
 	});
     
     $('#reply_btn').click(function(){
@@ -53,9 +52,10 @@ $(document).ready(function() {
     })
     $("#commentsSection").animate({scrollTop:$("#commentsSection")[0].scrollHeight}, 3000, 'swing');
 	
-	$(document).on("click", "#doneBtn", function(){
+	$(document).on("click", "#doneBtn", function(e){
 		//{oldTaskID: older_id, newTaskName: newName, newAssignee: username, newPtValue: number}
 		//package information
+		e.preventDefault();
         var oldID = getParameterByName("id");
         if(oldID.length == 0){
             window.location = "/"; //weird things have happened. let's abort.
