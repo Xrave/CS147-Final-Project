@@ -23,10 +23,14 @@ function initializePage() {
             return;
         }
         var taskAssignedTo = $('input[type=radio]:checked').val()
-        if (taskAssignedTo == undefined){
+		console.log(taskAssignedTo);
+        if (taskAssignedTo == undefined ){
             $('#radiobuttons').notify("Please select a child to assign the task to!", "warning");
             return;
-        }
+        }else if(taskAssignedTo == "" || taskAssignedTo == null){
+			$('#radiobuttons').notify("You can add a child in Settings", "warning");
+            return;
+		}
         var rewardPtNum = parseInt($('#rewardVal').val());
         if( rewardPtNum<0){
             $('#rewardVal').notify("Can't assign a negative reward", "warning");

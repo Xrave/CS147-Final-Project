@@ -18,7 +18,7 @@ var addreward = require('./routes/addreward');
 var notif = require('./routes/notifications');
 var settings = require('./routes/settings');
 var accountAction = require('./routes/accountAction');
-var listing = require('./routes/getPeopleLists');
+var listing = require('./routes/listing');
 // Example route
 // var user = require('./routes/user');
 
@@ -65,6 +65,7 @@ app.get('/addreward', addreward.view);
 app.get('/login', function(req, res){
 	res.render('login');
 });
+app.get('/confirmRequests', listing.getConfirmRequests);
 app.get('/rewards', rewards.view);
 app.get('/notifications', notif.view);
 app.get('/settings', settings.view);

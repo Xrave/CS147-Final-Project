@@ -88,3 +88,25 @@ exports.getParentsList = function(req, res){
 		
 	});
 }
+
+exports.getConfirmRequests = function(req,res){
+	if(!req.session.user || !req.session.family){
+		res.json([]);
+		return;
+	}
+	
+ 	models.Family
+    .find({"_id": req.session.family})
+    .exec(function(err, families){
+		if(err) {console.log(err); res.json([]); return; }
+		if(!families[0]){
+			res.json([]);
+			return;
+		}
+		//[{name: title}]
+		
+		var dataOut = [];
+		var confirmations = families[0].confirmations;
+		
+	});
+}

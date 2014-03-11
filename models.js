@@ -38,7 +38,10 @@ var FamilySchema = new Mongoose.Schema({
     "notifications":[{
       'text': String,
       'date': Date,
-    }]
+    }],
+	"confirmations":[
+		Mongoose.Schema.ObjectID
+	]
   // fields are defined here
 });
 

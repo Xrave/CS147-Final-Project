@@ -60,7 +60,7 @@ exports.view = function(req, res){
             }(i));
         };
         if(tasks.length == 0){
-            if(req.query.isParent){
+            if(req.session.isParent){
                 res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
                 res.render('tasks_kid', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
@@ -125,7 +125,7 @@ exports.viewAlt = function(req, res){
             }(i));
         };
         if(tasks.length == 0){
-            if(req.query.isParent){
+            if(req.session.isParent){
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
@@ -175,7 +175,11 @@ exports.renderDetails = function(req, res){
                     console.log(people);
                     foundTask['task_description'] = foundTask.taskText;
                     foundTask.assignedTo = people[0].name;
-                    res.render('taskdetails_kid', foundTask);
+					if(req.session.isParent){
+						res.render('taskdetails', foundTask);
+					}else{
+						res.render('taskdetails_kid', foundTask);
+					}
                     console.log(foundTask);
                     return;
                 }
