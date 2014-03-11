@@ -60,7 +60,7 @@ exports.view = function(req, res){
             }(i));
         };
         if(tasks.length == 0){
-            if(req.query.isParent){
+            if(req.session.isParent){
                 res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
                 res.render('tasks_kid', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
@@ -125,7 +125,7 @@ exports.viewAlt = function(req, res){
             }(i));
         };
         if(tasks.length == 0){
-            if(req.query.isParent){
+            if(req.session.isParent){
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
             }else{
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
