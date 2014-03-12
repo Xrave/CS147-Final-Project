@@ -33,13 +33,11 @@ function initializePage() {
 
     $.get("/confirmRequests", function(res) {
         console.log(res);
-        taskID = res.id;
-        if (res.length < 1) {
-            //do nothing
-        } else  {
-            $(".popupText").html(res.assigneeName + "reported that he has completed the task <span style='font-weight:bold'>" + res.taskText + "</span>. Please confirm or reject this report!");
-            $(".popup").show();
-        }
+		for(var i = 0; i < res.length; i++){
+			taskID = res[i].id;
+			$(".popupText").html(res[i].assigneeName + "reported that he has completed the task <span style='font-weight:bold'>" + res[i].taskText + "</span>. Please confirm this report.");
+			$(".popup").show();
+		}
     });
 
     $(".popupConfirm").click(function() {
