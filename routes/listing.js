@@ -160,6 +160,5 @@ exports.getConfirmRequests = function(req,res){
                 );
             }(i));
         };
-		res.json([{'state':'done'}])
 	});
 }
