@@ -76,8 +76,8 @@ exports.process = function(req, res){
                 res.send(500); //no good.
             }else{
                 var newUser = new models.Person(userJson);
-				newUser.numRewardsClaimed = 0;
-				newUser.tasksCompleted = 0;
+                newUser.numRewardsClaimed = 0;
+                newUser.tasksCompleted = 0;
                 newUser.save(function(err, newUser){
                     console.log("[ NEW CHILD ADDED ]");
                     console.log(newUser + " is saved!");
@@ -123,7 +123,7 @@ exports.process = function(req, res){
     }else if(req.query.action == 'addReward'){
         var rwd = req.body;
         var familyID = req.session.family;
-			/*db.bios.update(
+        /*db.bios.update(
 	   { _id: 1 },
 	   {
 		 $push: { awards: { award: "IBM Fellow", year: 1963, by: "IBM" } }
@@ -176,7 +176,7 @@ exports.process = function(req, res){
                 $set:{
                     "tasks.$.assignee": req.body.newAssignee, 				
                     "tasks.$.taskText": req.body.newTaskName,
-					"tasks.$.assigneeName": req.body.newAssigneeName,
+                    "tasks.$.assigneeName": req.body.newAssigneeName,
                     "tasks.$.taskReward":req.body.newPtValue
                 }
             }
@@ -190,15 +190,15 @@ exports.process = function(req, res){
                 return;
             });
     }else if(req.query.action == 'removeReward'){
-		models.Family.update(
-			{'_id':req.session.family},
-			{$pull: {'rewards':{'_id': req.body.id}}},
-			{multi:false},
-			function(err,doc){
-				console.log("removed something to do with this:"+doc);
-				res.send(200);
-		});
-		return;
+        models.Family.update(
+            {'_id':req.session.family},
+            {$pull: {'rewards':{'_id': req.body.id}}},
+            {multi:false},
+            function(err,doc){
+                console.log("removed something to do with this:"+doc);
+                res.send(200);
+            });
+        return;
     }else if(req.query.action == 'redeemReward'){
 
     }else if(req.query.action == 'comment'){
@@ -221,20 +221,51 @@ exports.process = function(req, res){
                 res.send(200);
             }
         );
-    }else if(req.query.action='queueCompletedTask'){
-		//1. mark the completed task as completed. & push id to completion list?
-		var id = req.body.id;
+    }else if(req.query.action=='queueCompletedTask'){
+        //1. mark the completed task as completed. & push id to completion list?
+        var id = req.body.id;
         var m_id = mongoose.Types.ObjectId(id);
         console.log(m_id);
-		models.Family.update(
-		{'tasks._id':id},
-		{$set:{ 'tasks.$.taskCompletion' : 'completed' },
-		 $push:{ 'confirmations': m_id}})
+        models.Family.update(
+            {'tasks._id':id},
+            {$set:{ 'tasks.$.taskCompletion' : 'completed' },
+             $push:{ 'confirmations': m_id}})
         .exec(
-		function(err,doc){console.log(err); console.log(doc); res.send(200);});
-		
-	
-	}else if(req.query.action == 'removePerson'){
+            function(err,doc){console.log(err); console.log(doc); res.send(200);});
+
+    }else if(req.query.action == 'taskConfirm'){
+        console.log("hey");
+        var task = req.body.taskData;
+
+        var notifText = '<span class="image"></span><span class="description"><span class="boldName">'+task.assigneeName+'</span> completed the task "'+task.taskText+'". <span class="pointsAdded">+'+task.taskReward+'pts</span>';
+
+        models.Person.update(
+            {'email':task.assignee},
+            {$inc:{'points':task.taskReward, 'tasksCompleted':1}}).exec(
+            function(err,doc){
+                console.log('doc1:'+doc);
+
+                models.Family.update(
+                    {'tasks._id':task['_id']},
+                    {$pull: {'tasks':{'_id':task['_id']}},
+                     $push: {'notifications':{'text':notifText}}}).exec(
+                    function(err2,doc2){
+                        //console.log(err2);
+                        console.log('doc2:'+doc2);
+                        res.send(200);
+                    });
+            });
+
+
+
+    }else if(req.query.action == 'taskReject'){
+        models.Family.update(
+            {"tasks._id": req.body.taskData['_id']},
+            {
+                $set:{'tasks.$.taskCompletion':''},
+                $pull:{"confirmations":req.body.taskData['_id']}
+            }).exec(function(e, d){res.send(200);});
+    }else if(req.query.action == 'removePerson'){
         var email = req.body.email;
         var source; //place i'm pulling from
         if(req.body.isParent == 'true'){

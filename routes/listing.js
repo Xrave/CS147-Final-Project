@@ -130,15 +130,14 @@ exports.getConfirmRequests = function(req,res){
 		});
 		
 		if(dataOut.length == 0){ //dataOut actually has nothing, then... there's nothing of use here.
-				dataOut.push(out[0]);
-		}else{
 				models.Family.update(
 				{"_id": req.session.family},
 				{$set:{"confirmations":[]}}).exec();
 		}
+		
 		console.log("Requests being fulfilled:" + dataOut);
 		
-		res.json(dataOut);
+		res.json(dataOut[0]);
 		return;
 		/*
 		var callbacksfinished = 0;

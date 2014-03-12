@@ -33,20 +33,25 @@ function initializePage() {
 
     $.get("/confirmRequests", function(res) {
         console.log(res);
-		for(var i = 0; i < res.length; i++){
-			taskID = res[i].id;
-			$(".popupText").html(res[i].assigneeName + "reported that he has completed the task <span style='font-weight:bold'>" + res[i].taskText + "</span>. Please confirm this report.");
-			$(".popup").show();
-		}
+		taskID = res;
+		var greetings = ["Howdy!", "A while ago,", "Some time ago,", "Y'know,", "Oh my!"];
+		var r_greeting = greetings[Math.floor(Math.random() * greetings.length)];
+		$(".popupText").html(r_greeting+" <span style='font-weight:bold'>"+res.assigneeName + "</span> completed the task <span style='font-weight:bold'>" + res.taskText + "</span>.");
+		$(".popup").fadeIn(200);
+		$("#popupwrapper").fadeIn(200);
     });
 
     $(".popupConfirm").click(function() {
-        $.post('/callback?action=confirmTask', taskID);
-        $(".popup").hide();
+        $.post('/callback?action=taskConfirm', {"taskData":taskID});
+        $(".popup").fadeOut(100);
+		$("#popupwrapper").fadeOut(100);
+
     });
     $(".popupReject").click(function(){
-        $.post('/callback?action=rejectTask', taskID);
-        $(".popup").hide();
+        $.post('/callback?action=taskReject', {'taskData':taskID});
+        $(".popup").fadeOut(100);
+		$("#popupwrapper").fadeOut(100);
+
     });
 
 }
