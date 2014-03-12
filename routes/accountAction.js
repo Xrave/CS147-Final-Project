@@ -224,12 +224,14 @@ exports.process = function(req, res){
     }else if(req.query.action='queueCompletedTask'){
 		//1. mark the completed task as completed. & push id to completion list?
 		var id = req.body.id;
+        var m_id = mongoose.Types.ObjectId(id);
+        console.log(m_id);
 		models.Family.update(
 		{'tasks._id':id},
 		{$set:{ 'tasks.$.taskCompletion' : 'completed' },
-		 $push:{ 'confirmations': id}},
-		{multi:false}, 
-		function(err,doc){console.log(doc); res.send(200)});
+		 $push:{ 'confirmations': m_id}})
+        .exec(
+		function(err,doc){console.log(err); console.log(doc); res.send(200);});
 		
 	
 	}else if(req.query.action == 'removePerson'){

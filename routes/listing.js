@@ -124,21 +124,23 @@ exports.getConfirmRequests = function(req,res){
 		var tasks = families[0].tasks;
 		var confirmations = families[0].confirmations;
 		var index;
-		for(index = 0; index<confirmations.length; index++){
-			var out = getObjects(tasks,"_id",confirmations[index]);
-			if(out.length == 1){
+		
+		dataOut = tasks.filter( function(t){
+			return confirmations.indexOf(t['_id']) > -1;
+		});
+		
+		if(dataOut.length == 0){ //dataOut actually has nothing, then... there's nothing of use here.
 				dataOut.push(out[0]);
-			}else{
+		}else{
 				models.Family.update(
 				{"_id": req.session.family},
-				{$pull:{"confirmations":confirmations[index]}});
-			}
+				{$set:{"confirmations":[]}}).exec();
 		}
 		console.log("Requests being fulfilled:" + dataOut);
 		
 		res.json(dataOut);
 		return;
-		
+		/*
 		var callbacksfinished = 0;
 
 		for(index = 0; index<dataOut.length; index++){
@@ -163,6 +165,6 @@ exports.getConfirmRequests = function(req,res){
                     }
                 );
             }(i));
-        };
+        };*/
 	});
 }

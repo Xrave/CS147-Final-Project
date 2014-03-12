@@ -40,7 +40,7 @@ var FamilySchema = new Mongoose.Schema({
       'date': Date,
     }],
 	"confirmations":[
-		Mongoose.Types.ObjectId
+		Mongoose.Schema.Types.ObjectId
 	]
   // fields are defined here
 });
