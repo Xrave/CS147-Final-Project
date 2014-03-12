@@ -8,6 +8,7 @@
       "taskID": "julie-xiaonan-Clean your bed",
       "assigner": "jack7kim@stanford.edu", 
       "assignee": "xiaonan@stanford.edu", 
+	  "assigneeName": "Xiaonan",
       "taskText": "Clean your bed",
       "taskCompletion": 0,  
 	  "taskReward": 12,

@@ -85,23 +85,25 @@ function initializePage() {
         })
         .fail(function(){$.notify("Parent not added! Email already exists", "error");});
     });
-	$(document).on("click", "#removeChild", function(){
-        var r = confirm("Are you sure you want to remove this child?");
+	$(document).on("click", "#removeChild", function(e){
+        var r = confirm("Are you sure you want to remove this child? You cannot undo this, and their account will be deleted.");
             if (r == true) {
+				var parent = $(this).parent();
                 var person = {"email":$(this).parent().attr("id"), "isParent":false};
                 $.post("/callback?action=removePerson", person).done(function(e){
-                $(this).parent().remove();
+parent.remove();
                 });   
             }  else {
                 //do nothing, and kill the confirm box
             }
     });
 	$(document).on("click", "#removeParent", function(){
-         var r = confirm("Are you sure you want to remove this parent?");
+         var r = confirm("Are you sure you want to remove this parent? You cannot undo this, and their account will be deleted.");
             if (r == true) {
+				var parent = $(this).parent();
                 var person = {"email":$(this).parent().attr("id"), "isParent":true};
                 $.post("/callback?action=removePerson", person).done(function(e){
-                $(this).parent().remove();
+					parent.remove();
                 });
             } else {
                 //do nothing, and kill the confirm box

@@ -36,29 +36,11 @@ exports.view = function(req, res){
             console.log(index);
             var email = tasks[index].assignee;
             var i = index;
-
-            (function (i){
-                console.log(email);
-                models.Person.find({"email": email}).exec(
-                    function(err, people){
-                        console.log(i);
-                        tasks[i]['task_description'] = tasks[i].taskText;
-                        tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
-                        tasks[i].assignedTo = people[0].name;
-                        callbacksfinished ++;
-                        if(callbacksfinished == tasks.length){
-                            console.log("Person logging in is of parent status: "+req.session.isParent);
-                            if(req.session.isParent){
-                                res.render('tasks', {"taskArray": tasks});
-                            }else{
-                                res.render('tasks_kid', {"taskArray": tasks});
-                            }                            
-                            console.log(tasks);
-                        }
-                    }
-                );
-            }(i));
+            tasks[i]['task_description'] = tasks[i].taskText;
+            tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
+            tasks[i].assignedTo = tasks[i].assigneeName;
         };
+
         if(tasks.length == 0){
             if(req.session.isParent){
                 res.render('tasks', {"message": '<h4 style="text-align:center">No Tasks Assigned</h4>'});
@@ -66,6 +48,11 @@ exports.view = function(req, res){
                 res.render('tasks_kid', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
         }
+        if(req.session.isParent){
+            res.render('tasks', {"taskArray": tasks});
+        }else{
+            res.render('tasks_kid', {"taskArray": tasks});
+        } 
         //search again with the assignee email to find name
     }
 };
@@ -101,28 +88,11 @@ exports.viewAlt = function(req, res){
         for(index = 0; index<tasks.length; index++){
             console.log(tasks.length);
             var email = tasks[index].assignee;
-            var i = index;
+            var i = index;                        
+            tasks[i]['task_description'] = tasks[i].taskText;
+            tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
+            tasks[i].assignedTo = tasks[i].assigneeName;
 
-            (function (i){
-                console.log(email);
-                models.Person.find({"email": email}).exec(
-                    function(err, people){
-                        console.log(i);
-                        tasks[i]['task_description'] = tasks[i].taskText;
-                        tasks[i]['reward-point'] = tasks[i].taskReward + "pts";
-                        tasks[i].assignedTo = people[0].name;
-                        callbacksfinished ++;
-                        if(callbacksfinished == tasks.length){
-                            if(req.session.isParent){
-                                res.render('tasksAlternate', {"taskArray": tasks});
-                            }else{
-                                res.render('tasksAlternate', {"taskArray": tasks});
-                            }
-                            console.log(tasks);
-                        }
-                    }
-                );
-            }(i));
         };
         if(tasks.length == 0){
             if(req.session.isParent){
@@ -131,6 +101,12 @@ exports.viewAlt = function(req, res){
                 res.render('tasksAlternate', {"message": '<h4 style="text-align:center">You have no tasks! Yay.</h4>'});
             }
         }
+        if(req.session.isParent){
+            res.render('tasksAlternate', {"taskArray": tasks});
+        }else{
+            res.render('tasksAlternate', {"taskArray": tasks});
+        }
+
         //search again with the assignee email to find name
     }
 };
@@ -168,22 +144,15 @@ exports.renderDetails = function(req, res){
             found = true;
             console.log("Found the Task!");
             var foundTask = tasks[index];
+            foundTask.assignedTo = foundTask.assigneeName;
             var email = foundTask.assignee;
             console.log(email);
-            models.Person.find({"email": email}).exec(
-                function(err, people){
-                    console.log(people);
-                    foundTask['task_description'] = foundTask.taskText;
-                    foundTask.assignedTo = people[0].name;
-					if(req.session.isParent){
-						res.render('taskdetails', foundTask);
-					}else{
-						res.render('taskdetails_kid', foundTask);
-					}
-                    console.log(foundTask);
-                    return;
-                }
-            );
+            foundTask['task_description'] = foundTask.taskText;
+            if(req.session.isParent){
+                res.render('taskdetails', foundTask);
+            }else{
+                res.render('taskdetails_kid', foundTask);
+            }
         };
         if(!found){
             res.redirect('/');
