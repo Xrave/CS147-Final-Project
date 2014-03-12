@@ -20,6 +20,6 @@ exports.view = function(req, res){
             families[0].rewards[i].isParent = req.session.isParent;
         }
 		//search again with the assignee email to find name
-		res.render('rewards', {"rewards": families[0].rewards});
+		res.render('rewards', {"rewards": families[0].rewards, 'isParent':req.session.isParent});
 	}
 };

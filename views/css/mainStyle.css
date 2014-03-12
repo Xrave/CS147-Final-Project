@@ -42,8 +42,6 @@ label.error {
     position:relative;
     margin:5px;
     overflow: hidden;
-	border-left-style:dotted;
-	border-left-width:medium;
 }
 
 span .completed:after {
@@ -53,8 +51,9 @@ span .completed:after {
 }
 
 .task-item.completed{
-	border-left-color:#96DA91;
+	border-left-style:solid;
 	border-left-width:medium;
+	border-left-color:#96DA91;
 }
 
 
@@ -374,26 +373,35 @@ table:after {
 }
 .task-item2 {
     /*min-height:60px;*/
-    width: 290px;
+    width: 80%;
     height: 60px;
     position:relative;
-    margin: 0px auto 10px auto;
+    margin: 0px auto 2px auto;
     overflow: hidden;
 }
+/*
 .task-item2 .image {
 	float: left;
+}*/
+
+.task-item2 .image{
+	visibility:hidden;
+	display:none;
+	float:left;
 }
+
 .task-item2 .description{
     padding-left:10px;
     height:60px;
     width: 245px;
     float:left;
-    margin-bottom: 7px;
+    margin-bottom: 2px;
     display: inline-block;
     position: absolute;
-    left: 50px; top: 4px;
+    left: 10px; top: 2px;
     text-align: left;
 }
+
 .task-item2:after {
     content: '';
     position: absolute;

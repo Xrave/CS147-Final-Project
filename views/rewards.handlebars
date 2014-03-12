@@ -20,7 +20,8 @@
             <div id="wrapper">
                 <div id="topBar">
                     <div class="header">Rewards</div>
-                    <a href="/addreward" ><div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div></a>
+					{{#if isParent}}
+                    <a href="/addreward" ><div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div></a>{{/if}}
                 </div>
 
                 <div id="task-content">
@@ -54,14 +55,22 @@
                 $(".claimBtn").click(function(e){
                     var r = confirm("Are you sure you want to claim this reward?");
                     if (r == true) {
-                        var claimedReward = {"id":$(this).parent().attr("id"), "cost":$(this).parent().attr("cost")};
+                        var claimedReward = {"id":$(this).parent().attr("id"), "cost":$(this).parent().attr("cost"), 'rewardText': $(this).parent().find('#task-desc').text()};
                         //send ID of this specific reward to server
-                        $.post('/callback?action=redeemReward', claimedReward, function(result){
-                            if(result.success){
-                                window.location.reload(true); 
-                            }else{
-                            }
-                        });
+                        $.post('/callback?action=redeemReward', claimedReward)
+						.done(function(ok, data){
+							if(ok == 'err'){
+								$.notify("Error has occured", "error");
+							}else{
+								if(ok.message == 'success'){
+									$.notify('Redeemed!', 'success');
+									window.location.reload(true); 
+								}else{
+									$.notify(ok.message, 'warn');
+								}
+							}
+
+						})
                     } else {
                         //do nothing, and kill the confirm box
                     }
@@ -73,9 +82,16 @@
                     if (r == true) {
 						var parent = $(this).parent();
                         var reward = {"id":$(this).parent().attr("id")};
-                        $.post("/callback?action=removeReward", reward).done(function(e){
-                            parent.remove();
-                        });   
+                        $.post("/callback?action=removeReward", reward).done(
+						function(ok, data){
+							if(ok == 'err'){
+								$.notify("Error has occured", "error");
+							}else{
+								console.log(data);
+							}
+							window.location.reload(true); 
+                        });
+						
                     }  else {
                         //do nothing, and kill the confirm box
                     }

@@ -21,11 +21,7 @@
       "cost":12,
       "text":"Cheesecake"
     }],
-    "notifications":[{
-      "text": "Xiaonan redeemed Chocolate!",
-      "date": "February 12 2014"
-    }],
-	"confirmations":[
-	]
+    "notifications":[],
+	"confirmations":[]
   }
 ]

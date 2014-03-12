@@ -36,6 +36,7 @@ exports.process = function(req, res){
                 req.session.isParent = true; //0 for parent;
                 req.session.family= newFamily._id;
                 req.session.user= newUser.email;
+                req.session.userName = newUser.name;
                 res.send(200); return;
             });
         });
@@ -61,6 +62,8 @@ exports.process = function(req, res){
                     console.log("User is:"+req.session.isParent);
                     req.session.user = entry[0].email;
                     req.session.family= matchedFamilies[0]._id;
+                    req.session.userName = entry[0].name;
+
                     res.send(200);
                     return;
                 });
@@ -200,7 +203,28 @@ exports.process = function(req, res){
             });
         return;
     }else if(req.query.action == 'redeemReward'){
+        var rewardData = req.body;
+        models.Person.find({'email':req.session.user}).exec(function(err, users){
+            var user = users[0];
+            if(user.points >= rewardData.cost){
+                //notification:
+                var notifText = '<span class="description"><span class="boldName">'+req.session.userName+'</span> redeemed the reward "'+rewardData.rewardText+'" for <span class="pointsAdded">'+rewardData.cost+'</span> pts.';
+                console.log(notifText);
+                models.Person.update({'email':req.session.user},{$inc: {'points':rewardData.cost*(-1), 'numRewardsClaimed':1}}).exec(function(e,d){
 
+                    models.Family.update(
+                        {'rewards._id':rewardData.id},
+                        {$pull: {'rewards':{'_id':rewardData.id}}, //remove the reward and
+                         $push: {'notifications':{'text':notifText}}})
+                    .exec(function(e,d){
+                        res.json({message:'success'});
+                    });
+                });
+            }else{
+				console.log("need more points");
+                res.json({message:'Need more points to redeem!'});
+            }
+        });
     }else if(req.query.action == 'comment'){
         models.Family.update(
             {'tasks._id':req.body.taskID}

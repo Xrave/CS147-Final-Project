@@ -45,12 +45,14 @@ function initializePage() {
         $.post('/callback?action=taskConfirm', {"taskData":taskID});
         $(".popup").fadeOut(100);
 		$("#popupwrapper").fadeOut(100);
+		window.location.reload(true); 
 
     });
     $(".popupReject").click(function(){
         $.post('/callback?action=taskReject', {'taskData':taskID});
         $(".popup").fadeOut(100);
 		$("#popupwrapper").fadeOut(100);
+		window.location.reload(true); 
 
     });
 

@@ -72,7 +72,7 @@
         //return "completed" status to server
 		$.post("/callback?action=queueCompletedTask", {'id':parent.attr('id')}).done			
 		(function(e){
-			$.notify('Marked as completed. Awaiting verification.', 'success');
+			$('#taskTitle').notify('Marked as completed. Awaiting verification.', {className:'success', position:'bottom center'});
 			$('#completedBtn').prop('disabled',true);
 			$('#completedBtn').text('Done');
 		}).fail(function(e){

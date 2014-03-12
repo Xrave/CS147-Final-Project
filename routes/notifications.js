@@ -50,7 +50,7 @@ exports.view = function(req, res){
 			res.render('notifications',
 			{
 				'snapshotItems':snapshotItems,
-				'notificationItems':notificationItems,
+				'notificationItems':notificationItems.reverse(),
 				'message': message,
 				'notificationMessage': notificationMessage
 			});
