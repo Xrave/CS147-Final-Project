@@ -24,7 +24,7 @@ var FamilySchema = new Mongoose.Schema({
       'assignee': String, //email.
 	  'assigneeName': String,
       'taskText': String,
-      'taskCompletion': Number,  //a percentage or a number between 0 and 100 would do??
+      'taskCompletion': String,  //either 'complete' or nothing.
       'taskReward': Number,
       'comments':[{
         'text': String,
@@ -40,7 +40,7 @@ var FamilySchema = new Mongoose.Schema({
       'date': Date,
     }],
 	"confirmations":[
-		Mongoose.Schema.ObjectID
+		Mongoose.Types.ObjectId
 	]
   // fields are defined here
 });

@@ -5,6 +5,9 @@ exports.view = function(req, res){
 		res.redirect('/login');
 		return;
 	}
-	
-	res.render('settings');
+	if(req.session.isParent == 'true'){
+		res.render('settings');
+	}else{
+		res.render('settings_kid');
+	}
 };

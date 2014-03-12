@@ -30,10 +30,10 @@
     	<div id="task-content">
 		<!--For parent:-->
 		    {{#each taskArray}}
-    		<div class="task-item" id="{{_id}}">
+    		<div class="task-item {{taskCompletion}}" id="{{_id}}">
     			<span class="image">
 				<img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
-				<span class="description"><div id="magicalDivDontDelete">{{assignedTo}} | <span id="color">{{reward-point}}</span></div>
+				<span class="description"><div id="magicalDivDontDelete">{{assignedTo}} | <span id="color" class="{{taskCompletion}}">{{reward-point}}</span></div>
     			<p id="task-desc">{{task_description}}</p>
 				</span>
     		</div>
@@ -83,7 +83,6 @@
   ga('send', 'pageview');
 
     //ga('send', 'event', 'back button', 'click');
-}
 </script>
 <!-- End Google Analytics -->
 

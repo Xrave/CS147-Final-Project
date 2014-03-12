@@ -135,6 +135,10 @@ exports.getConfirmRequests = function(req,res){
 			}
 		}
 		console.log("Requests being fulfilled:" + dataOut);
+		
+		res.json(dataOut);
+		return;
+		
 		var callbacksfinished = 0;
 
 		for(index = 0; index<dataOut.length; index++){

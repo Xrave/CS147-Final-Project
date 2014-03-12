@@ -37,7 +37,7 @@ function initializePage() {
         if (res.length < 1) {
             //do nothing
         } else  {
-            $(".popupText").html(res.name + "reported that he has completed the task <span style='font-weight:bold'>" + res.title + "</span>. Please confirm or reject this report!");
+            $(".popupText").html(res.assigneeName + "reported that he has completed the task <span style='font-weight:bold'>" + res.taskText + "</span>. Please confirm or reject this report!");
             $(".popup").show();
         }
     });

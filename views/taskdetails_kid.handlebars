@@ -22,7 +22,7 @@
 
 	<div id="topBar">
     <div class="header">Task</div>
-  <div class="completedRightBtn"><!--img src="images/completed_btn.png" id="completedBtn" /--><button id="completedBtn" class="btn btn-success">&#x2713;Mark as !</button>
+  <div class="completedRightBtn" id="{{_id}}"><!--img src="images/completed_btn.png" id="completedBtn" /--><button id="completedBtn" class="btn btn-success">&#x2713;Mark as Done!</button>
 </div>
 
 	<a href="/"><div class="leftBtn"><img src="images/back_btn.png" class="backBtn" /></div></a>
@@ -66,9 +66,18 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#completedBtn").click(function(){
+		var parent = $(this).parent();
       var r = confirm("Mark this task as complete?");
       if (r == true) {
         //return "completed" status to server
+		$.post("/callback?action=queueCompletedTask", {'id':parent.attr('id')}).done			
+		(function(e){
+			$.notify('Marked as completed. Awaiting verification.', 'success');
+			$('#completedBtn').prop('disabled',true);
+			$('#completedBtn').text('Done');
+		}).fail(function(e){
+			$.notify('Server not responding!', 'error')
+		});
       } else {
         //do nothing, and kill the confirm box
       }

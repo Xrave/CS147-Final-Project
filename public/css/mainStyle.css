@@ -42,9 +42,25 @@ label.error {
     position:relative;
     margin:5px;
     overflow: hidden;
+	border-left-style:dotted;
+	border-left-width:medium;
 }
 
+span .completed:after {
+  content: " (Awaiting Verification)";
+  font-style:normal;
+  font-weight:100;
+}
+
+.task-item.completed{
+	border-left-color:#96DA91;
+	border-left-width:medium;
+}
+
+
 .task-item .image{
+	visibility:hidden;
+	display:none;
     float:left;
     width:auto;
 }
