@@ -19,7 +19,6 @@ exports.process = function(req, res){
         userJson.email = userJson.email.toLowerCase();
         console.log(models.Person.find({'email':email}).limit(1).size());
 
-
         var newUser = new models.Person(userJson);
         newUser.points = -1;
         newUser.save(function(err, newUser){
@@ -77,6 +76,8 @@ exports.process = function(req, res){
                 res.send(500); //no good.
             }else{
                 var newUser = new models.Person(userJson);
+				newUser.numRewardsClaimed = 0;
+				newUser.tasksCompleted = 0;
                 newUser.save(function(err, newUser){
                     console.log("[ NEW CHILD ADDED ]");
                     console.log(newUser + " is saved!");
@@ -122,12 +123,12 @@ exports.process = function(req, res){
     }else if(req.query.action == 'addReward'){
         var rwd = req.body;
         var familyID = req.session.family;
-        /*db.bios.update(
-   { _id: 1 },
-   {
-     $push: { awards: { award: "IBM Fellow", year: 1963, by: "IBM" } }
-   }
-)*/
+			/*db.bios.update(
+	   { _id: 1 },
+	   {
+		 $push: { awards: { award: "IBM Fellow", year: 1963, by: "IBM" } }
+	   }
+	)*/
         models.Family
         .update({"_id":familyID},
                 {$push: { "rewards" :  rwd  }
@@ -175,6 +176,7 @@ exports.process = function(req, res){
                 $set:{
                     "tasks.$.assignee": req.body.newAssignee, 				
                     "tasks.$.taskText": req.body.newTaskName,
+					"tasks.$.assigneeName": req.body.newAssigneeName,
                     "tasks.$.taskReward":req.body.newPtValue
                 }
             }
@@ -187,8 +189,16 @@ exports.process = function(req, res){
                 res.send(200);
                 return;
             });
-    }else if(req.query.action == 'editRewards'){
-
+    }else if(req.query.action == 'removeReward'){
+		models.Family.update(
+			{'_id':req.session.family},
+			{$pull: {'rewards':{'_id': req.body.id}}},
+			{multi:false},
+			function(err,doc){
+				console.log("removed something to do with this:"+doc);
+				res.send(200);
+		});
+		return;
     }else if(req.query.action == 'redeemReward'){
 
     }else if(req.query.action == 'comment'){

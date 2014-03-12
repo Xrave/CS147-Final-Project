@@ -63,6 +63,7 @@ $(document).ready(function() {
         }
         var n_name = $('#newTaskname').val();
         var n_assignee = $('#childSelector').val();
+		var n_assigneeName = $('#childSelector').text();
         var n_pts = parseInt($('#newRewardValue').val());
         
         if(n_name.length == 0){
@@ -86,6 +87,7 @@ $(document).ready(function() {
 			{oldTaskID: oldID,
 			 newTaskName: n_name,  
 			 newAssignee: n_assignee, 
+			 newAssigneeName: n_assigneeName,
 			 newPtValue: n_pts,
 			};
 		console.log(newData);

@@ -3,7 +3,10 @@
 			"password": "xiaonan",
 			"name": "Xiaonan",
 			"email": "xiaonan@stanford.edu",
-			"points": 12
+			"points": 12,
+			"numRewardsClaimed": 0,
+	  		"tasksCompleted": 0
+
 		},
 		{
 			"password": "julie",

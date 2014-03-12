@@ -1,98 +1,102 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-    	<title>Rewards</title>
+        <title>Rewards</title>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta name="apple-mobile-web-app-capable" content="yes">
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->        
-		<!-- HELPFUL: http://jsfiddle.net/LMJTu/ -->
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		<link href="css/mainStyle.css" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->        
+        <!-- HELPFUL: http://jsfiddle.net/LMJTu/ -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
+        <link href="css/mainStyle.css" rel="stylesheet">
     </head>
     <body>
-		<div id="page" class="container">
-		<div id="wrapper">
-    	<div id="topBar">
-			<div class="header">Rewards</div>
-			<a href="/addreward" ><div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div></a>
-    	</div>
+        <div id="page" class="container">
+            <div id="wrapper">
+                <div id="topBar">
+                    <div class="header">Rewards</div>
+                    <a href="/addreward" ><div class="rightBtn"><img src="images/AddTask_btn.png" class="addBtn" /></div></a>
+                </div>
 
-    	<div id="task-content">
-        	{{#each rewards}}
-    		<div class="task-item" id={{_id}} cost={{cost}}>
-    			<span class="image">
-				<img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
-				<span class="description"><div id="magicalDivDontDelete"><span id="color">{{cost}} pts</span></div>
-    			<p id="task-desc">{{text}}</p>
-				</span>
-                {{#if isParent}}<img id='removeImg' src='images/remove.png' style='float:right' />
-{{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
-    		</div>
-            {{/each}}
+                <div id="task-content">
+                    {{#each rewards}}
+                    <div class="task-item" id={{_id}} cost={{cost}}>
+                        <span class="image">
+                            <img src="http://temporarygiraffe.herokuapp.com/images/Placeholder_profile_black.png"></span>
+                        <span class="description"><div id="magicalDivDontDelete"><span id="color">{{cost}} pts</span></div>
+                            <p id="task-desc">{{text}}</p>
+                        </span>
+                        {{#if isParent}}<img id='removeImg' src='images/remove.png' style='float:right' />
+                        {{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
+                    </div>
+                    {{/each}}
 
-    	</div>
-		</div>
-    	<div id="bottomBar"> 
-    		<a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a>
-    		<a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon2.png" /></a>
-    		<a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a>
-    		<a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a>
-			<span class="stretch"></span>
-    	</div>
-		</div>
-		<script src="js/jquery-1.11.0.js"></script>
-		<script src="js/bootstrap.js"></script>	
-		<script src="js/notify.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-			    $(".claimBtn").click(function(e){
-			    	var r = confirm("Are you sure you want to claim this reward?");
-				      if (r == true) {
-				        var claimedReward = {"id":$(this).parent().attr("id"), "cost":$(this).parent().attr("cost")};
-			     		//send ID of this specific reward to server
-			     		$.post('/callback?action=redeemReward', claimedReward, function(result){
+                </div>
+            </div>
+            <div id="bottomBar"> 
+                <a href="/"><img id="tasksIcon" class="nav-icons" src="images/tasksIcon.png" /></a>
+                <a href="/rewards" ><img id="rewardsIcon" class="nav-icons" src="images/rewardsIcon2.png" /></a>
+                <a href="/notifications"><img id="notIcon" class="nav-icons" src="images/notIcon.png" /></a>
+                <a href="/settings"><img id="settingsIcon" class="nav-icons" src="images/settingsIcon.png" /></a>
+                <span class="stretch"></span>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.0.js"></script>
+        <script src="js/bootstrap.js"></script>	
+        <script src="js/notify.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".claimBtn").click(function(e){
+                    var r = confirm("Are you sure you want to claim this reward?");
+                    if (r == true) {
+                        var claimedReward = {"id":$(this).parent().attr("id"), "cost":$(this).parent().attr("cost")};
+                        //send ID of this specific reward to server
+                        $.post('/callback?action=redeemReward', claimedReward, function(result){
                             if(result.success){
-							     window.location.reload(true); 
+                                window.location.reload(true); 
                             }else{
-							}
-						});
-				      } else {
-				        //do nothing, and kill the confirm box
-				      }
-			    });
-			  })
+                            }
+                        });
+                    } else {
+                        //do nothing, and kill the confirm box
+                    }
+                });
 
-			$(document).on("click", "#removeReward", function(){
-        	var r = confirm("Are you sure you want to remove this reward?");
-            if (r == true) {
-                var reward = {"id":$(this).parent().attr("id")};
-                $.post("/callback?action=removeReward", reward).done(function(e){
-                	$(this).parent().remove();
-                });   
-            }  else {
-                //do nothing, and kill the confirm box
-            }
-		</script>
 
-		<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                $("#removeImg").click( function(){
+                    var r = confirm("Are you sure you want to remove this reward?");
+                    if (r == true) {
+						var parent = $(this).parent();
+                        var reward = {"id":$(this).parent().attr("id")};
+                        $.post("/callback?action=removeReward", reward).done(function(e){
+                            parent.remove();
+                        });   
+                    }  else {
+                        //do nothing, and kill the confirm box
+                    }
+                });
+            });
 
-  ga('create', 'UA-48471738-2', 'temporarygiraffe.herokuapp.com');
-  ga('send', 'pageview');
+        </script>
 
-//ga('send', 'event', 'back button', 'click');
-</script>
-<!-- End Google Analytics -->
+        <!-- Google Analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-48471738-2', 'temporarygiraffe.herokuapp.com');
+            ga('send', 'pageview');
+
+            //ga('send', 'event', 'back button', 'click');
+        </script>
+        <!-- End Google Analytics -->
 
     </body>
 </html>
