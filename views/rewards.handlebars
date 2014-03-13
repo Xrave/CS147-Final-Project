@@ -33,7 +33,7 @@
                             <p id="task-desc">{{text}}</p>
                         </span>
                         {{#if isParent}}<img id='removeImg' src='images/remove.png' style='float:right' />
-                        {{else}}<img src="images/claim_btn.png" class="claimBtn" /> {{/if}}
+                        {{else}}<!--img src="images/claim_btn.png" class="claimBtn" /--><button id="claimBtn" class="btn btn-success claimBtn">Claim!</button> {{/if}}
                     </div>
                     {{/each}}
 
