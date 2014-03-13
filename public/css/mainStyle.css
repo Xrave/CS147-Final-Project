@@ -14,6 +14,14 @@ body{
     font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
     height:100%;
     width:100%;
+		background-image:url('/images/bg_giraffe.png');
+	background-origin:border-box;
+
+background-size:50%;
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position:bottom left;
+
 }
 
 
